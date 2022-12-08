@@ -1,0 +1,29 @@
+<div class="container-fluid mb__0 pl__0 pr__0">
+  <div class="col-12 col-md-12 text-center pl__0 pr__0">
+    <div class="desktop-view">{{ section.settings.image | img_url: '2048x' | img_tag:'', 'product-btf' }}</div>
+    
+    <div class="mobile-view">{{ section.settings.image_mobile | img_url: '2048x' | img_tag:'', 'product-btf' }}</div>
+  </div>
+</div>
+
+
+{%- render 'section_css' -%}
+
+{%- schema -%}
+  {
+    "name": "Product BTF",
+    "class": "image_block",
+    "settings": [
+      {
+         "type": "image_picker",
+         "id": "image",
+         "label": "Desktop Image"
+      },
+      {
+         "type": "image_picker",
+         "id": "image_mobile",
+         "label": "Mobile Image"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,195 @@
+        
+            
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+            
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            
+            <style>
+                
+                #add_service_to_order_btn:hover,
+                #delete_service_from_order_btn:hover {
+                    /*background:initial!important;*/
+                }
+
+
+                #add_service_to_order_input {
+                    margin-bottom: 20px!important;
+                    margin-top: 10px;
+                }
+
+
+                .gift-wrap-box-container *:not(i) {
+                    font-family: inherit!important;
+                }
+            </style>
+            
+                                <style>
+                        .clearfix:before, .clearfix:after {
+                            content: "";
+                            display: table;
+                        }
+                        .clearfix:after {
+                            clear: both;
+                        }
+                        
+                    </style>
+                                                            <style>
+                                        .gift-wrap-box-container{
+                                             top: 50%!important;
+                                        }
+                                                                                    .gift-wrap-box-container.closed .header_text_wrapper{
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            display: flex;
+                                            font-size: 15px;
+                                            margin-right: 5px;
+                                            }
+                                                                                .gift-wrap-box-container.closed header i:before{
+                                            content: "\f0da";
+                                        }
+                                    
+                                    </style>
+                                    <body>
+                                        <div class="gift-wrap-box-container opened" style="font-size: 12px; top: 50%; left: 0; border-radius: 0px 7px 7px 0px; position: fixed; width: 300px; border: 1px solid #ff5757; z-index: 999999999999; transform: translateY(-50%); overflow: hidden;">
+                                            <header class="clearfix fixed-width-container-gift" style="display: flex; cursor: pointer; padding: 0 5px;  height: 46px; background:#ff5757">
+                                                                                                <span class="header_text_wrapper" style="padding: 5px;order: 2; margin: auto;  width:100%; font-size: 15px; text-align: left"><h4 style="color:#ffffff; letter-spacing: 1px; text-transform: none; font-style: normal; margin-bottom: 0;">Gift Wrap</h4></span>
+                                        
+                                                <i class="fas fa-caret-left inverse-column-tri meta_image" style="color:#ffffff; order: 1; display: flex; flex-direction: column; justify-content: center; font-size: 35px;"></i>
+                                            </header>
+                                            <div class="gift_wrap" style="display: block;">
+                                            <div class="gift_wrap-history" style="border-radius: 0; background:#ffffff; padding: 8px 24px; color:#000000;">
+                                                <div class="gift_wrap-message clearfix" style=" text-align: center; margin: 16px 0;">
+                                                    <div class="gift_wrap_custom_message" style="font-size: 12px; text-align: center">
+                                                                                                            </div>
+                                                    <div style="padding: 20px;"><textarea id="add_service_to_order_input" placeholder="Gift Message"></textarea><div style="font-size: 12px; text-align: center"><input style="cursor:pointer;display:none;"  id="add_service_to_order_btn" type="button" style="display: none;cursor: pointer;color: black;border-color: black;" value="Add to order"></div>
+                                            
+                                            <div style="font-size: 12px; text-align: center"><input style="cursor:pointer;display:none;" id="delete_service_from_order_btn" style="display: none;cursor: pointer;color: black;border-color: black;" type="button" value="Remove from order"></div>
+                                            <input id="add_service_to_order_id" type="hidden" value="42680962711765">
+                                            </div>                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </body>
+                                    <script>
+                                    (function() {
+                                        $( ".gift-wrap-box-container header, .gift_wrap_radio_select" ).on('click', function() {
+                                            if ($(".gift-wrap-box-container").hasClass("opened")) {
+                                                $( ".gift-wrap-box-container" ).removeClass( "opened" );
+                                                $( ".gift-wrap-box-container" ).addClass( "closed" );
+                                                $( ".gift-wrap-box-container.closed .gift_wrap-history" ).css('display', "none");
+                                                $( ".gift-wrap-box-container.closed .header_text_wrapper h4" ).css({"font-size": "9px", "margin-bottom": "2px"});
+                                                $( ".gift-wrap-box-container.closed .inverse-column-tri" ).css({'order': "3" , "margin-left":"7.5px"});
+                                                                                                    $( ".gift-wrap-box-container.closed header" ).css({"border-radius": "0px 5px 5px 0px", "height": "unset"});
+                                                                                                $( ".gift-wrap-box-container.closed" ).css({"width": "auto","border": " 1px solid #ff5757", "border-radius": "0 7px 7px 0"});
+                                                $( ".gift-wrap-box-container.closed .fixed-width-container-gift" ).css('padding', "0px 7.5px");
+                                                $( ".gift-wrap-box-container.closed .header_text_wrapper" ).css({"width": "100%", "left": "0", "text-align": "center"});
+                                                $( ".gift-wrap-box-container.closed .image_header_logo" ).css({"width": "60px", "height": "60px", "order": "2" });
+                                            }  
+                                            else if($(".gift-wrap-box-container").hasClass("closed")) {
+                                                $( ".gift-wrap-box-container" ).removeClass( "closed" );
+                                                $( ".gift-wrap-box-container" ).addClass( "opened" );
+                                                $( ".gift-wrap-box-container.opened .gift_wrap-history" ).css('display', "block");
+                                                $( ".gift-wrap-box-container.opened .header_text_wrapper h4" ).css({"font-size": "inherit", "margin-bottom": "unset"});
+                                                $( ".gift-wrap-box-container.opened .header_text_wrapper" ).css({"text-align": "left"});
+                                                $( ".gift-wrap-box-container.opened .fixed-width-container-gift" ).css('padding', "0px 5px");
+                                                $( ".gift-wrap-box-container.opened .image_header_logo" ).css({"width": "30px", "height": "30px", "order": "3" });
+                                                $( ".gift-wrap-box-container.opened" ).css("width","300px");
+                                                $( ".gift-wrap-box-container.opened .inverse-column-tri" ).css({'order': "1" , "margin-left":"unset"});
+                                                $( ".gift-wrap-box-container.opened header" ).css({"border-radius": "0px", "height": "46px"});
+                                            }   
+                                        });
+
+                                        $( "body form[action^='/cart']" ).append("<input type='hidden' value='No' name='attributes[Send as Gift]' class='gift-wrapper-pop' >");
+
+                                        $(".gift_wrap_radio_select").change(function() {
+                                            $(".gift_wrap_radio_select").prop('checked', false);
+                                            $(this).prop('checked', true);
+                                            $('.gift-wrapper-pop').val($(this).val());
+                                        });
+                                    }) ();
+                                </script>
+                                
+                                
+                    <script>
+                        $(function() {
+                            checkItems();
+                            $('#add_service_to_order_btn').click(function(){
+                                var service_product_id = $('#add_service_to_order_id').val();
+                                var message = $('#add_service_to_order_input').val();
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/cart/add.js',
+                                    data: {
+                                        quantity: 1,
+                                        id: service_product_id,
+                                        properties: {
+                                            'Gift Message': message
+                                        }
+                                    },
+                                    dataType: 'json',
+                                    success: function() {
+                                        window.location.reload();
+                                    }
+                                });
+
+                            });
+
+                            $('#delete_service_from_order_btn').click(function(){
+                                var service_product_id = $('#add_service_to_order_id').val();
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/cart/update.js',
+                                    data: {
+                                        updates: {
+                                            [service_product_id]: 0
+                                        }
+                                    },
+                                    dataType: 'json',
+                                    success: function() {
+                                        window.location.reload();
+                                    }
+                                });
+
+                            });
+
+                            setInterval(checkItems, 1500);
+
+                        });
+
+                        function checkItems() {
+                            var service_product_id = $('#add_service_to_order_id').val();
+                            $.ajax({
+                                type: 'GET',
+                                url: '/cart.js',
+                                dataType: 'json',
+                                success: function(data) {
+                                    var inCart = false;
+                                    $.each(data.items, function() {
+                                        if(this.id == service_product_id){
+                                            inCart = true;
+                                            return false;
+                                        }
+                                    });
+
+                                    if(inCart){
+                                        $('#delete_service_from_order_btn').show();
+                                        $('#add_service_to_order_btn').hide();
+                                        $('#add_service_to_order_input').hide();
+                                        $('.gift-wrapper-pop').val('Yes');
+                                    } else {
+                                        $('#delete_service_from_order_btn').hide();
+                                        $('#add_service_to_order_btn').show();
+                                        $('#add_service_to_order_input').show();
+                                        $('.gift-wrapper-pop').val('No');
+                                    }
+                                }
+                            });
+                        }
+
+                    </script>
+                            
+        

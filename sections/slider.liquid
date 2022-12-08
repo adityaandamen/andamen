@@ -1,0 +1,1507 @@
+{%- liquid 
+  assign admin_sp = request.design_mode
+  assign sid = section.id
+  assign se_stts = section.settings
+  assign se_height = se_stts.se_height
+  assign se_blocks = section.blocks
+  assign tp_blocks = se_blocks | map: 'type' | join: ',' | remove:',subhd' | remove:',hd' | remove:',btn' | remove:',txt' | remove:',html' | remove:',space' | split: ','
+  assign blocktp = 't4'
+  assign index = 1
+  assign index2 = 1
+  assign use_custom_h = se_stts.use_custom_h
+  assign arr_blocks_img = se_blocks | where: "type", 'img' -%}
+
+
+<div id="slideshow">
+   <div>
+     <img src="">
+   </div>
+   <div>
+     <img src="">
+   </div>
+   <div>
+     Pretty cool eh? This slide is proof the content can be anything.
+   </div>
+  
+   {%- for block in arr_blocks_img -%}
+   {%- endfor -%}
+</div>
+
+<style>
+#slideshow {
+  margin: 80px auto;
+  position: relative;
+  width: 240px;
+  height: 240px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+#slideshow > div {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+}
+</style>
+
+<script type="text/javascript">
+$("#slideshow > div:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow');
+}, 3000);
+</script>
+
+
+
+  
+
+{%- schema -%}
+  {
+    "name": "Slider",
+    "class": "nt_section type_slideshow type_carousel",
+    "max_blocks": 30,
+    "settings": [
+      {
+        "type": "header",
+        "content": "== General Settings"
+      },
+      {
+        "type": "select",
+        "id": "se_height",
+        "label": "Section height",
+        "default": "adapt",
+        "options": [
+          {
+            "value": "adapt_f",
+            "label": "Adapt to first image"
+          },
+          {
+            "value": "adapt",
+            "label": "Adapt to image"
+          },
+          {
+            "value": "full",
+            "label": "Full screen height"
+          },
+          {
+            "value": "cus_h",
+            "label": "Custom height"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "select",
+        "id": "use_custom_h",
+        "default": "1",
+        "options": [
+         {
+            "value": "1",
+            "label": "All Screen"
+          },
+         {
+            "value": "2",
+            "label": "Tablet + Mobile"
+          },
+         {
+            "value": "3",
+            "label": "Mobile"
+          }
+        ],
+        "label": "Use Custom height on:"
+      },
+      {
+        "type": "text",
+        "id": "h_des",
+        "label": "Desktop Large",
+        "placeholder": "600px",
+        "default": "600px"
+      },
+      {
+        "type": "text",
+        "id": "h_tb",
+        "label": "Tablet (<= 1024px)",
+        "placeholder": "500px",
+        "default": "500px"
+      },
+      {
+        "type": "text",
+        "id": "h_mb",
+        "label": "Mobile (<= 767px)",
+        "placeholder": "350px",
+        "default": "350px"
+      },
+      {
+        "type": "select",
+        "id": "des_mobile",
+        "label": "Desgin Mobile",
+        "default": "2",
+        "options": [
+          {
+            "value": "1",
+            "label": "Desgin Mobile 1"
+          },
+          {
+            "value": "2",
+            "label": "Desgin Mobile 2"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "== Slider Settings"
+      },
+      {
+        "type": "select",
+        "id": "effect",
+        "label": "Effect Slider",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "Fade"
+          },
+          {
+            "value": "0",
+            "label": "Slide"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "loop",
+        "label": "Use Loop?",
+        "info": "At the end of cells, wrap-around to the other end for infinite scrolling.",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Use Autoplay?",
+        "info": "Automatically advances to the next cell.",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "au_time",
+        "min": 1,
+        "max": 30,
+        "step": 0.5,
+        "label": "Autoplay Speed in second.",
+        "unit": "sec",
+        "default": 6
+      },
+      {
+        "type": "checkbox",
+        "id": "au_hover",
+        "label": "Pause Autoplay On Hover?",
+        "info": "Auto-playing will pause when the user hovers over the carousel.",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "== Prev Next Button, Page Dot Settings"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "paragraph",
+        "content": "Prev Next Button:"
+      },
+      {
+        "type": "checkbox",
+        "id": "button",
+        "label": "Enable Prev Next Button?",
+        "info": "Creates and enables previous & next buttons.",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "btn_vi",
+        "label": "Visible:",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "always"
+          },
+          {
+            "value": "2",
+            "label": "Only hover"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "btn_owl",
+        "label": "Style",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "Style 1"
+          },
+          {
+            "value": "2",
+            "label": "Style 2"
+          },
+          {
+            "value": "3",
+            "label": "Style 3"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "btn_color",
+        "label": "Color",
+        "default": "0",
+        "options": [
+          {
+            "value": "0",
+            "label": "Transparent"
+          },
+          {
+            "value": "1",
+            "label": "Gray"
+          },
+          {
+            "value": "2",
+            "label": "White"
+          },
+          {
+            "value": "3",
+            "label": "Primary"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "paragraph",
+        "content": "Page Dot:"
+      },
+      {
+        "type": "checkbox",
+        "id": "dot",
+        "label": "Enable Page Dot?",
+        "info": "Creates and enables page dots.",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "dot_owl",
+        "label": "Style",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "Style 1"
+          },
+          {
+            "value": "2",
+            "label": "Style 2"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "dot_color",
+        "label": "Color",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "Dark"
+          },
+          {
+            "value": "2",
+            "label": "Light"
+          },
+          {
+            "value": "3",
+            "label": "Primary"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "== Design Options"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "default": "nt_full",
+        "options": [
+         {
+            "value": "container",
+            "label": "Container"
+         },
+         {
+            "value": "nt_full",
+            "label": "Full Width"
+          }
+        ],
+        "label": "Layout"
+      },
+      {
+        "type": "color",
+        "id": "cl_bg",
+        "label": "Background Color",
+        "info": "only active when you use layout 'Container'"
+      },
+      {
+        "type": "text",
+        "id": "mg",
+        "label": "Margin",
+        "info":"Margin top, margin right, margin bottom, margin left. If you not use to blank",
+        "default": ",,50px,",
+        "placeholder": "50px,,50px,"
+      },
+      {
+        "type": "text",
+        "id": "pd",
+        "label": "Padding",
+        "info":"Padding top, padding right, padding bottom, padding left. If you not use to blank",
+        "placeholder": "50px,,50px,"
+      },
+     {
+        "type": "header",
+        "content": "== Design Mobile Options"
+      },
+      {
+        "type": "text",
+        "id": "mg_mb",
+        "label": "Margin",
+        "placeholder": "50px,,50px,"
+      },
+      {
+        "type": "text",
+        "id": "pd_mb",
+        "label": "Padding",
+        "placeholder": "50px,,50px,"
+      }
+    ],
+    "blocks": [{
+    "type": "img",
+    "name": "Image slide (Parent)",
+    "settings": [
+      {
+         "type": "image_picker",
+         "id": "image",
+         "label": "Image",
+         "info": "1800 x 600px .jpg recommended"
+       },
+      {
+         "type": "image_picker",
+         "id": "image_mb",
+         "label": "Mobile image (optional)",
+         "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be used."
+       },
+      {
+        "type": "select",
+        "id": "pos_img",
+        "label": "Image position",
+        "default": "center center",
+        "options": [
+          {
+            "value": "left top",
+            "label": "Left Top"
+          },
+          {
+            "value": "left center",
+            "label": "Left Center"
+          },
+          {
+            "value": "left bottom",
+            "label": "Left Bottom"
+          },
+          {
+            "value": "center top",
+            "label": "Center Top"
+          },
+          {
+            "value": "center center",
+            "label": "Center Center"
+          },
+          {
+            "value": "center bottom",
+            "label": "Center Bottom"
+          },
+          {
+            "value": "right top",
+            "label": "Right Top"
+          },
+          {
+            "value": "right center",
+            "label": "Right Center"
+          },
+          {
+            "value": "right bottom",
+            "label": "Right Bottom"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "cl_img",
+        "label": "Image Color (optional)",
+        "info": "Will shown until loaded image"
+      },
+      {
+        "type": "url",
+        "id": "link_img1",
+        "label": "Link image",
+        "info": "The whole image becomes clickable."
+      },
+      {
+        "type": "select",
+        "id": "open_link",
+        "options": [
+          {
+            "value": "_self",
+            "label": "Current window (_self)"
+          },
+         {
+            "value": "_blank",
+            "label": "New window (_blank)"
+          }
+        ],
+        "label": "Open link in",
+        "default": "_blank"
+      },
+      {
+         "type": "header",
+         "content": "== Caption settings"
+       },
+      {
+        "type": "select",
+        "id": "caption_w",
+        "default": "2",
+        "options": [
+         {
+            "value": "1",
+            "label": "Container"
+         },
+         {
+            "value": "2",
+            "label": "Full Width"
+          }
+        ],
+        "label": "Caption Width"
+      },
+      {
+         "type": "range",
+         "id": "cap_v_pos",
+         "label": "Caption vertical position",
+           "info":" <= 50: Top position , > 50 bottom position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "cap_h_pos",
+         "label": "Caption horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 39,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+        "type": "select",
+        "id": "txt_align",
+        "label": "Text alignment",
+        "default": "tl_md",
+        "options": [
+          {
+            "value": "tl_md",
+            "label": "Left"
+          },
+          {
+            "value": "tc_md",
+            "label": "Center"
+          },
+          {
+            "value": "tr_md",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+         "type": "header",
+         "content": "== Caption mobile settings"
+       },
+      {
+         "type": "range",
+         "id": "cap_v_pos_mb",
+         "label": "Caption vertical position",
+         "info":" <= 50: Top position , > 50 bottom position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "cap_h_pos_mb",
+         "label": "Caption horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 39,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+        "type": "select",
+        "id": "txt_align_mb",
+        "label": "Text alignment",
+        "default": "tl",
+        "options": [
+          {
+            "value": "tl",
+            "label": "Left"
+          },
+          {
+            "value": "tc",
+            "label": "Center"
+          },
+          {
+            "value": "tr",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "== Color"
+      },
+      {
+        "type": "color",
+        "id": "cl_overlay",
+        "label": "Overlay",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "cl_opacity",
+        "label": "Overlay opacity",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "== Animation"
+      },
+      {
+        "type": "select",
+        "id": "ani_img",
+        "label": "Image",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "zoom",
+            "label": "Zoom"
+          },
+          {
+            "value": "tran_ef",
+            "label": "TranslateX"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "ani_txt",
+        "label": "Text",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "bottom_top",
+            "label": "Bottom to top"
+          },
+          {
+            "value": "top_bottom",
+            "label": "Top to bottom"
+          },
+          {
+            "value": "left_right",
+            "label": "Left to right"
+          },
+          {
+            "value": "right_left",
+            "label": "Right to left"
+          }
+        ]
+      }
+      ]
+    },
+    /*{
+    "type": "vid",
+    "name": "Video slide (Parent)",
+    "settings": [
+      {
+        "type": "text",
+        "id": "file_name",
+        "label": "File name",
+        "info": "FIle name from uploaded files. File size is smaller 4 mb recommended"
+      },
+      {
+        "type": "select",
+        "id": "vid_ratio",
+        "label": "Aspect Ratio",
+        "default": "1",
+        "options": [
+          {
+            "value": "1",
+            "label": "16:9"
+          },
+          {
+            "value": "2",
+            "label": "Adapt to image"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Ratio image",
+         "info": "1800 x 600px .jpg recommended"
+      },
+      {
+         "type": "image_picker",
+         "id": "image_mb",
+         "label": "Ratio mobile image",
+         "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be used."
+       },
+      {
+        "type": "url",
+        "id": "link_img1",
+        "label": "Link video",
+        "info": "The whole video becomes clickable."
+      },
+      {
+        "type": "select",
+        "id": "open_link",
+        "options": [
+          {
+            "value": "_self",
+            "label": "Current window (_self)"
+          },
+         {
+            "value": "_blank",
+            "label": "New window (_blank)"
+          }
+        ],
+        "label": "Open link in",
+        "default": "_blank"
+      },
+      {
+         "type": "header",
+         "content": "== Caption settings"
+       },
+      {
+        "type": "select",
+        "id": "caption_w",
+        "default": "2",
+        "options": [
+         {
+            "value": "1",
+            "label": "Container"
+         },
+         {
+            "value": "2",
+            "label": "Full Width"
+          }
+        ],
+        "label": "Caption Width"
+      },
+      {
+         "type": "range",
+         "id": "cap_v_pos",
+         "label": "Caption vertical position",
+         "info":" <= 50: Top position , > 50 bottom position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "cap_h_pos",
+         "label": "Caption horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+        "type": "select",
+        "id": "txt_align",
+        "label": "Text alignment",
+        "default": "tl_md",
+        "options": [
+          {
+            "value": "tl_md",
+            "label": "Left"
+          },
+          {
+            "value": "tc_md",
+            "label": "Center"
+          },
+          {
+            "value": "tr_md",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+         "type": "header",
+         "content": "== Caption mobile settings"
+       },
+      {
+         "type": "range",
+         "id": "cap_v_pos_mb",
+         "label": "Caption vertical position",
+         "info":" <= 50: Top position , > 50 bottom position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "cap_h_pos_mb",
+         "label": "Caption horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 39,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+        "type": "select",
+        "id": "txt_align_mb",
+        "label": "Text alignment",
+        "default": "tl",
+        "options": [
+          {
+            "value": "tl",
+            "label": "Left"
+          },
+          {
+            "value": "tc",
+            "label": "Center"
+          },
+          {
+            "value": "tr",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "== Color"
+      },
+      {
+        "type": "color",
+        "id": "cl_overlay",
+        "label": "Overlay",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "cl_opacity",
+        "label": "Overlay opacity",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "== Animation"
+      },
+      {
+        "type": "select",
+        "id": "ani_txt",
+        "label": "Text",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "bottom_top",
+            "label": "Bottom to top"
+          },
+          {
+            "value": "top_bottom",
+            "label": "Top to bottom"
+          },
+          {
+            "value": "left_right",
+            "label": "Left to right"
+          },
+          {
+            "value": "right_left",
+            "label": "Right to left"
+          }
+        ]
+      }
+      ]
+    },*/
+    {
+      "type": "hd",
+      "name": "Heading",
+      "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Heading",
+            "default": "Best shopify theme 2020"
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Color Text",
+            "default": "#fff"
+          },
+          {
+            "type": "range",
+            "id": "fw_text",
+            "min": 400,
+            "max": 800,
+            "step": 100,
+            "label": "Font weight",
+            "default": 600
+          },
+          {
+            "type": "range",
+            "id": "fs_text",
+            "min": 20,
+            "max": 70,
+            "step": 0.5,
+            "label": "Font size",
+            "unit": "px",
+            "default": 30
+          },
+          {
+            "type": "range",
+            "id": "lh_text",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Line Height",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "ls_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "fs_mb_text",
+            "min": 10,
+            "max": 50,
+            "step": 0.5,
+            "label": "Font size (mobile)",
+            "unit": "px",
+            "default": 15
+          },
+          {
+            "type": "range",
+            "id": "lh_mb_text",
+            "min": 0,
+            "max": 50,
+            "step": 0.5,
+            "label": "Line Height (mobile)",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "ls_mb_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          }
+        ]
+    },
+    {
+      "type": "subhd",
+      "name": "Sub Heading",
+      "settings": [
+          {
+            "type": "select",
+            "id": "font",
+            "default": "f__libre",
+            "options": [
+             {
+                "value": "f_body",
+                "label": "Body font"
+             },
+             {
+                "value": "f_heading",
+                "label": "Heading font"
+             },
+             {
+                "value": "f__libre",
+                "label": "Sub title font"
+              }
+            ],
+            "label": "Sub Heading use font:"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Heading",
+            "default": "Elessi v1"
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Color Text",
+            "default": "#fff"
+          },
+          {
+            "type": "range",
+            "id": "fw_text",
+            "min": 400,
+            "max": 800,
+            "step": 100,
+            "label": "Font weight",
+            "default": 400
+          },
+          {
+            "type": "range",
+            "id": "fs_text",
+            "min": 10,
+            "max": 50,
+            "step": 0.5,
+            "label": "Font size",
+            "unit": "px",
+            "default": 14
+          },
+          {
+            "type": "range",
+            "id": "lh_text",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Line Height",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "ls_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "fs_mb_text",
+            "min": 10,
+            "max": 50,
+            "step": 0.5,
+            "label": "Font size (mobile)",
+            "unit": "px",
+            "default": 14
+          },
+          {
+            "type": "range",
+            "id": "lh_mb_text",
+            "min": 0,
+            "max": 50,
+            "step": 0.5,
+            "label": "Line Height (mobile)",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "ls_mb_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "checkbox",
+            "id": "hide",
+            "label": "Hidden on mobile?",
+            "default": false
+          }
+        ]
+    },
+    {
+      "type": "txt",
+      "name": "Content",
+      "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Content",
+            "default": "After many months design and development raking over every detail of what a modern online retailer needs,<br> Kalles is ready to take your online empire to the next level."
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Color Text",
+            "default": "#fff"
+          },
+          {
+            "type": "range",
+            "id": "fw_text",
+            "min": 400,
+            "max": 800,
+            "step": 100,
+            "label": "Font weight",
+            "default": 400
+          },
+          {
+            "type": "range",
+            "id": "fs_text",
+            "min": 10,
+            "max": 50,
+            "step": 0.5,
+            "label": "Font size",
+            "unit": "px",
+            "default": 14
+          },
+          {
+            "type": "range",
+            "id": "lh_text",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Line Height",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "ls_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "fs_mb_text",
+            "min": 10,
+            "max": 50,
+            "step": 0.5,
+            "label": "Font size (mobile)",
+            "unit": "px",
+            "default": 14
+          },
+          {
+            "type": "range",
+            "id": "lh_mb_text",
+            "min": 0,
+            "max": 50,
+            "step": 0.5,
+            "label": "Line Height (mobile)",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "ls_mb_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "checkbox",
+            "id": "hide",
+            "label": "Hidden on mobile?",
+            "default": false
+          }
+        ]
+    },
+    {
+      "type": "btn",
+      "name": "Button",
+      "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Button label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button link (Optional)"
+          },
+          {
+            "type": "text",
+            "id": "title2",
+            "label": "Button label 2",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "btn_link2",
+            "label": "Button link 2 (Optional)"
+          },
+          /*{
+            "type": "checkbox",
+            "id": "btn_round",
+            "label": "Button round?",
+            "default": true
+          },*/
+          {
+            "type": "checkbox",
+            "id": "btn_icon",
+            "label": "Button icon?",
+            "default": false
+          },
+          {
+            "type": "color",
+            "id": "cl_txt",
+            "label": "Text color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "cl_bg",
+            "label": "Background color",
+            "default": "#222"
+          },
+          {
+            "type": "color",
+            "id": "cl_bd",
+            "label": "Border color",
+            "default": "#222"
+          },
+          {
+            "type": "range",
+            "id": "fs_text",
+            "min": 10,
+            "max": 40,
+            "step": 0.5,
+            "label": "Font size",
+            "unit": "px",
+            "default": 14
+          },
+          {
+            "type": "range",
+            "id": "fw_text",
+            "min": 400,
+            "max": 600,
+            "step": 100,
+            "label": "Font weight",
+            "default": 600
+          },
+          { 
+            "type": "range",
+            "id": "h",
+            "min": 40,
+            "max": 80,
+            "step": 0.5,
+            "label": "Min height button",
+            "unit": "px",
+            "default": 40
+          },
+          {
+            "type": "range",
+            "id": "ls_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "bdr",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Border radius",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "pd",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Padding left/right",
+            "unit": "px",
+            "default": 15
+          },
+          {"type": "paragraph","content": "————————————————"},
+          {
+            "type": "range",
+            "id": "fs_mb_text",
+            "min": 10,
+            "max": 50,
+            "step": 0.5,
+            "label": "Font size (mobile)",
+            "unit": "px",
+            "default": 14
+          },
+          { 
+            "type": "range",
+            "id": "h_mb",
+            "min": 40,
+            "max": 80,
+            "step": 0.5,
+            "label": "Min height button (mobile)",
+            "unit": "px",
+            "default": 40
+          },
+          {
+            "type": "range",
+            "id": "ls_mb_text",
+            "min": 0,
+            "max": 10,
+            "step": 0.1,
+            "label": "Letter spacing (mobile)",
+            "info": "set is '0' use to default",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "bdr_mb",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Border radius (mobile)",
+            "unit": "px",
+            "default": 0
+          },
+          {
+            "type": "range",
+            "id": "pd_mb",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Padding left/right (mobile)",
+            "unit": "px",
+            "default": 15
+          }
+        ]
+    },
+    {
+      "type": "html",
+      "name": "HTML",
+      "settings": [
+          {
+            "type": "html",
+            "id": "html",
+            "label": "Custom HTMl",
+            "default": "<h3>Best shopify theme 2020<\/h3>"
+          }
+        ]
+    },
+    {
+      "type": "space",
+      "name": "Space between",
+      "settings": [
+          {
+            "type": "range",
+            "id": "sp",
+            "min": 5,
+            "max": 105,
+            "step": 1,
+            "label": "Space",
+            "unit": "px",
+            "default": 40
+          },
+          {
+            "type": "range",
+            "id": "sp_mb",
+            "min": 0,
+            "max": 50,
+            "step": 0.5,
+            "label": "Space (mobile)",
+            "unit": "px",
+            "default": 10
+          }
+        ]
+    },
+    {
+        "type": "4",
+        "name": "Space HTML",
+        "settings": [
+            {
+              "type": "color",
+              "id": "color",
+              "label": "Color",
+              "default": "#fff"
+            },
+            {
+              "type": "range",
+              "id": "w",
+              "min": 50,
+              "max": 150,
+              "step": 10,
+              "label": "Width",
+              "default": 140
+            },
+            {
+              "type": "range",
+              "id": "h",
+              "min": 1,
+              "max": 5,
+              "step": 0.5,
+              "label": "Height",
+              "default": 3
+            },
+            {
+              "type": "range",
+              "id": "sp",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "label": "Space Top",
+              "unit": "px",
+              "default": 20
+            },
+            {
+              "type": "range",
+              "id": "spb",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "label": "Space Bottom",
+              "unit": "px",
+              "default": 20
+            },
+            {"type": "paragraph","content": "————————————————"},
+            {
+              "type": "range",
+              "id": "w_mb",
+              "min": 50,
+              "max": 150,
+              "step": 10,
+              "label": "Width (mobile)",
+              "default": 140
+            },
+            {
+              "type": "range",
+              "id": "h_mb",
+              "min": 1,
+              "max": 5,
+              "step": 0.5,
+              "label": "Height (mobile)",
+              "default": 3
+            },
+            {
+              "type": "range",
+              "id": "sp_mb",
+              "min": 0,
+              "max": 50,
+              "step": 0.5,
+              "label": "Space Top (mobile)",
+              "unit": "px",
+              "default": 10
+            },
+            {
+              "type": "range",
+              "id": "spb_mb",
+              "min": 0,
+              "max": 50,
+              "step": 0.5,
+              "label": "Space Bottom (mobile)",
+              "unit": "px",
+              "default": 10
+            }
+          ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "6. Slideshow",
+        "category": "III. Image",
+        "blocks": [
+          { "type": "img" },
+          { "type": "img" },
+          { "type": "img" }
+        ]
+      }
+    ]
+  }
+{% endschema %}

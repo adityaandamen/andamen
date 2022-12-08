@@ -1,0 +1,403 @@
+{%- liquid 
+  assign admin_sp = request.design_mode
+  assign sid = section.id
+  assign se_stts = section.settings
+  assign popup_active = se_stts.popup_active
+  assign image = section.settings.image
+  assign logo = section.settings.logo
+  assign left_img = section.settings.left_img
+  assign left_img_m = section.settings.left_img_m
+  assign icon = section.settings.button_icon
+  assign image_mb = section.settings.image_mb
+  assign index = 1
+  assign index2 = 1
+  assign use_custom_h = se_stts.use_custom_h
+ 
+  assign rgb = se_stts.bg_color | color_to_rgb
+  assign overlay = se_stts.overlay | divided_by: 100.00
+  assign tail = overlay | prepend: ', ' | append: ')' 
+-%}
+{%- assign aspect_ratio = image.aspect_ratio -%}
+{% assign currentDate = "now" | date: "%Y%m%d%H%M%S" %}
+
+<style>
+
+.block_true{
+  display: inherit !important;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  background: linear-gradient(0deg, {{ rgb | replace: 'rgb', 'rgba' | replace: ')', tail }}, {{ rgb | replace: 'rgb', 'rgba' | replace: ')', tail }}), url({{ image | img_url: '1920x1080' }});
+  background-size: cover !important;
+  background-position: center center !important;
+  text-align: center;
+}  
+
+.checkout_true{
+  display: inherit !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
+  padding: 20px 0 2px;
+  border-bottom: 1px solid #222;
+  width: max-content;
+  text-align: center;
+  margin: 0 auto;
+}   
+
+.checkout_true:hover{
+  //background: #000 !important;
+  color: #a77737 !important;
+  border-bottom: 1px solid #a77737;
+}  
+    
+.block_false,
+.checkout_false{
+  display: none !important;
+} 
+
+.block_wrapper{
+  width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  top: calc(50% - 120px);
+  left: calc(50% - 200px);
+}    
+
+.block-container h3{
+  margin: 0 0 10px 0;
+}    
+  
+.block-container .newsletter-form{
+  margin: 40px 0 0;
+} 
+
+.block-container .newsletter-form .input-text,
+.block-container .newsletter-form .input-text:hover,
+.block-container .newsletter-form .input-text:focus{
+  border: 1px solid rgba(0,0,0,0.15) !important;
+  background: transparent;
+  color: var(--text) !important;
+  padding: 10px !important;
+  height: 36px;
+  margin-right: -10px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}  
+
+.block-container .newsletter-form .submit-btn{
+  background: var(--text) !important;
+  width: 120px;
+  border-radius: 0 var(--br) var(--br) 0 !important;
+  color: #fff;
+  border: none !important;
+  max-height: 29px;
+  padding: 0 !important;
+  line-height: 1;
+  min-height: 36px;
+  font-weight: 400;
+}   
+
+.block-container .newsletter-form .submit-btn:hover{
+  background: #000 !important;
+  color: #a77737 !important;
+}  
+
+#block-count{
+  font-size: 50px;
+  letter-spacing: 4px;
+  line-height: 1;
+  font-weight: 300;
+  margin: 0 0 40px 0;
+  color: #a77737;
+}
+
+.block_wrapper .caption{
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  word-spacing: 45px;
+}   
+
+.block_true .social-wrapper{
+  position: absolute;
+  bottom: 20px;
+}
+  
+.block_true .social-wrapper a{
+  padding: 10px;
+  width: 40px;
+}  
+
+.block_true .social-wrapper p{
+  margin: 0 0 5px;
+}  
+
+.block_true .social-wrapper i{
+  font-size: 20px;
+}  
+
+.block_logo{
+  width: 120px;
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 60px);
+}  
+
+.left_img{
+  width: 100%;
+  height: 100vh;
+  background: url({{ left_img | img_url: '966x750' }});
+  background-size: cover !important;
+  background-position: center center !important;
+  text-align: center;
+}  
+
+.right-container{
+    position: relative;
+}    
+
+@media screen and (max-width: 767px){
+  .block_logo {
+    width: 80px;
+    position: initial;
+    margin-top: 30px;
+  }
+
+  .block_wrapper {
+    width: 320px;
+    margin: 30px auto;
+    position: initial;
+  }
+  
+  .block-container {
+    padding: 0px;
+    width: 340px;
+    top: calc(50% - 202px);
+    left: calc(50% - 170px);
+  }
+
+  #block-count {
+    font-size: 40px;
+    margin: 0 0 30px 0;
+  }
+
+  .block_true .social-wrapper {
+    position: initial;
+    margin: 30px 0 30px;
+  }
+
+  .block_true .social-wrapper > div{
+    margin-left: -45px;
+  }
+
+  .left_img{
+    height: 30vh;
+    background: url({{ left_img_m | img_url: '966x750' }});
+  } 
+
+  .block_wrapper .caption {
+    word-spacing: 30px;
+  }
+
+  .block_content h4{
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+}  
+</style>
+
+{%- if currentDate > se_stts.block_start -%}
+  {%- if currentDate < se_stts.block_end -%}
+
+    
+    
+    <div class="nt_se_{{sid}} block_{{se_stts.block}}">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="left_img"></div>
+        </div>
+  
+        <div class="col-md-6 right-container">
+          <img src="{{ logo | img_url: '966x750' }}" class="block_logo"/>
+
+          <div class="block_wrapper">
+            <div class="caption">
+              <span>Days</span>
+              <span>Hrs.</span>
+              <span>Mins.</span>
+              <span>Sec.</span>
+            </div>
+            <div id="block-count"></div>
+
+            <div class="block_content">
+              <h4>{{se_stts.text}}</h4>
+              <p>{{se_stts.subtext}}</p>
+            </div>
+
+            {%- form 'customer', class:'js_mail_agree mc4wp-form pr z_100' -%}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="mc4wp-form-fields">
+                 <div class="newsletter-form">
+                    <div class="email_address"><input autocomplete ="off" type="email" name="contact[email]" placeholder="Enter your email id"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"></div>
+                    <div class="subscribe_cta"><button id="" type="submit" class="btn_new_icon_{{btn_icon}} w__100 submit-btn truncate{% if checkbox_mail %} mail_agree pr{% endif %}"><span>Subscribe</span></button></div>
+                 </div>
+                {%- if checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
+              </div>
+               <div class="mc4wp-response">
+                  {%- if form.posted_successfully? -%}
+                    <p style="margin: 5px 0 0;">{{se_stts.success}}</p>{%- elsif form.errors -%}<div class="shopify-error"><i class="las la-exclamation-triangle"></i>{{ form.errors | default_errors }}
+                  {%- endif -%}
+               </div>
+            {%- endform -%}
+    
+            <a href="https://andamen.com/checkout" class="checkout_{{se_stts.checkout}}">Continue to Checkout</a>
+          </div>
+
+          <div class="social-wrapper">
+            <p>Follow us for more info</p>
+            <div>
+              <a data-no-instant="" rel="noopener noreferrer nofollow" href="https://www.facebook.com/andamenindia/" target="_blank" class="facebook cb ttip_nt tooltip_top"><i class="facl facl-facebook"></i></a>
+              <a data-no-instant="" rel="noopener noreferrer nofollow" href="https://www.instagram.com/andamenlife/" target="_blank" class="instagram cb ttip_nt tooltip_top"><i class="facl facl-instagram"></i></a>
+              <a data-no-instant="" rel="noopener noreferrer nofollow" href="https://www.linkedin.com/company/andamen/" target="_blank" class="linkedin cb ttip_nt tooltip_top"><i class="facl facl-linkedin"></i></a>
+            </div>
+          </div>                  
+          
+        </div>
+      </div>
+
+    </div>
+
+  {%- endif -%}
+{%- endif -%}
+
+
+<script type="text/javascript">   
+if($('.nt_se_site-block').hasClass('block_true')) {
+    $("body").addClass("overflow-disable");
+}
+    
+var blockDownDate = new Date('{{ se_stts.block_time }}').getTime();
+var x = setInterval(function() {
+var now = new Date().getTime();
+var distance = blockDownDate - now;
+
+var bdays = ("0" + Math.floor(distance / (1000 * 60 * 60 * 24))).slice(-2);
+var bhours = ("0" + Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2);
+var bminutes = ("0" + Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
+var bseconds = ("0" + Math.floor((distance % (1000 * 60)) / 1000)).slice(-2);
+
+
+document.getElementById("block-count").innerHTML = bdays + ":" + bhours + ":" + bminutes + ":" + bseconds + "";
+
+if (distance < 0) {
+  clearInterval(x);
+  document.getElementById("block-count").innerHTML = "EXPIRED";
+}
+}, 10);
+
+</script>
+
+{%- schema -%}
+  {
+    "name": "Site Block",
+    "class": "site-block",
+    "settings": [  
+      {
+        "type": "checkbox",
+        "id": "block",
+        "label": "Enable Site Block",
+        "default": false
+      },
+
+      {
+        "type": "text",
+        "id": "block_start",
+        "label": "Countdown starts at"
+      },
+
+      {
+        "type": "text",
+        "id": "block_end",
+        "label": "Countdown ends at"
+      },
+
+      {
+        "type": "text",
+        "id": "block_time",
+        "label": "Countdown Time",
+        "info": "Jan 5, 2024 15:37:25"
+      },
+      {
+         "type": "image_picker",
+         "id": "image",
+         "label": "Background Image",
+         "info": "1400 x 700px .jpg recommended"
+      },
+      {
+         "type": "image_picker",
+         "id": "logo",
+         "label": "Logo"
+      },
+
+      {
+         "type": "image_picker",
+         "id": "left_img",
+         "label": "Left Image"
+      },
+
+      {
+         "type": "image_picker",
+         "id": "left_img_m",
+         "label": "Mobile Left Image"
+      },
+      
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text on countdown"
+      },
+
+      {
+        "type": "text",
+        "id": "subtext",
+        "label": "Subtext on countdown"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Overlay Color",
+        "default": "#a77737"
+      },
+      {
+         "type": "range",
+         "id": "overlay",
+         "label": "Overlay Opacity",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#fff"
+      },
+      {
+        "type": "checkbox",
+        "id": "checkout",
+        "label": "Enable Checkout",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "success",
+        "label": "Successful Subscription Message"
+      }
+    ]
+  }
+{% endschema %}

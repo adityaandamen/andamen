@@ -1,0 +1,131 @@
+{%- liquid
+  assign columns = section.settings.cols 
+-%}
+
+<div class="container">
+  <h2>{{ section.settings.title | escape }}</h2>
+  {% if section.blocks.size > 0 %}
+  <div class="row">
+      {% for block in section.blocks %}
+  		<div class="col-12 col-md-{{ section.settings.cols }}">  
+          
+          <div class="row">
+            <div class="col-md-5">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | img_url: '150x150', scale: 2 | img_tag: block.settings.image.alt, 'logo-bar__image' }}
+              {% else %}
+                {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="col-md-7">
+			  {{ block.settings.icon | img_url: '2048x' | img_tag:'', 'image-icon' }}
+              <h3 class="title">{{ block.settings.blocktitle }}</h3>
+              <p>{{ block.settings.blocktext }}</p>
+            </div>
+          
+          </div>
+        </div>
+      {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% schema %}
+  {
+    "name": "Image Blocks",
+    "class": "block-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Logo list"       
+      },
+      {
+        "type": "select",
+        "id": "cols",
+        "label": "Columns",
+        "default": "6",
+        "options": [
+          {
+            "value": "12",
+            "label": "1"
+          },
+          {
+            "value": "6",
+            "label": "2"
+          },
+          {
+            "value": "4",
+            "label": "3"
+          },
+          {
+            "value": "3",
+            "label": "4"
+          },
+          {
+            "value": "2",
+            "label": "6"
+          }
+        ]
+      }
+
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          },
+          {
+            "type": "text",
+            "id": "blocktitle",
+            "label": "Heading",
+            "default": "Image with text"
+          },
+          {
+            "type": "richtext",
+            "id": "blocktext",
+            "label": "Text",
+            "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blocks",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

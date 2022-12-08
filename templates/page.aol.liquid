@@ -1,0 +1,1057 @@
+<style>
+@font-face {
+  font-family: 'asphalts_displayregular';
+  src: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/asphalts_display-webfont.woff?v=1667993300') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/asphalts_display-webfont.woff2?v=1667993300') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+  
+html{
+  scroll-behavior: smooth;
+}
+  
+.section{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section_subtitle {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #222;
+}  
+
+a.subscribe_cta {
+  background: #a77737;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 15px 40px 14px;
+  border-radius: var(--radius);
+}  
+
+a.subscribe_cta:hover{
+  background: #222;
+  color: #fff;
+}  
+
+.img-container{
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.img-container img{
+  border-radius: var(--radius);
+}  
+
+.img-container .img-title{
+  position: absolute;
+  left: 0;
+  top: 45%;
+  font-family: var(--heading-font);
+  font-size: 30px;
+  color: #fff;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.img-link{
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  font-weight: 700;
+}
+  
+.rotate_90{
+  transform: rotate(270deg);
+} 
+  
+.section_1{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/banner_02.jpg?v=1669889837') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  height: 90vh;
+} 
+
+.section_1 .section_title,
+.section_video .section_title{
+  width: 220px;
+}
+
+.section_1 .section_ntitle,
+.section_video .section_ntitle{
+  font-family: var(--heading-font);
+  font-size: 18px;
+  margin-top: 10px;
+  letter-spacing: 6px;
+  color: #fff;
+}  
+
+.section_1 .subscribe_cta,
+.section_video .subscribe_cta{
+  position: absolute;
+  bottom: 160px;
+  left: calc(50% - 150px);
+  width: 300px;
+} 
+
+.section_1 .rotate_left,
+.section_video .rotate_left{
+  position: absolute;
+  left: 100px;
+  top: 48%;
+}  
+
+.section_1 .rotate_right,
+.section_video .rotate_right{
+  right: 100px;
+  position: absolute;
+  top: 48%;
+}  
+
+@media screen and (max-width: 768px){
+  .section_1{
+    height: 60vh;
+  }
+
+  .section_1 .rotate_left,
+  .section_video .rotate_left{
+    left: 0px;
+  }  
+
+  .section_1 .rotate_right, .section_video .rotate_right {
+      right: -15px;
+  }
+}
+
+.section_2 .container{
+  position: relative;
+  height: 100%;
+  padding: 140px 160px !important;
+  text-align: left;
+}  
+
+.section_2 .section_title{
+  position: absolute;
+  left: -40px;
+  top: 250px;
+  color: #fff;
+  font-family: 'asphalts_displayregular';
+  font-size: 60px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.section_2 p{
+  color: #fff;
+  font-family: var(--heading-font);
+  font-size: 16px !important;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  max-width: 500px;
+  line-height: 1.5;
+}  
+
+.section_2 p:last-child{
+  margin-top: 60px;
+}  
+
+@media screen and (min-width: 1020px){  
+  .section_2.bg_3  .section_title{
+    left: -40px;
+    top: 250px;
+  }
+}
+
+.section_3{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_3_7b7824d0-5bfd-4d2f-9f81-f0497f2ec677.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}   
+
+.section_3 .container{
+  padding: 100px 50px !important;
+}  
+
+.section_3 .section_title{
+  color: #fff;
+  font-family: 'asphalts_displayregular';
+  font-size: 60px;
+  letter-spacing: 1px;
+  line-height: 0.8;
+  max-width: 450px;
+  margin: 20px 0 40px;
+} 
+
+.section_3 form{
+  max-width: 450px;
+}  
+
+.section_3 form .newsletter-form{
+  border: 1px solid #fff !important;
+  border-radius: var(--radius);
+}  
+
+.section_3 form .input-text{
+  border: 1px solid transparent !important;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+
+.section_3 form .input-text:focus{
+  border: 1px solid transparent !important;
+}  
+
+.section_3 form .newsletter-form button {
+  border-radius: var(--radius);
+  color: #dec51a;
+  background: #000 !important;
+  border: 1px solid #000 !important;
+  padding: 3px 30px;
+  margin-left: 0;
+  min-width: 140px;
+}  
+
+.section_3 form .newsletter-form button:hover{
+  background: #222 !important;
+  color: #fff;
+}  
+
+.section_3 .small{
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  max-width: 450px;
+  margin-top: 10px;
+  line-height: 1.5;
+}  
+
+.section_3 h4{
+  margin-top: 100px;
+  color: #fff;
+  font-size: 22px;
+}  
+
+.section_3 p{
+  max-width: 450px;
+}
+
+.section_2.bg_3{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_4_2963dc05-a312-45a2-a870-cc79712054b8.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  background-position: top;
+}  
+
+.section_5{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_5_9967270e-105c-4f13-a629-7d872547374e.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  background-position: bottom;
+}    
+
+.section_5 .container{
+  position: relative;
+  height: 100%;
+  padding: 140px 0 140px 160px !important;
+  text-align: left;
+}  
+
+.section_5 .section_title{
+  position: absolute;
+  left: 0;
+  top: 200px;
+  color: #fff;
+  font-family: 'asphalts_displayregular';
+  font-size: 60px;
+  letter-spacing: 1px;
+  line-height: 1;
+}  
+
+.section_5 .fabrics_wrapper{
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  margin-bottom: 100px;
+}
+
+.section_5 .fabric_block {
+  min-width: 280px;
+  margin: 0 10px;
+  background: #fff;
+  border-radius: var(--radius);
+  text-align: center;
+}  
+
+.section_5 .fabric_block img{
+  border-radius: var(--radius) var(--radius) 0 0;
+}  
+
+.section_5 .fabric_block p{
+  color: var(--text);
+  padding: 0 20px 40px 20px;
+}  
+
+.section_5 .fabric_block h4{
+  margin-top: 40px;
+  font-family: 'asphalts_displayregular';
+  font-size: 40px;
+  line-height: 0.6;
+  color: var(--accent);
+}  
+
+.section_6 .container{
+  padding: 100px 50px !important;
+}   
+
+.section_2,
+.section_6{
+  background-color: #282527; 
+}
+
+.section_3 .mc4wp-form-fields.hidden,
+.section_3 .small.hidden{
+  display: none !important;
+}
+
+.section_video{
+  position: relative;
+  height: 99vh;
+  overflow: hidden;
+}  
+
+.section_video video{
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}  
+
+.section_video .overlay{
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  position: absolute;
+}  
+
+.section_video .container{
+  z-index: 3;
+  text-align: center;
+}  
+
+.section_6 .container{
+  text-align: center;
+}  
+
+.img01, .img02, .img03, .img04, .img05, .img06, .img07{
+  border-radius: 10px;
+}  
+  
+.img01{
+  margin: 0 0 100px 150px;
+}  
+
+.img02{
+  width: 45%;
+  margin: 0 100px 100px 0;
+}  
+
+.img03{
+  width: 32%;
+}  
+
+.img04{
+  margin: 0 0 0 80px;
+}  
+
+.img05{
+  width: 80%;
+  margin: 0 0 100px 100px;
+}  
+
+.img06{
+  width: 60%;
+  margin: 0 0 100px 20px;
+}  
+  
+@media screen and (max-width: 767px){
+  .section_video{
+    height: 80vh;
+  }
+  
+  .section_video .rotate_left {
+    left: -70px;
+    top: 45%;
+  }  
+  
+  .section_video .rotate_right {
+    right: -60px;
+    top: 45%;
+  }  
+
+  .section_video video {
+    width: auto;
+    height: 102%;
+  }
+
+  .section_2 .container{
+    padding: 100px 40px !important;
+  }
+  
+  .section_5 .container{
+    padding: 100px 0 100px 40px !important;
+  } 
+
+  .section_2 .section_title,
+  .section_5 .section_title{
+    transform: none !important;
+    position: inherit;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
+
+  .section_5 .fabric_block {
+    min-width: 260px;
+    margin: 0 5px;
+  }
+
+  .section_3 form .newsletter-form{
+    display: inherit;
+    border: none !important;
+  }  
+
+  .section_3 form .input-text{
+    border: 0.5px solid #fff !important;
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  .section_3 form .newsletter-form button{
+    border: 1px solid #000 !important;
+    border-radius: var(--radius);
+    margin: 6px 0 0px 0 !important;
+  }
+
+  .section_5 .fabrics_wrapper{
+    margin-bottom: 40px;
+  }
+
+  .fabric_block:last-child{
+    margin-right: 50px;
+  }
+
+  .section_6 .container{
+    padding: 100px 40px !important;
+  }
+
+  .img01{
+    width: 80%;
+    margin: 0 0 30px;
+  }  
+  
+  .img02{
+    width: 50%;
+    margin: 0 30px 30px -10px;
+  }  
+  
+  .img03{
+    width: 37%;
+  }  
+  
+  .img04{
+    margin: 0;
+    width: 100%;
+  }  
+  
+  .img05{
+    width: 100%;
+    margin: 30px 0 30px 40px;
+  }  
+  
+  .img06{
+    width: 43%;
+    margin: 0 0 30px -70px;
+  } 
+
+  .img07{
+    width: 65%;
+    margin: 0 -87px 30px 30px;
+  }
+
+  .section_3 form .input-text:focus {
+      border: 1px solid #fff !important;
+  }
+
+  #fullpage .container{
+    padding: 0 30px !important;
+  }
+}  
+
+
+/* Accordion styles */
+.tabs_acc {
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.tab_acc {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+}
+  
+.tab-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  cursor: pointer;
+  color: #222;
+  font-family: var(--heading-font);
+  font-size: 20px;
+  box-shadow: none;
+  border: none;
+}
+.tab-label:hover {
+ 
+}
+.tab-label::after {
+  display: inline-block;
+  font-family: Pe-icon-7-stroke;
+  content: "\e699";
+  text-align: center;
+  transition: all 0.35s;
+  margin-right: 5px;
+  height: 32px;
+  width: 32px;
+}
+.tab-content {
+  max-height: 0;
+  padding: 0;
+  color: #2c3e50;
+  background: white;
+  //transition: all 0.35s;
+}
+
+.tab-content p{
+  margin: 0 100px 0 0;
+}
+  
+.tab-close {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
+  font-size: 0.75em;
+  background: #2c3e50;
+  cursor: pointer;
+}
+.tab-close:hover {
+  
+}
+
+.tabs_acc input{
+  display: none;
+}
+  
+.tabs_acc input:checked + .tab-label {
+  
+}
+.tabs_acc input:checked + .tab-label::after {
+  transform: rotate(90deg);
+}
+.tabs_acc input:checked ~ .tab-content {
+  max-height: 100vh;
+  padding: 0 0 20px 0;
+}  
+
+.icon-block div{
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.icon-block img{
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+
+
+a.img-text {
+  position: relative;
+}  
+
+a.img-text img{
+  border-radius: var(--radius);
+}  
+
+a.img-text > div{
+  font-family: var(--heading-font);
+  font-size: 22px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #765612;
+  line-height: 1.2;
+}  
+a.img-text-1{padding: 40px 30px 30px;}
+a.img-text-2{padding: 0px 20px 0 40px;}
+a.img-text-3{padding: 70px 20px 60px 40px;}
+a.img-text-4{padding: 30px 60px 0 0px;}
+a.img-text-5{padding: 0px 60px 0 10px;}
+a.img-text-6{padding: 50px 60px 0 0px;}
+a.img-text-1 > div{
+  right: 55px;
+  text-align: right;
+  top: 55px;
+}
+
+a.img-text-2 > div{
+  top: 38%;
+  left: 30px;
+  transform: rotate(-90deg);
+}  
+
+a.img-text-3 > div{
+  bottom: 80px;
+  top: auto;
+  left: 65px;
+  color: #fff;
+}  
+
+a.img-text-4 > div{
+  top: 50px;
+  left: 25px;
+}  
+
+a.img-text-5 > div{
+  top: auto;
+  left: auto;
+  right: 90px;
+  bottom: 90px;
+  color: #fff;
+}  
+
+a.img-text-6 > div{
+  top: auto;
+  right: 55px;
+  transform: rotate(-90deg);
+  left: auto;
+  bottom: 50px;
+  color: #fff;
+}  
+
+
+@media screen and (max-width: 767px){
+  a.img-text > div {
+    font-size: 14px;
+  }
+  a.img-text-1 {
+      padding: 20px 10px 20px;
+  }
+
+  a.img-text-2 {
+      padding: 0px 0px 0px 20px;
+  }
+
+  a.img-text-3 {
+      padding: 20px 20px 20px 0px;
+  }
+
+  a.img-text-4 {
+      padding: 30px 20px 0 0px;
+  }
+
+  a.img-text-5 {
+      padding: 30px 0px 0 20px;
+  }
+
+  a.img-text-6 {
+      padding: 10px 10px 0 20px;
+  }
+
+  a.img-text-1 > div {
+      right: 20px;
+      text-align: right;
+      top: 27px;
+  }
+
+  a.img-text-2 > div {
+      top: 38%;
+      left: 10px;
+      transform: rotate(-90deg);
+  }
+
+  a.img-text-3 > div {
+      bottom: 30px;
+      top: auto;
+      left: 75px;
+      color: #fff;
+  }
+
+  a.img-text-4 > div {
+      top: 40px;
+      left: 10px;
+  }
+
+  a.img-text-5 > div {
+      top: auto;
+      left: auto;
+      right: 15px;
+      bottom: 10px;
+      color: #fff;
+  }
+
+  a.img-text-6 > div {
+      top: auto;
+      right: 0;
+      transform: rotate(-90deg);
+      left: auto;
+      bottom: 65px;
+      color: #fff;
+  }
+
+  .tab-content p{
+    padding: 0 100px 0 0;
+    margin: 0;
+  }
+}  
+</style>
+{% assign currentDate = "now" | date: "%Y%m%d%H%M%S" %}
+
+
+{%- capture subscribe_cta -%}
+  <a href="https://www.andamen.com/collections/art-of-leisure" class="subscribe_cta mt__40">SHOP THE COLLECTION</a>
+{%- endcapture -%}
+
+
+{%- capture subscribe_form -%}
+{%- form 'customer', class:'js_mail_agree mc4wp-form pr z_100' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <div class="mc4wp-form-fields">
+     <div class="footer_signup newsletter-form">
+        <div class="email_address"><input autocomplete ="off" type="email" name="contact[email]" placeholder="Enter your email id"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"></div>
+        <div class="subscribe_cta"><button id="" type="submit" class="btn_new_icon_{{btn_icon}} w__100 submit-btn truncate{% if checkbox_mail %} mail_agree pr{% endif %}"><span>become a member</span></button></div>
+     </div>
+    {%- if checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
+  </div>
+   <div class="mc4wp-response">
+      {%- if form.posted_successfully? -%}
+        <meta http-equiv="refresh" content="0;URL='https://www.andamen.com/collections/escape-early-access'" />    
+        {%- comment -%}
+        <div class=""><h4 style="margin-top: 40px;">Congratulations on being an All Star!</h4><p style="margin: 0 0 50px;">You'll receive a link when Escape Early Access is Live.<br><br>
+For now,</p><a href="https://www.andamen.com/collections/new-arrivals" class="subscribe_cta" style="">Check our New Arrivals</a></div>{%- elsif form.errors -%}<div class="shopify-error"><i class="las la-exclamation-triangle"></i>{{ form.errors | default_errors }}</div>
+        {%- endcomment -%}
+      
+      {%- endif -%}
+      {%- comment -%}
+      {%- if form.errors -%}
+        <div class="">Error</div>
+      {%- endif -%}
+      {%- endcomment -%}
+   </div>
+{%- endform -%}
+{%- endcapture -%}
+
+
+{%- capture section_one -%}
+  <div class="section section_1">
+    <div class="rotate_90 rotate_left section_subtitle">ELEVATED</div>
+    <div class="rotate_90 rotate_right section_subtitle">leisurewear</div>
+  </div>
+{%- endcapture -%}
+
+
+{%- capture section_one_video -%}
+  <div class="section section_video">
+    <video playsinline="" loop="false" muted="true" poster="" preload="auto" autoplay><source src="https://cdn.shopify.com/videos/c/o/v/2d57f45e60334353bb67ad8826301385.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <div class="container">
+      <img alt="Escape" src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/escape-logo.png?v=1667807248" class="section_title"/>
+      <div class="section_ntitle">VOL IV</div>
+      {{ subscribe_cta }}
+      <div class="rotate_90 rotate_left section_subtitle">stubbornly durable</div>
+      <div class="rotate_90 rotate_right section_subtitle">resoundly indian</div>  
+    </div>
+  </div>
+{%- endcapture -%}
+
+
+{%- capture section_two -%}
+  
+    <div class="container tc logo-content mt__80 mb__80">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/aol-logo.jpg?v=1669890326" style="height: 100px"/>          
+          <p class="mt__40">When timeless sophistication meets the comfort & movement of athletic performance, you get The Art of Leisure.  We’ve basically taken the concept of ‘athleisure’ and refined it till it became so much more.</p>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+
+      <div class="row mt__50">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-4 mb__60">
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2Mzg3NzA2YTAwMTA0NWZlMDEzNDViMWV%2BX35nbG9iYWwuU3ViLUNvbGxlY3Rpb24tVHlwZX5ffk1Gfl9%2BVEVYVCI6eyJwZiI6IiIsInVhYyI6ZmFsc2UsImZsIjoiQnkgVHlwZSIsInZhbHMiOlsiRGF5TGVpc3VyZSJdfX0=" class="img-link">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/day_01.jpg?v=1669890963"/>
+            <div class="img-title">DayLeisure</div>
+          </div>
+          </a>
+          <p class="pl__40 pr__40">Styles that redefine the phrase, everyday comfort. Easy to pair, easier to wear, these timeless garments are designed to be a wardrobe staple.</p>
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2Mzg3NzA2YTAwMTA0NWZlMDEzNDViMWV%2BX35nbG9iYWwuU3ViLUNvbGxlY3Rpb24tVHlwZX5ffk1Gfl9%2BVEVYVCI6eyJwZiI6IiIsInVhYyI6ZmFsc2UsImZsIjoiQnkgVHlwZSIsInZhbHMiOlsiRGF5TGVpc3VyZSJdfX0=" class="img-link">shop now</a>
+        </div>
+
+        <div class="col-md-4 mb__60">
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2Mzg3NzA2YTAwMTA0NWZlMDEzNDViMWV%2BX35nbG9iYWwuU3ViLUNvbGxlY3Rpb24tVHlwZX5ffk1Gfl9%2BVEVYVCI6eyJwZiI6IiIsInVhYyI6ZmFsc2UsImZsIjoiQnkgVHlwZSIsInZhbHMiOlsiRHJlc3NMZWlzdXJlIl19fQ==" class="img-link">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/day_02.jpg?v=1669890962"/>
+            <div class="img-title">DressLeisure</div>
+          </div>
+          </a>
+          <p class="pl__40 pr__40">Styles meticulously refined to make you look sharp & feel good.<br>Perfect for date nights, brunches & get-togethers.</p>
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2Mzg3NzA2YTAwMTA0NWZlMDEzNDViMWV%2BX35nbG9iYWwuU3ViLUNvbGxlY3Rpb24tVHlwZX5ffk1Gfl9%2BVEVYVCI6eyJwZiI6IiIsInVhYyI6ZmFsc2UsImZsIjoiQnkgVHlwZSIsInZhbHMiOlsiRHJlc3NMZWlzdXJlIl19fQ==" class="img-link">shop now</a>
+        </div>
+        <div class="col-md-2">
+        </div>
+<!--
+        <div class="col-md-4 mb__60">
+          <div class="img-container">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/day_03.jpg?v=1669890962"/>
+            <div class="img-title">WorkLeisure</div>
+          </div>
+          <p class="pl__30 pr__30">Styles that redefine the phrase, everyday comfort. Easy to pair, easier to wear, these timeless garments are designed to be a wardrobe staple.</p>
+          <a href="#" class="img-link">shop now</a>
+        </div>
+-->
+      </div>
+
+      <div class="row tc mt__20 mb__80"><div class="col">{{ subscribe_cta }}</div></div>
+    </div>
+
+     <div class="container mt__100">
+        <div class="row tc mt__20">
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2MmIwMjAwYmU1M2YxMDAzMTkxYjQ4NmJ%2BX35wcm9kdWN0VHlwZX5ffkJJfl9%2BIjp7InBmIjoiIiwidWFjIjpmYWxzZSwiZmwiOiJDYXRlZ29yeSIsInZhbHMiOlsiU3dlYXRzaGlydCJdfX0=" class="col-6 col-md-4 img-text img-text-1">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/cat1.jpg?v=1669958016"/>
+            <div>Sweatshirts</div>
+          </a>
+
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2MmIwMjAwYmU1M2YxMDAzMTkxYjQ4NmJ%2BX35wcm9kdWN0VHlwZX5ffkJJfl9%2BIjp7InBmIjoiIiwidWFjIjpmYWxzZSwiZmwiOiJDYXRlZ29yeSIsInZhbHMiOlsiSm9nZ2VyIl19fQ==" class="col-6 col-md-4 img-text img-text-2">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/cat2.jpg?v=1669958015"/>
+            <div>Joggers</div>
+          </a>
+
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2MmIwMjAwYmU1M2YxMDAzMTkxYjQ4NmJ%2BX35wcm9kdWN0VHlwZX5ffkJJfl9%2BIjp7InBmIjoiIiwidWFjIjpmYWxzZSwiZmwiOiJDYXRlZ29yeSIsInZhbHMiOlsiUHVsbG92ZXIiXX19" class="col-6 col-md-4 img-text img-text-3">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/cat3.jpg?v=1669958015"/>
+            <div>Pullovers</div>
+          </a>
+
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2MmIwMjAwYmU1M2YxMDAzMTkxYjQ4NmJ%2BX35wcm9kdWN0VHlwZX5ffkJJfl9%2BIjp7InBmIjoiIiwidWFjIjpmYWxzZSwiZmwiOiJDYXRlZ29yeSIsInZhbHMiOlsiSG9vZGllIl19fQ==" class="col-6 col-md-4 img-text img-text-4">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/cat4.jpg?v=1669958015"/>
+            <div>Hoodies</div>
+          </a>
+
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2MmIwMjAwYmU1M2YxMDAzMTkxYjQ4NmJ%2BX35wcm9kdWN0VHlwZX5ffkJJfl9%2BIjp7InBmIjoiIiwidWFjIjpmYWxzZSwiZmwiOiJDYXRlZ29yeSIsInZhbHMiOlsiUG9sbyJdfX0=" class="col-6 col-md-4 img-text img-text-5">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/cat5_9e2802ac-683a-45a1-981a-474ab02379c6.jpg?v=1670225595"/>
+            <div>Polos</div>
+          </a>
+
+          <a href="https://www.andamen.com/collections/art-of-leisure?_fsF=eyI2MmIwMjAwYmU1M2YxMDAzMTkxYjQ4NmJ%2BX35wcm9kdWN0VHlwZX5ffkJJfl9%2BIjp7InBmIjoiIiwidWFjIjpmYWxzZSwiZmwiOiJDYXRlZ29yeSIsInZhbHMiOlsiQ3JldyIsIkNyZXcgTmVjayJdfX0=" class="col-6 col-md-4 img-text img-text-6">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/cat5.jpg?v=1669958900"/>
+            <div>T-shirts</div>
+          </a>
+        </div>
+     </div>
+
+      <div class="container mt__100">
+        <div class="row tc mt__20">
+
+          <div class="col-6 col-md-3 icon-block mb__50">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/comfort.jpg?v=1669896976" style="width: 36px; margin-bottom: 20px;"/>
+            <div class="">Comfort</div>
+          </div>
+
+          <div class="col-6 col-md-3 icon-block mb__50">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/clean.png?v=1669979654" style="width: 36px; margin-bottom: 20px;"/>
+            <div class="">Elevation</div>
+          </div>
+
+          <div class="col-6 col-md-3 icon-block mb__50">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/colors_67b402f4-534b-45de-8cde-143848042962.jpg?v=1669896977" style="width: 36px; margin-bottom: 20px;"/>
+            <div class="">Timeless colours</div>
+          </div>
+
+          <div class="col-6 col-md-3 icon-block mb__50">
+            <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/calendar.png?v=1669979654" style="width: 36px; margin-bottom: 20px;"/>
+            <div class="">designed to last</div>
+          </div>
+          
+        </div>
+
+        <div class="row tc mt__40 mb__100"><div class="col">{{ subscribe_cta }}</div></div>
+      </div>
+
+      <div class="container mt__30">
+        <div class="row tc">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <h1 class="section-heading">Knit-care</h1>
+            <p class="mt__40">With great styles, comes great responsibility. Knitwear requires some love & care to ensure they last as long as they’ve got the potential to. Here’s some basic questions and suggestions to make your Art of Leisure garment last.</p>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+
+
+        <div class="row tc">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <h1 class="section-heading mt__60">FAQs</h1>
+            <div class="tabs_acc tl mb__100">
+             
+              <div class="tab_acc">
+                <input type="radio" id="rd1" name="rd">
+                <label class="tab-label" for="rd1">How will the Art of Leisure garments&nbsp;fit?</label>
+                <div class="tab-content">
+                  <p>They’ll wear and fit the same as our other Andamen products. They also come in both fits, slim and regular.</p>
+                  <p>Slim fit is slimmer on the chest, belly, and arms. For bottom wear, it is a slim fit around the waist and hips. It’s slightly more taper, designed to look sharp and not skinny. It’s meant for a typical Indian body, from athletic to slightly bulky. Regular fits are designed for bulkier bodies with more room around the waist and hips specifically, feeling a lot more relaxed.</p>
+                </div>
+              </div>
+              <div class="tab_acc">
+                <input type="radio" id="rd2" name="rd">
+                <label class="tab-label" for="rd2">What do these garments feel like?</label>
+                <div class="tab-content">
+                  <p>Every product and every fabric is chosen with a very specific design philosophy of feeling soft, plush, luscious, and comfortable, while having the depth and luster one would seek in an elevated product.</p>
+                </div>
+              </div>
+              <div class="tab_acc">
+                <input type="radio" id="rd3" name="rd">
+                <label class="tab-label" for="rd3">How does it drape?</label>
+                <div class="tab-content">
+                  <p>Art of Leisure garments will have a less structured drape. Our vision behind the Art of leisure is to blend the elevation of sophisticated timeless garments with the ease, comfort, and movement of athletic and performance garments.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd4" name="rd">
+                <label class="tab-label" for="rd4">Will the garment expand or shrink?</label>
+                <div class="tab-content">
+                  <p>All knitwear, by design, will expand as you wear them. Cotton knitwear characteristically expands a little less and viscose knitwear expands more as viscose is a material whose natural property is to have more expansion. We factor these inherent characteristics into the technical specifications with which the fabrics are knit to ensure that the overall experience is consistent across all products and fibres, while still playing with multiple fibres like cotton, viscose, and various blends to enjoy their unique beautiful characteristics.</p>
+                  <p>Every Andaman product is pre-shrunk and tested to rigorous international testing and standards. The product goes through 2 stages of testing with 3 inspection points.</p>
+                  <p>Therefore, when you first wear the product, it will feel tighter & more snug and will open up over 30-60 mins of wearing as it takes the shape of your body. We recommend that you wash and iron your product after each day’s wear even for the bottom wear, pullover, and sweatshirts so that they come back to their original shape, size and compactness. It is natural to feel like the product is looser and longer if worn multiple times without washing. This is not a defect but a natural characteristic of the product and it’ll come back to size after washing. Since everything is pre-shrunk you can rest assured that nothing will shrink or expand beyond an internationally established level of +-5%.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd5" name="rd">
+                <label class="tab-label" for="rd5">How do I wear it? Do I need to pair it with something?</label>
+                <div class="tab-content">
+                  <p>Our Art of Leisure collection is designed to be paired with each other. We’ve designed to every aspect of the collection from silhouettes, colours to the fabric, keeping your needs in mind. Whether you choose to layer or not, choose your top-wear from our range of sweatshirts, hoodies, pullovers, polos & crewnecks. Pair them with any of the bottom-wear from the collection to complete your look.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd6" name="rd">
+                <label class="tab-label" for="rd6">Will it make me feel conscious?</label>
+                <div class="tab-content">
+                  <p>Given that knitwear drapes snugly on the body, if you have a larger belly or chest, go for the regular fit. Our fits are designed around an average Indian body-type and not a model, to make the regular guy feel comfortable & not conscious while making him look sharp & elevated. Make sure you let your garment open up after 30-60 mins of wearing it and you will experience that it does not hug your body very close. You’ll look elevated & dressed up while feeling comfortable in your skin. If it still makes you feel conscious, you can always layer it up.</p>
+                  <p>Please contact the Customer Experience team for any assistance, concerns or more styling tips.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd7" name="rd">
+                <label class="tab-label" for="rd7">What is the correct way of washing an Art of Leisure garment?</label>
+                <div class="tab-content">
+                  <p>Machine wash on a delicate/knit cycle or wash gently by hand. Make sure you’re washing only similar colours together.</p>
+                  <p>Use a gentle detergent, ideally an eco-friendly wool wash to maintain the colour and beauty of your pieces.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd8" name="rd">
+                <label class="tab-label" for="rd8">How do I dry them properly?</label>
+                <div class="tab-content">
+                  <p>To dry, roll your freshly washed knit in a clean towel and gently press to absorb the water. Gently pull to shape and dry flat. Do not wring.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd9" name="rd">
+                <label class="tab-label" for="rd9">What’s the ideal way of storing an Art of Leisure garment?</label>
+                <div class="tab-content">
+                  <p>Ensure they are not hanging, as knitwear tends to elongate by design. Store them folded.</p>
+                </div>
+              </div>
+
+              <div class="tab_acc">
+                <input type="radio" id="rd10" name="rd">
+                <label class="tab-label" for="rd10">Can I iron it?</label>
+                <div class="tab-content">
+                  <p>Yes, on low heat.</p>
+                </div>
+              </div>
+
+              <p class="mt__60">We want to ensure you get the absolute best possible wear-experience out of your Art of Leisure garment. If for any reason our styles fall short, please do reach out to us and we’ll be happy to assist.</p>
+              
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+
+      </div>
+      
+
+
+
+
+   
+  
+{%- endcapture -%}
+
+
+
+<div id="fullpage">
+{{ section_one }}
+{{ section_two }}
+
+</div>
+
+{{ article.comment_post_url }}
+
+<script>   
+if ($('.mc4wp-response').is(':empty')){
+  
+}else{
+  $('.mc4wp-form-fields').addClass('hidden');
+  $('.small').addClass('hidden');
+}
+
+  $(document).ready(function() {
+    if (window.location.href.indexOf("newsletter") > -1) {
+      window.location.replace("https://www.andamen.com/collections/escape-early-access");
+    }
+  });
+</script>

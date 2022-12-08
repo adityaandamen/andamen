@@ -1,0 +1,65 @@
+
+<script>
+  window._flashsearch_tk = "{{ shop.metafields.flashsearch.publicToken }}";
+  
+  var FlashsearchThemeSettings = {
+    shop: {
+      name: '{{ shop.name | escape }}',
+      url: '{{ shop.url }}',
+      domain: '{{ shop.permanent_domain }}',
+      currency: '{{ shop.currency }}',
+      moneyFormat: '{{ shop.money_format }}'
+    },
+    general: {
+      collection: {
+        id: "{{ collection.id }}",
+        handle: "{{ collection.handle }}",
+		title: "{{ collection.title }}",
+      	defaultSortBy: "{{ collection.default_sort_by }}",
+		description: {{ collection.description | json }},
+		image: {
+		  url: "{{ collection.image | image_url: width: 3350 }}"
+		},
+      },
+      {% if request.page_type == 'product' %}
+      product: {
+		id: "{{ product.id }}"
+      },
+      {% endif %}
+      currencies: [
+        {%- for currency in shop.enabled_currencies -%}
+        {{- currency.iso_code | json -}}{%- if forloop.last != true -%},{%- endif -%}
+        {%- endfor -%}
+      ],
+      currentCurrency: {{- cart.currency.iso_code | json -}},
+	  currentCurrencySymbol: {{- cart.currency.symbol | json -}},
+      {%- comment -%} Get locales {%- endcomment -%}
+      publishedLocales: {
+        {%- for locale in shop.published_locales -%}
+        {{- locale.iso_code | json -}}:{{- locale.primary | json -}}{%- if forloop.last != true -%},{%- endif -%}
+        {%- endfor -%}
+      },
+      currentLocale: {{- request.locale.iso_code | json -}}
+    },
+	integrationData: {
+	  growave: {
+	    translation: {
+		  "socialshopwave.fave": {{ 'socialshopwave.fave' | t | json }}
+	    }
+	  }
+	}
+  };
+  var flashsearch = {};
+  flashsearch.event = {};
+  flashsearch.events = {};
+  flashsearch.event.on = function(event, callback) {
+    if (event && callback) {
+        flashsearch.events[event] = callback;
+    }
+  };
+
+  var FlashsearchSettingsData = {{ shop.metafields.flashsearch.settings }};
+</script>
+
+<script src="{{ 'flashsearch-custom.js' | asset_url }}" defer></script>
+<script src="{{ 'flashsearch.js' | asset_url }}" id='flashsearch-js' defer></script>

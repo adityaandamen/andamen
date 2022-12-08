@@ -1,0 +1,61 @@
+{% for block in section.blocks %}
+<div class="summer-cont" style="background-image:url({{ block.settings.summer-bg  | img_url: "large" }});">
+  <h3>{{ block.settings.heading }}</h3>
+  <a href="{{ block.settings.shop-link }}">{{ block.settings.shop-tilte }}</a>
+</div>
+{% endfor %}
+
+
+{% schema %}
+   {
+    "name": "Mb summer",
+    "class": "mb-summer",
+    
+    "blocks": [
+        {
+          "type": "select",
+          "name": "Collection", 
+        "settings": [
+            {
+              "id": "summer-bg",
+              "type": "image_picker",
+              "label": "Summer"
+            },
+            {
+              "id": "heading",
+              "type": "text",
+              "label": "Heading"
+            },
+            {
+              "id": "shop-tilte",
+              "type": "text",
+              "label": "Shop Tilte"
+            },
+            {
+              "id": "shop-link",
+              "type": "url",
+              "label": "Shop Url"
+            }
+		]
+       }
+    ],
+    "presets": [
+      {
+        "name": {
+          "en": "Mobile Summer",
+          "es": "Mobile Summer"
+        },
+        "category": {
+          "en": "Others",
+          "es": "Others"
+        }
+      }
+    ] 
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

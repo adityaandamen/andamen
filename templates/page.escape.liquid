@@ -1,0 +1,678 @@
+<style>
+@font-face {
+  font-family: 'asphalts_displayregular';
+  src: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/asphalts_display-webfont.woff?v=1667993300') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/asphalts_display-webfont.woff2?v=1667993300') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+  
+html{
+  scroll-behavior: smooth;
+}
+  
+.section{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section_subtitle {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+}  
+
+a.subscribe_cta {
+  background: #000000;
+  color: #dec51a;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 15px 20px 14px;
+  border-radius: var(--radius);
+}  
+
+a.subscribe_cta:hover{
+  background: #222;
+  color: #fff;
+}  
+
+.rotate_90{
+  transform: rotate(270deg);
+} 
+  
+.section_1{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_1_0bbc2a9b-4497-4b78-85b1-cd3b54fc2cb6.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  height: 90vh;
+} 
+
+.section_1 .section_title,
+.section_video .section_title{
+  width: 220px;
+}
+
+.section_1 .section_ntitle,
+.section_video .section_ntitle{
+  font-family: var(--heading-font);
+  font-size: 18px;
+  margin-top: 10px;
+  letter-spacing: 6px;
+  color: #fff;
+}  
+
+.section_1 .subscribe_cta,
+.section_video .subscribe_cta{
+  position: absolute;
+  bottom: 160px;
+  left: calc(50% - 150px);
+  width: 300px;
+} 
+
+.section_1 .rotate_left,
+.section_video .rotate_left{
+  position: absolute;
+  left: 100px;
+  top: 48%;
+}  
+
+.section_1 .rotate_right,
+.section_video .rotate_right{
+  right: 100px;
+  position: absolute;
+  top: 48%;
+}  
+
+.section_2 .container{
+  position: relative;
+  height: 100%;
+  padding: 140px 160px !important;
+  text-align: left;
+}  
+
+.section_2 .section_title{
+  position: absolute;
+  left: -40px;
+  top: 250px;
+  color: #fff;
+  font-family: 'asphalts_displayregular';
+  font-size: 60px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.section_2 p{
+  color: #fff;
+  font-family: var(--heading-font);
+  font-size: 16px !important;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  max-width: 500px;
+  line-height: 1.5;
+}  
+
+.section_2 p:last-child{
+  margin-top: 60px;
+}  
+
+@media screen and (min-width: 1020px){  
+  .section_2.bg_3  .section_title{
+    left: -40px;
+    top: 250px;
+  }
+}
+
+.section_3{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_3_7b7824d0-5bfd-4d2f-9f81-f0497f2ec677.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}   
+
+.section_3 .container{
+  padding: 100px 50px !important;
+}  
+
+.section_3 .section_title{
+  color: #fff;
+  font-family: 'asphalts_displayregular';
+  font-size: 60px;
+  letter-spacing: 1px;
+  line-height: 0.8;
+  max-width: 450px;
+  margin: 20px 0 40px;
+} 
+
+.section_3 form{
+  max-width: 450px;
+}  
+
+.section_3 form .newsletter-form{
+  border: 1px solid #fff !important;
+  border-radius: var(--radius);
+}  
+
+.section_3 form .input-text{
+  border: 1px solid transparent !important;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+
+.section_3 form .input-text:focus{
+  border: 1px solid transparent !important;
+}  
+
+.section_3 form .newsletter-form button {
+  border-radius: var(--radius);
+  color: #dec51a;
+  background: #000 !important;
+  border: 1px solid #000 !important;
+  padding: 3px 30px;
+  margin-left: 0;
+  min-width: 140px;
+}  
+
+.section_3 form .newsletter-form button:hover{
+  background: #222 !important;
+  color: #fff;
+}  
+
+.section_3 .small{
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  max-width: 450px;
+  margin-top: 10px;
+  line-height: 1.5;
+}  
+
+.section_3 h4{
+  margin-top: 100px;
+  color: #fff;
+  font-size: 22px;
+}  
+
+.section_3 p{
+  max-width: 450px;
+}
+
+.section_2.bg_3{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_4_2963dc05-a312-45a2-a870-cc79712054b8.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  background-position: top;
+}  
+
+.section_5{
+  background: url('https://cdn.shopify.com/s/files/1/0618/3183/9957/files/bg_section_5_9967270e-105c-4f13-a629-7d872547374e.jpg?v=1667815919') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  background-position: bottom;
+}    
+
+.section_5 .container{
+  position: relative;
+  height: 100%;
+  padding: 140px 0 140px 160px !important;
+  text-align: left;
+}  
+
+.section_5 .section_title{
+  position: absolute;
+  left: 0;
+  top: 200px;
+  color: #fff;
+  font-family: 'asphalts_displayregular';
+  font-size: 60px;
+  letter-spacing: 1px;
+  line-height: 1;
+}  
+
+.section_5 .fabrics_wrapper{
+  display: flex;
+  overflow: hidden;
+  overflow-x: scroll;
+  margin-bottom: 100px;
+}
+
+.section_5 .fabric_block {
+  min-width: 280px;
+  margin: 0 10px;
+  background: #fff;
+  border-radius: var(--radius);
+  text-align: center;
+}  
+
+.section_5 .fabric_block img{
+  border-radius: var(--radius) var(--radius) 0 0;
+}  
+
+.section_5 .fabric_block p{
+  color: var(--text);
+  padding: 0 20px 40px 20px;
+}  
+
+.section_5 .fabric_block h4{
+  margin-top: 40px;
+  font-family: 'asphalts_displayregular';
+  font-size: 40px;
+  line-height: 0.6;
+  color: var(--accent);
+}  
+
+.section_6 .container{
+  padding: 100px 50px !important;
+}   
+
+.section_2,
+.section_6{
+  background-color: #282527; 
+}
+
+.section_3 .mc4wp-form-fields.hidden,
+.section_3 .small.hidden{
+  display: none !important;
+}
+
+.section_video{
+  position: relative;
+  height: 99vh;
+  overflow: hidden;
+}  
+
+.section_video video{
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}  
+
+.section_video .overlay{
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  position: absolute;
+}  
+
+.section_video .container{
+  z-index: 3;
+  text-align: center;
+}  
+
+.section_6 .container{
+  text-align: center;
+}  
+
+.img01, .img02, .img03, .img04, .img05, .img06, .img07{
+  border-radius: 10px;
+}  
+  
+.img01{
+  margin: 0 0 100px 150px;
+}  
+
+.img02{
+  width: 45%;
+  margin: 0 100px 100px 0;
+}  
+
+.img03{
+  width: 32%;
+}  
+
+.img04{
+  margin: 0 0 0 80px;
+}  
+
+.img05{
+  width: 80%;
+  margin: 0 0 100px 100px;
+}  
+
+.img06{
+  width: 60%;
+  margin: 0 0 100px 20px;
+}  
+  
+@media screen and (max-width: 767px){
+  .section_video{
+    height: 80vh;
+  }
+  
+  .section_video .rotate_left {
+    left: -70px;
+    top: 45%;
+  }  
+  
+  .section_video .rotate_right {
+    right: -60px;
+    top: 45%;
+  }  
+
+  .section_video video {
+    width: auto;
+    height: 102%;
+  }
+
+  .section_2 .container{
+    padding: 100px 40px !important;
+  }
+  
+  .section_5 .container{
+    padding: 100px 0 100px 40px !important;
+  } 
+
+  .section_2 .section_title,
+  .section_5 .section_title{
+    transform: none !important;
+    position: inherit;
+    top: auto;
+    left: auto;
+    margin-bottom: 20px;
+  }
+
+  .section_5 .fabric_block {
+    min-width: 260px;
+    margin: 0 5px;
+  }
+
+  .section_3 form .newsletter-form{
+    display: inherit;
+    border: none !important;
+  }  
+
+  .section_3 form .input-text{
+    border: 0.5px solid #fff !important;
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  .section_3 form .newsletter-form button{
+    border: 1px solid #000 !important;
+    border-radius: var(--radius);
+    margin: 6px 0 0px 0 !important;
+  }
+
+  .section_5 .fabrics_wrapper{
+    margin-bottom: 40px;
+  }
+
+  .fabric_block:last-child{
+    margin-right: 50px;
+  }
+
+  .section_6 .container{
+    padding: 100px 40px !important;
+  }
+
+  .img01{
+    width: 80%;
+    margin: 0 0 30px;
+  }  
+  
+  .img02{
+    width: 50%;
+    margin: 0 30px 30px -10px;
+  }  
+  
+  .img03{
+    width: 37%;
+  }  
+  
+  .img04{
+    margin: 0;
+    width: 100%;
+  }  
+  
+  .img05{
+    width: 100%;
+    margin: 30px 0 30px 40px;
+  }  
+  
+  .img06{
+    width: 43%;
+    margin: 0 0 30px -70px;
+  } 
+
+  .img07{
+    width: 65%;
+    margin: 0 -87px 30px 30px;
+  }
+
+  .section_3 form .input-text:focus {
+      border: 1px solid #fff !important;
+  }
+}  
+  
+
+</style>
+{% assign currentDate = "now" | date: "%Y%m%d%H%M%S" %}
+
+
+{%- capture subscribe_cta -%}
+  <a href="https://www.andamen.com/collections/escape-vol-iv" class="subscribe_cta">Explore Now</a>
+{%- endcapture -%}
+
+
+{%- capture subscribe_form -%}
+{%- form 'customer', class:'js_mail_agree mc4wp-form pr z_100' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <div class="mc4wp-form-fields">
+     <div class="footer_signup newsletter-form">
+        <div class="email_address"><input autocomplete ="off" type="email" name="contact[email]" placeholder="Enter your email id"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"></div>
+        <div class="subscribe_cta"><button id="" type="submit" class="btn_new_icon_{{btn_icon}} w__100 submit-btn truncate{% if checkbox_mail %} mail_agree pr{% endif %}"><span>become a member</span></button></div>
+     </div>
+    {%- if checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
+  </div>
+   <div class="mc4wp-response">
+      {%- if form.posted_successfully? -%}
+        <meta http-equiv="refresh" content="0;URL='https://www.andamen.com/collections/escape-early-access'" />    
+        {%- comment -%}
+        <div class=""><h4 style="margin-top: 40px;">Congratulations on being an All Star!</h4><p style="margin: 0 0 50px;">You'll receive a link when Escape Early Access is Live.<br><br>
+For now,</p><a href="https://www.andamen.com/collections/new-arrivals" class="subscribe_cta" style="">Check our New Arrivals</a></div>{%- elsif form.errors -%}<div class="shopify-error"><i class="las la-exclamation-triangle"></i>{{ form.errors | default_errors }}</div>
+        {%- endcomment -%}
+      
+      {%- endif -%}
+      {%- comment -%}
+      {%- if form.errors -%}
+        <div class="">Error</div>
+      {%- endif -%}
+      {%- endcomment -%}
+   </div>
+{%- endform -%}
+{%- endcapture -%}
+
+
+{%- capture section_one -%}
+  <div class="section section_1">
+    <img alt="Escape" src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/escape-logo.png?v=1667807248" class="section_title"/>
+    <div class="section_ntitle">VOL IV</div>
+    {{ subscribe_cta }}
+    <div class="rotate_90 rotate_left section_subtitle">stubbornly durable</div>
+    <div class="rotate_90 rotate_right section_subtitle">resoundly indian</div>
+  </div>
+{%- endcapture -%}
+
+
+{%- capture section_one_video -%}
+  <div class="section section_video">
+    <video playsinline="" loop="false" muted="true" poster="" preload="auto" autoplay><source src="https://cdn.shopify.com/videos/c/o/v/2d57f45e60334353bb67ad8826301385.mp4" type="video/mp4"></video>
+    <div class="overlay"></div>
+    <div class="container">
+      <img alt="Escape" src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/escape-logo.png?v=1667807248" class="section_title"/>
+      <div class="section_ntitle">VOL IV</div>
+      {{ subscribe_cta }}
+      <div class="rotate_90 rotate_left section_subtitle">stubbornly durable</div>
+      <div class="rotate_90 rotate_right section_subtitle">resoundly indian</div>  
+    </div>
+  </div>
+{%- endcapture -%}
+
+
+{%- capture section_two -%}
+  <div class="section section_2">
+    <div class="container">
+      <div class="rotate_90 rotate_left section_title">resilient styles</div>
+      <p>We launched the first season of Escape back in 2019, to a very different world. A lot has changed since then.</p>
+
+      <p>Our journey over the last 3 years has been of hopeful dreams & burning desires. Dreams of better days & a desire to make things last, in this fleeting world of ours.</p>
+
+      <p>Enter Escape Vol. IV; our latest lineup of resilient menswear meant for great things, & built to go the distance. Just like you.</p>
+
+      <p style="margin-bottom: 100px;">Discover new fabrics, colours & styles along with some returning favourites, in our most ambitious Escape yet.</p>
+      
+      {{ subscribe_cta }}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- capture section_three -%}
+  <div class="section section_3" id="subscribe_form">
+    <div class="container" style="text-align: left;">
+      <div class="section_subtitle">all-star exclusive</div>
+      <div class="section_title">Andamen all-stars 2 day early access is now live.</div>
+      {{ subscribe_form }}
+      <div class="small">By confirming, you’ll be subscribed to key updates including member benefits, collection launches & more. You can unsubscribe at any point.</div>
+      <h4>All-Stars</h4>
+      <p>An exclusive member benefit program, subscribers will get special discounts, offers & early access to special collections & drops. </p>
+    </div>    
+  </div>
+{%- endcapture -%}
+
+{%- capture section_four -%}
+  <div class="section section_2 bg_3">
+    <div class="container">
+      <div class="rotate_90 rotate_left section_title">built to escape</div>
+      <p style="margin-bottom: 100px;">
+        I’m led by the spirit of the landscape. A wayfarer.<br>
+        I have an irresistible yearning for freedom.<br>
+        I leave a part of myself in places to comeback to. Or for others to find.<br>
+        
+        I have an ache for the uncharted.<br>
+        A longing for a new home.<br>
+        A feel for the language of the world.<br>
+        I am my journey.<br>
+        I am.<br>
+        My own escape.
+      </p>
+      {{ subscribe_cta }}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- capture section_five -%}
+  <div class="section section_5">
+    <div class="container">
+      <div class="rotate_90 rotate_left section_title">the fabrics</div>
+      <div class="fabrics_wrapper">
+        <div class="fabric_block">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/fabric-1.jpg?v=1667991962"/>
+          <h4>Bastion</h4>
+          <p>A mid to heavy weight brushed fabric, made from a rich Indian cotton. Designed for extreme resilience to the elements.</p>
+        </div>
+        <div class="fabric_block">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/fabric-2.jpg?v=1667991962"/>
+          <h4>Ridge</h4>
+          <p>Our unique corduroy fabric, made in a cotton-TENCEL blend for ease of wear & durability.</p>
+        </div>
+        <div class="fabric_block">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/fabric-3.jpg?v=1667991962"/>
+          <h4>Tendon</h4>
+          <p>The original, iconic Escape fabric. A mid-weight fabric woven from a rich Indian cotton. The perfect balance of comfort, style & durability.</p>
+        </div>
+        <div class="fabric_block">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/fabric-4.jpg?v=1667991962"/>
+          <h4>Blaze</h4>
+          <p>A mid weight, knitted fabric in a for enhanced thermo-regulation.</p>
+        </div>
+      </div>
+      
+      {{ subscribe_cta }}
+    </div>
+    
+    
+    
+  </div>
+{%- endcapture -%}
+
+{%- capture section_six -%}
+  <div class="section_6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img01.jpg?v=1667992330" class="img01"/>
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img02.jpg?v=1667992330" class="img02"/>
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img03.jpg?v=1667992330" class="img03"/>
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img04.jpg?v=1667992330" class="img04"/>
+        </div>
+        <div class="col-md-6">
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img05.jpg?v=1667992330" class="img05"/>
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img06.jpg?v=1667992330" class="img06"/>
+          <img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/img07.jpg?v=1667992330" class="img07"/>
+        </div>
+      </div>
+      <br><br>
+      {{ subscribe_cta }}
+    </div>
+  </div>
+{%- endcapture -%}
+
+
+
+<div id="fullpage">
+{%- if currentDate > settings.sale_start -%}
+  
+  {%- if currentDate < settings.sale_end -%}
+
+    <!-- LAUNCHED -->
+    {{ section_one_video }}
+    {{ section_two }}
+    
+    {{ section_four }}
+    
+    {{ section_six }}
+  
+  {%- else -%}  
+    
+    {{ section_one_video }}
+    {{ section_two }}
+    
+    {{ section_four }}
+    
+    {{ section_six }}
+  
+  {%- endif -%}
+  
+{%- endif -%}
+</div>
+
+{{ article.comment_post_url }}
+
+<script>   
+if ($('.mc4wp-response').is(':empty')){
+  
+}else{
+  $('.mc4wp-form-fields').addClass('hidden');
+  $('.small').addClass('hidden');
+}
+
+  $(document).ready(function() {
+    if (window.location.href.indexOf("newsletter") > -1) {
+      window.location.replace("https://www.andamen.com/collections/escape-early-access");
+    }
+  });
+</script>

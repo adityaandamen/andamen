@@ -1,0 +1,277 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+{% include 'taginstall-head' %}
+	<!-- Added by AVADA SEO Suite -->
+	{% include 'avada-seo' %}
+	<!-- /Added by AVADA SEO Suite -->
+{% include 'kiwiSizing' %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- comment -%}
+  <link rel="dns-prefetch" href="https://{{shop.domain}}" crossorigin>
+  <link rel="dns-prefetch" href="https://{{shop.permanent_domain}}" crossorigin>
+  {%- endcomment -%}
+  <link rel="prefetch" as="document" href="https://{{shop.domain}}">
+  <link rel="dns-prefetch" href="https://cdn.shopify.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.shopifycdn.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.shopify.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
+  <link rel="preload" as="style" href="{{ 'pre_theme.min.css' | asset_url }}">
+  <link rel="preload" as="style" href="{%- render 'enable_minify' with 'css' ,nameFile:'theme.css' -%}">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
+  
+  
+  {%- capture seo_title -%}
+    {%- if template == 'search' and search.performed == true -%}{{ 'general.search.results_with_count' | t: terms: search.terms, count: "" }}{%- elsif template == 'search.wish' %}{{ 'general.meta.wishlist' | t }}{%- elsif template == 'search.compe' %}{{ 'general.meta.compare' | t }}{%- else -%}{{ page_title }}{%- endif -%}
+    {%- if current_tags -%}{%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}{%- endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name %} &ndash; {{ shop.name }}{%- endunless -%}
+  {%- endcapture -%}
+  <title>{{ seo_title | strip }}</title>
+  {%- if page_description %}<meta name="description" content="{{ page_description | escape }}">
+  {%- elsif collection.current_type or collection.current_vendor %}<meta name="description" content="{{ shop.description | default: shop.name | escape }}">{% endif -%}
+  {%- if settings.favicon != blank %}<link rel="shortcut icon" type="image/png" href="{{ settings.favicon | img_url: '32x' }}">{% endif -%}
+  {%- if settings.favicon_apple != blank %}<link rel="apple-touch-icon-precomposed" type="image/png" sizes="152x152" href="{{ settings.favicon_apple | img_url: '152x' }}">{% endif -%}
+  {%- liquid 
+    assign t_name = request.page_type
+    assign body_img = settings.body_bg_image
+    render 'social-meta-tags',t_name:t_name
+    render 'head_assets',t_name:t_name
+    capture class_body_theme 
+      render 'class_body_theme',t_name:t_name, body_img:body_img 
+    endcapture -%}
+
+    {{ content_for_header }}
+  
+  {% render 'judgeme_core' %}
+  
+  
+
+    <!-- Upsell & Cross Sell Kit by Logbase - Starts -->
+      <script src='https://upsell-app.logbase.io/lb-upsell.js?shop=andamen-website.myshopify.com' defer></script>
+    <!-- Upsell & Cross Sell Kit by Logbase - Ends -->
+{% include 'wiser' %}{% include 'wiser_popup' %}
+                  {% include 'bss-product-labels-configs' %}  
+  
+<!-- BEGIN_FLASHSEARCH_HEAD -->
+{%- include 'flashsearch-head' -%}
+<!-- END_FLASHSEARCH_HEAD -->
+  <!-- Global site tag (gtag.js) - Google Ads: 936208704 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-936208704"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-936208704');
+</script>
+
+
+<script>(() => {const installerKey = 'docapp-discount-auto-install'; const urlParams = new URLSearchParams(window.location.search); if (urlParams.get(installerKey)) {window.sessionStorage.setItem(installerKey, JSON.stringify({integrationId: urlParams.get('docapp-integration-id'), divClass: urlParams.get('docapp-install-class'), check: urlParams.get('docapp-check')}));}})();</script>
+
+<script>(() => {const previewKey = 'docapp-discount-test'; const urlParams = new URLSearchParams(window.location.search); if (urlParams.get(previewKey)) {window.sessionStorage.setItem(previewKey, JSON.stringify({active: true, integrationId: urlParams.get('docapp-discount-inst-test')}));}})();</script>
+</head>
+             
+<body {{class_body_theme | strip_newlines-}}>
+{% capture the_snippet_content %}{% render 'socialshopwave-helper' %}{% endcapture %}
+            {% unless the_snippet_content contains 'Liquid error' %}
+              {{ the_snippet_content }}
+            {% endunless %}
+  {%- render 'lazypreload' -%}
+  <div id="nt_wrapper">
+    {%- render 'header',t_name:t_name -%}
+    {%- section 'sale-popup' -%}
+    <div id="nt_content">{{ content_for_layout }}</div>
+    <footer id="nt_footer" class="bgbl footer-1">{%- section 'footer_top' -%}{%- section 'footer_bot' -%}</footer>
+  </div>
+  {%- render 'div_html',t_name:t_name -%}
+<style>
+@media only screen and (max-width:767px){
+  ul.sub-menu {
+    padding-left: 15px !important;
+}
+ .flickity-button {
+    border: 0;
+    transform: scale(0.7) !important;
+}
+}
+  </style>
+{%render 'sc-quantity-break'%}
+ {% include 'smile-initializer' %}
+
+
+<!-- **BEGIN** Hextom QAB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_qab_main', product: product, customer: customer %}
+    <!-- **END** Hextom QAB Integration // Main Include - DO NOT MODIFY -->
+{% include 'zipcoderestrictor' %}
+  
+  
+	
+		{%- render 'flits_capture_code' with 'load_snippet',template:'flits_snippet' -%}
+  
+{% include 'social-login' %}  
+  {% if content_for_header contains 'product_label' %}{% include 'bss-product-label-js' %}{% include 'bss-label-style-css' %}{% endif %}  
+{% include 'taginstall-body' %}
+  
+  
+      
+   <script>
+     
+     
+  
+//   post method
+  
+      $("#CustomerEmail").change(function(e){
+      e.preventDefault();
+      var email = $('#CustomerEmail').val();
+        if(email !=""){
+//         console.log("email : "+ email);        
+
+//       });
+     
+
+    var CryptoJSAesJson = {
+    stringify: function (cipherParams) {
+        var j = {ct: cipherParams.ciphertext.toString(CryptoJS.enc.Base64)};
+        if (cipherParams.iv) j.iv = cipherParams.iv.toString();
+        if (cipherParams.salt) j.s = cipherParams.salt.toString();
+        return JSON.stringify(j);
+    },
+    parse: function (jsonStr) {
+        var j = JSON.parse(jsonStr);
+        var cipherParams = CryptoJS.lib.CipherParams.create({ciphertext: CryptoJS.enc.Base64.parse(j.ct)});
+        if (j.iv) cipherParams.iv = CryptoJS.enc.Hex.parse(j.iv)
+        if (j.s) cipherParams.salt = CryptoJS.enc.Hex.parse(j.s)
+        return cipherParams;
+    }
+}
+var key = "cec100ys";
+var encrypted = CryptoJS.AES.encrypt(JSON.stringify(email), key, {format: CryptoJSAesJson}).toString();
+console.log(encrypted);
+// var decrypted = JSON.parse(CryptoJS.AES.decrypt(encrypted, key, {format: CryptoJSAesJson}).toString(CryptoJS.enc.Utf8));
+// console.log("decryyepted: "+decrypted);
+    
+    $.ajax({
+        url: "/apps/andamen-1/post",        
+        type: 'POST',
+      data: {'encryptedData': encrypted },
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+          var message = "";
+          if(res == "100"){
+            message = "Your Account is in disabled state.<br>Please activate your account <br>An Invitation Link is sent to your email id.<br>";
+          
+         
+          $('#message_disable_customer').fadeIn('400', function () {    
+          $(this).html(message);
+		  $(this).css("background-color", "#f5dea4");
+          $(this).css("padding", "10px");
+          $(this).css("border-radius", "10px");        
+          $(this).delay(10000).fadeOut('slow');
+            
+           
+  });
+          }     
+         	
+        }
+      
+    });
+        }
+  
+    });
+  
+  
+  
+  /*
+//   ---get method
+       
+     $("#CustomerEmail").change(function(e){
+        e.preventDefault();
+      var email = $('#CustomerEmail').val();
+        if(email !=""){
+//         console.log("email : "+ email);        
+
+//       });
+     
+
+    var CryptoJSAesJson = {
+    stringify: function (cipherParams) {
+        var j = {ct: cipherParams.ciphertext.toString(CryptoJS.enc.Base64)};
+        if (cipherParams.iv) j.iv = cipherParams.iv.toString();
+        if (cipherParams.salt) j.s = cipherParams.salt.toString();
+        return JSON.stringify(j);
+    },
+    parse: function (jsonStr) {
+        var j = JSON.parse(jsonStr);
+        var cipherParams = CryptoJS.lib.CipherParams.create({ciphertext: CryptoJS.enc.Base64.parse(j.ct)});
+        if (j.iv) cipherParams.iv = CryptoJS.enc.Hex.parse(j.iv)
+        if (j.s) cipherParams.salt = CryptoJS.enc.Hex.parse(j.s)
+        return cipherParams;
+    }
+}
+var key = "cec100ys";
+var encrypted = CryptoJS.AES.encrypt(JSON.stringify(email), key, {format: CryptoJSAesJson}).toString();
+console.log(encrypted);
+// var decrypted = JSON.parse(CryptoJS.AES.decrypt(encrypted, key, {format: CryptoJSAesJson}).toString(CryptoJS.enc.Utf8));
+// console.log("decryyepted: "+decrypted);
+    
+    $.ajax({
+        url: "/apps/andamen/get",        
+        type: 'GET',
+      data: {'email': email },
+        dataType: 'json', // added data type
+        success: function(res) {
+            console.log(res);
+            alert(res);
+        }
+      
+    });
+        }
+  
+    });
+    
+    */
+
+      </script>
+
+  <script type="text/javascript">
+  // console.log("hiiiiiiiiiiiiiii ");
+   var _learnq = _learnq || [];
+  
+   // var logedIn = {{ customer.email }};
+  // console.log("hiiiiiiiiiiiiiii ");
+   // console.log(logedIn);
+   {% if customer %}
+     // console.log("hiiiiiiiiiiiiiii ");
+     // console.log("hi "+ '{{ customer.email }}');
+   _learnq.push(['identify', {'$email': '{{ customer.email }}'}]);
+   {% endif %}
+ </script>
+
+  
+  {% render 'returnprime_css' %}
+<!-- BEGIN_FLASHSEARCH_BODY -->
+{%- include 'flashsearch-body' -%}
+<!-- END_FLASHSEARCH_BODY -->
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VGRNzM"></script>
+</body>
+
+</html>
+ 

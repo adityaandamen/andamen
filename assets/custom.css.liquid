@@ -1,0 +1,65 @@
+/*-----------------------------------------------------------------------------/
+/ Custom Theme CSS
+/-----------------------------------------------------------------------------*/
+/*---------------- Global Custom CSS -------------------*/
+{{settings.global_css }}
+.type_tab {
+    background: #FDFAF5;
+    padding: 0;
+}
+.type_tab .container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.type_tab li.dib a {
+    opacity: 1;
+    padding: 0 0 5px;
+    border-bottom: 1px solid transparent;
+  margin: 0 20px;
+}
+.type_tab li.dib a span {
+    font-size: 11px;
+    color: #383838;
+    font-family: Lato,sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.type_tab li.dib a.tt_active  {
+    border-bottom: 1px solid #A77737;
+}
+.type_tab li.dib a.tt_active span {
+    color: #A77737;
+}
+.type_tab li.dib a.tt_active span:after {
+    display: none;
+}
+.tab_se_content {
+    position: relative;
+    margin-top: 20px;
+}
+
+
+
+/*---------------- Custom CSS for only desktop -------------------*/
+@media (min-width: 1025px) {
+  {{settings.desktop_css }}
+}
+
+/*---------------- Custom CSS for tablet, mobile -------------------*/
+@media (max-width: 1024px) {
+  {{settings.tablet_mobile_css }}
+}
+
+/*---------------- Custom CSS for only tablet -------------------*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  {{settings.tablet_css }}
+}
+
+/*---------------- Custom CSS for only mobile -------------------*/
+@media (max-width: 767px){
+  {{settings.mobile_css }}
+ 
+}
+
+

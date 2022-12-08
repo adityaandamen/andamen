@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-md-4">
+     <div class="rev-box">
+       {%- if section.settings.star != blank -%}  
+        <img src="{{ section.settings.star | img_url }}" alt="star">
+       {%- endif -%}
+       {%- if section.settings.heading != blank -%} 
+      	 <h3>{{ section.settings.cont }}</h3>
+         <h3>{{ section.settings.heading }}</h3>
+       {%- endif -%}
+         <ul>
+           {%- if section.settings.facebook != blank -%}
+           		<li><i class="fa fa-facebook"></i> {{ section.settings.facebook }}</li>
+           {%- endif -%}
+           {%- if section.settings.google != blank -%}
+           		<li><i class="fa fa-google"></i> {{ section.settings.google }}</li>
+           {%- endif -%}
+         </ul>
+     </div>
+  </div>
+  <div class="col-md-8">
+     <div class="all-review">
+      <div class="row">
+          <div class="col-md-4">
+               <div class="review">
+                 {%- if section.settings.review != blank -%}
+                	 <p>{{ section.settings.review }}</p>
+                 {%- endif -%}
+                 {%- if section.settings.logo != blank -%}
+                 	<img src="{{ section.settings.logo | img_url }}" alt="logo">
+                 {%- endif -%}
+               </div>
+          </div>
+          <div class="col-md-4">
+               <div class="review">
+                 {%- if section.settings.secondreview != blank -%}
+                 	<p>{{ section.settings.secondreview }}</p>
+                 {%- endif -%}
+                 {%- if section.settings.secondlogo != blank -%}
+                 	<img src="{{ section.settings.secondlogo | img_url }}" alt="logo">
+                 {%- endif -%}
+               </div>
+          </div>
+          <div class="col-md-4">
+               <div class="review">
+                 {%- if section.settings.thirdreview != blank -%}
+                	 <p>{{ section.settings.thirdreview }}</p>
+                 {%- endif -%}
+                 {%- if section.settings.thirdlogo != blank -%}
+                 	<img src="{{ section.settings.thirdlogo | img_url }}" alt="logo">
+                 {%- endif -%}
+               </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Review",
+    "class": "reviews_container",
+    "settings": [
+     {
+        "id": "star",
+        "type": "image_picker",
+        "label": "Stars"
+      },
+	  {
+        "id": "cont",
+        "type": "text",
+        "label": "Total Heading"
+      },
+      {
+        "id": "heading",
+        "type": "text",
+        "label": "Heading"
+      },
+      {
+        "id": "facebook",
+        "type": "text",
+        "label": "Facebook Review"
+      },
+      {
+        "id": "google",
+        "type": "text",
+        "label": "Google Review"
+      },
+	  {
+        "id": "review",
+        "type": "text",
+        "label": "Review Content"
+      },
+      {
+        "id": "logo",
+        "type": "image_picker",
+        "label": "Logo"
+      },
+	  {
+        "id": "secondreview",
+        "type": "text",
+        "label": "Second Review Content"
+      },
+      {
+        "id": "secondlogo",
+        "type": "image_picker",
+        "label": "Second Logo"
+      },
+	  {
+        "id": "thirdreview",
+        "type": "text",
+        "label": "Third Reviewx Content"
+      },
+      {
+        "id": "thirdlogo",
+        "type": "image_picker",
+        "label": "Third Logo"
+      }
+    ],
+    "presets": [
+      {
+        "name": {
+          "en": "Review Section",
+          "es": "Review Section"
+        },
+        "category": {
+          "en": "Review",
+          "es": "Review"
+        }
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

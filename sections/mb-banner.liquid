@@ -1,0 +1,57 @@
+<div class="banner-cont" style="background-image:url({{ section.settings.banner-bg  | img_url: "large"  }});">
+  <h3>{{ section.settings.heading }}</h3>
+  <p>{{ section.settings.baaner-text }}</p>
+  <a href="{{ section.settings.button-link }}">{{ section.settings.button-tilte }}</a>
+</div>
+
+{% schema %}
+  {
+    "name": "Mb Banner",
+    "class": "mb-banner",
+    "settings": [
+        {
+          "id": "banner-bg",
+          "type": "image_picker",
+          "label": "Banner"
+        },
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Heading"
+        },
+		{
+          "id": "baaner-text",
+          "type": "text",
+          "label": "Baaner Text"
+        },
+        {
+          "id": "button-tilte",
+          "type": "text",
+          "label": "Button Tilte"
+        },
+        {
+          "id": "button-link",
+          "type": "url",
+          "label": "Button Url"
+        }
+    ],
+    "presets": [
+      {
+        "name": {
+          "en": "Mobile Banner",
+          "es": "Mobile Banner"
+        },
+        "category": {
+          "en": "Others",
+          "es": "Others"
+        }
+      }
+    ] 
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,98 @@
+<div class="swiper-container mySwiper">
+  <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+    <div class="swiper-slide">
+       <div class="rev-slide">
+         <div class="rev-box">
+           {%- if block.settings.star != blank -%}  
+            <img src="{{ block.settings.star | img_url }}" alt="star">
+           {%- endif -%}
+           {%- if block.settings.heading != blank -%} 
+             <h3>{{ block.settings.heading }}</h3>
+           {%- endif -%}
+             <ul>
+               {%- if block.settings.facebook != blank -%}
+                    <li><i class="fa fa-facebook"></i> {{ block.settings.facebook }}</li>
+               {%- endif -%}
+               {%- if block.settings.google != blank -%}
+                    <li><i class="fa fa-google"></i> {{ block.settings.google }}</li>
+               {%- endif -%}
+             </ul>
+         </div>
+         <div class="review">
+             {%- if block.settings.review != blank -%}
+             <p>{{ block.settings.review }}</p>
+             {%- endif -%}
+             {%- if block.settings.logo != blank -%}
+             <img src="{{ block.settings.logo | img_url }}" alt="logo">
+             {%- endif -%}
+         </div>
+      </div>
+    </div>
+    {% endfor %}
+   </div>
+  <div class="swiper-pagination"></div>
+</div>
+{% schema %}
+   {
+    "name": "Review Slider",
+    "class": "reviews_slider",
+    
+     "blocks": [
+       {
+      "type": "select",
+      "name": "Add Slide",
+         "settings": [
+            {
+              "id": "star",
+              "type": "image_picker",
+              "label": "Stars"
+            },
+            {
+              "id": "heading",
+              "type": "text",
+              "label": "Heading"
+            },
+            {
+              "id": "facebook",
+              "type": "text",
+              "label": "Facebook Review"
+            },
+            {
+              "id": "google",
+              "type": "text",
+              "label": "Google Review"
+            },
+            {
+              "id": "review",
+              "type": "text",
+              "label": "Review Content"
+            },
+            {
+              "id": "logo",
+              "type": "image_picker",
+              "label": "Logo"
+            }
+         ] 
+	   }
+	 ],
+    "presets": [
+      {
+        "name": {
+          "en": "Review Slider",
+          "es": "Review Slider"
+        },
+        "category": {
+          "en": "Review",
+          "es": "Review"
+        }
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

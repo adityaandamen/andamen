@@ -1,0 +1,85 @@
+var nt_settings = { 
+  "disabled_ver_console":false,
+  "theme_ver":"Kalles Shopify v2.2.1",
+  "scrollTop":100,
+  "pjaxTimeout":5000,
+  "dragThreshold":10,
+  "prevOnHref":false,
+  "sw_limit_click":false,
+  "backtop":"2",
+  "pagination":null,
+  "review":false,
+  "app_review":"1",
+  "ajax_scroll":false,
+  "ajax_shop":true,
+  "ajax_scroll_offset":"100",
+  "ntla_ck":false,
+  "pr_curent":"1",
+  "use_clicking_vimg":false,
+  "PleaseChoosePrOptions":"Please select some product options before adding this product to your cart.", 
+  "will_not_ship":"Will not ship until \u003cspan class=\"jsnt\"\u003e{{date}}\u003c\/span\u003e",
+  "will_stock_after":"Will be in stock after \u003cspan class=\"jsnt\"\u003e{{date}}\u003c\/span\u003e",
+  "enableHistoryState":false,
+  "pr_incoming_mess":false,
+  "use_notify_me":true,
+  "use_vimg":true,
+  "use_sticky_des":true,
+  "wishlist_type":"0",
+  "wis_atc_added":"1",
+  "type_filters":"2",
+  "auto_hide_ofsock":true,
+  "show_hide_ofsock":true,
+  "added_to_cart": "Product was successfully added to your cart.",
+  "view_cart": "View cart",
+  "continue_shopping": "Continue Shopping",
+  "save_js":"-[sale]%",
+  "disOnlyStock":false,"disATCerror":false,"close":"Close (Esc)",
+   "share_fb":"Share on Facebook",
+   "pin_it":"Pin it",
+   "tweet":"Tweet",
+   "download_image":"Download image",
+   "img_captions":true,
+   "z_magnify":2,
+   "z_touch":false,
+   "galleryType":"pswp","maxSpreadZoom":1,
+   "bgOpacity":1,
+   "currencies":false,
+   "currency_visitor":false,
+   "currency_format":"money_format",
+   "round_currency":false,
+   "hover_currency":false,
+   "remove_currency":false,
+   "round_cur_shop":false,
+   "after_action_atc":"3",
+   "ins_host":"https://d3ejra0xbg20rg.cloudfront.net","bannerCountdown":"%D days %H:%M:%S",
+   "prItemCountdown":"%D Days %H:%M:%S",
+  "countdown_days":"days",
+  "countdown_hours":"hr",
+  "countdown_mins":"min",
+  "countdown_sec":"sc",
+  "multiple_rates": "We found [number_of_rates] shipping rates available for [address], starting at [rate].",
+  "one_rate": "We found one shipping rate available for [address].",
+  "no_rates": "Sorry, we do not ship to this destination.",
+  "rate_value": "[rate_title] at [rate]",
+  "agree_checkout": "You must agree with the terms and conditions of sales to check out.",
+  "added_text_cp":"Compare products",
+  "timezone":"Asia\/Kolkata",
+  "zoom_tp":"2",
+  "search_prefix":'*',
+  "platform_email":"1",
+  "checkbox_mail":false,
+  "edit_item":"0" 
+};
+// disable_right_click
+    document.addEventListener("contextmenu", function(event) {var notInput = (event.target || event.srcElement).tagName.toLowerCase() !== "input" && (event.target || event.srcElement).tagName.toLowerCase() !== "textarea";if (notInput && (event.target || event.srcElement).innerText) {event.preventDefault();} });
+    // disable_right_click_img
+    document.addEventListener("mousedown", function(event) { if ((event.target || event.srcElement).tagName.toLowerCase() === "img") {
+        // Middle-click to open in new tab
+        if (event.which == 2) { event.preventDefault(); } 
+    } });
+    document.addEventListener("contextmenu", function(event) { if ((event.target || event.srcElement).tagName.toLowerCase() === "img") { event.preventDefault(); } });
+    // Drag and drop <img> elements
+    const disableDragAndDrop = function(){document.body.setAttribute("ondragstart", "return false;");document.body.setAttribute("ondrop", "return false;");};
+    if (document.readyState === "complete") {disableDragAndDrop();} else {document.addEventListener("DOMContentLoaded", disableDragAndDrop);}
+    // disable_right_click_bg_img
+    document.addEventListener("contextmenu", function(event) { if ((event.target || event.srcElement).style.backgroundImage) { event.preventDefault(); } });

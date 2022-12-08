@@ -1,0 +1,66 @@
+
+/****PLEASE DON'T MAKE CHANGES IN THIS FILE IT'S AFFECT THE CODE IF YOU NEED ANY HELP PLEASE CONTACT TO FLITS TEAM support@getflits.com ****/
+a.flits-primary-btn.flits-button.flits_returnexchangebtn{
+  //border-radius: unset !important;
+}
+span.flits-social-login-btn-text{
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 400;
+}
+.flits-social-login-btn-googleplus span.flits-social-login-btn-text{
+	color: #DE4A3C !important;
+}
+.flits-social-login-btn-facebook span.flits-social-login-btn-text{
+	color: #fff !important;
+}
+.flits-social-login-btn-facebook span.flits-social-login-btn-img {
+    background: rgba(49,74,126) !important;
+}
+
+.mini_cart_wrap a.flits-social-login-btn.flits-social-login-btn-facebook, .mini_cart_wrap a.flits-social-login-btn.flits-social-login-btn-googleplus{
+    width: 100% !IMPORTANT;
+}
+a.flits-social-login-btn.flits-social-login-btn-facebook, a.flits-social-login-btn.flits-social-login-btn-googleplus{
+    width: 70% !IMPORTANT;
+}
+.flits-social-login-btn-grp .flits-social-login-btn.flits-social-login-btn-googleplus{
+    border-color: #DE4A3C !important;
+}
+.flits-social-login-btn-grp .flits-social-login-btn.flits-social-login-btn-facebook, .flits-social-login-btn-grp .flits-social-login-btn.flits-social-login-btn-googleplus{
+    background: transparent !important;
+    border-radius: var(--radius) !important;
+    margin: 6px 0 !important;
+    width: 100% !important;
+}
+
+.flits-social-login-btn-grp .flits-social-login-btn.flits-social-login-btn-facebook{
+  background: #30497e !important;
+  color: #fff !important;
+}
+
+span.flits-social-login-btn-text:after{
+  //content: ' \003E';
+  display: inline-block;
+  position: absolute;
+  right: 81px;
+  margin-top: 2px;
+}
+.mini_cart_wrap span.flits-social-login-btn-text:after{
+  //content: ' \003E';
+  display: inline-block;
+  position: absolute;
+  right: 55px;
+  margin-top: 2px;
+}
+body.template-product .filts-wishlist-product-style.flits-wishlist-button-style{
+  display: flex !important;
+}
+body .flits-wishlist-colection-style .flits-wls-button-secondary .flits-wls-icon-svg-color-blue{
+  fill: none !important;
+}
+.flits-wishlist-colection{
+  right: 5px;
+  top: 5px;
+}

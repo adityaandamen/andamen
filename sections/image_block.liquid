@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="col-12 col-md-12 text-center">
+    {{ section.settings.image | img_url: '2048x' | img_tag:'', 'inner-only arrow-down' }}
+  </div>
+</div>
+
+
+{%- render 'section_css' -%}
+
+{%- schema -%}
+  {
+    "name": "Image Only",
+    "class": "image_block",
+    "settings": [
+      {
+         "type": "image_picker",
+         "id": "image",
+         "label": "Image"
+      }
+    ]
+  }
+{% endschema %}

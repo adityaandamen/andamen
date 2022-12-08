@@ -1,0 +1,335 @@
+{%- liquid
+  assign cl_des = settings.des_pr_design
+  assign cl_mb  = section.settings.des_mb
+  if cl_des == '2'
+    assign ck = section.settings.auto
+  else
+    assign ck = true
+  endif 
+  assign additions = product.metafields.additions
+  assign currently_var = product.selected_or_first_available_variant
+  assign cur_var_id = currently_var.id
+  assign pid = product.id
+  assign hd_up = 'fbt-' |append:pid
+  assign fbt_tag = product.tags| where:'fbtt4_' | first | default:hd_up | remove:'fbtt4_'
+  assign nav_up = linklists[fbt_tag].links | where:'type','product_link'
+  assign nav_up_size = nav_up.size 
+  if product.available == false or settings.fbt_pos == '1'
+    assign nav_up_size = 0
+  endif
+  assign des_w  = section.settings.des_w
+  assign des_pr_layout = settings.des_pr_layout
+  assign pr_tags = product.tags
+  assign tag_arr_size = pr_tags | where:'tabt4_' | size -%}
+
+
+<div class="row" id="tab_pr_deskl">
+  
+  
+  <div class="col-12 col-md-3 ">
+    <h6 class="m__0 mb__20">Description</h6>
+    {{ product.description }}
+  </div>
+  
+  <div class="col-12 col-md-1">
+  </div>
+  
+  <div class="col-12 col-md-3 product_specs">
+
+	<div class="row mb__20">
+      <div class="col-3"><img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/f3_bee8027b-946e-4870-945b-e63f0ee770dd.png?v=1648536391"/></div>
+      <div class="col-9">
+        <h6>{{ product.metafields["global"]["Composition"] }}</h6>
+        <small class="block">Material</small>
+      </div>
+    </div>
+    
+    <div class="row mb__20">
+      <div class="col-3"><img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/f1.png?v=1648535403"/></div>
+      <div class="col-9">
+        <h6>{{ product.metafields["global"]["Fabric-Weight"] }}</h6>
+        <small class="block">Weight</small>
+      </div>
+    </div>
+    
+    <div class="row mb__20">
+      <div class="col-3"><img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/f4_6296240d-4388-4e2f-8e95-9c67d20c9ab8.png?v=1648536470"/></div>
+      <div class="col-9">
+        <h6>{{ product.metafields["global"]["Suggested-Style"] }}</h6>
+        <small class="block">Style Suggestion</small>
+      </div>
+    </div>
+    
+    <div class="row mb__20">
+      <div class="col-3"><img src="https://cdn.shopify.com/s/files/1/0618/3183/9957/files/f2.png?v=1648535414"/></div>
+      <div class="col-9">
+        <h6>INDIA</h6>
+        <small class="block">Country of Origin</small>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-12 col-md-1">
+  </div>
+  
+  <div class="col-12 col-md-4 product__desc">
+    <h6 class="m__0 mb__20">Specifications</h6>
+    {{ product.metafields["global"]["Features"] }}
+    
+    
+    <h6 class="mt__40 mb__20">Wash Care</h6>
+    {{ product.metafields["global"]["Fabric/Wash-Care"] }}
+  </div>
+</div>
+
+
+{%- schema -%} 
+  {
+    "name": "Product Description",
+    "class": "nt_section",
+    "settings": [ 
+      /*{
+        "type": "paragraph",
+        "content": "Custom Metafields (namespace: additions)"
+      },*/
+      {
+        "type": "checkbox",
+        "id": "show",
+        "label": "Show Tab Descriptions?",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "bgcl",
+        "label": "Background Color",
+        "info": "Not working when enable description sidebar",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "bgclmb",
+        "label": "Background Color (mobile)",
+        "info": "Not working when enable description sidebar",
+        "default": "#fff"
+      },
+      {
+        "type": "select",
+        "id": "des_w",
+        "default": "1",
+        "info": "Not working when enable description sidebar",
+        "options": [
+          {
+            "value": "1",
+            "label": "Default"
+          },
+          {
+            "value": "2",
+            "label": "Wide (1600px)"
+          },
+          {
+            "value": "3",
+            "label": "full Width"
+          },
+          {
+            "value": "4",
+            "label": "Content full Width"
+          }
+        ],
+        "label": "Description Layout"
+      },
+      {
+        "type": "select",
+        "id": "des_mb",
+        "label": "Description design mobile",
+        "info": "Only working in Product Tab Description",
+        "default": "2",
+        "options": [
+          {
+            "value": "1","label": "Design 1"
+          },
+          {
+            "value": "2","label": "Design 2"
+          }
+        ]
+      },  
+      {
+      "type": "checkbox",
+      "id": "auto",
+      "label": "Enable auto open?",
+      "info": "Only working in Product Tab Accordions",
+      "default": true
+      },
+      {
+        "type": "text",
+        "id": "mg",
+        "label": "Margin",
+        "default": "30px,,30px,",
+        "placeholder": "30px,,30px,"
+      },
+      {
+        "type": "text",
+        "id": "mg_mb",
+        "label": "Margin Mobile",
+        "default": "0,,0,",
+        "placeholder": "0,,0,"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "des",
+        "name": "Description",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Description"
+          }
+        ]
+      },
+      {
+        "type": "buy",
+        "name": "Bought Together",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "Only active when enable Frequently Bought Together on inside description."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Frequently Bought Together"
+          },
+          {
+            "type": "paragraph",
+            "content": "[Tutorials Doc](https://kalles-docs.the4.co/features/bundle#config-bundle-from-kalles-1-1)"
+          }/*,
+          {
+            "type": "paragraph",
+            "content": "[Tutorials Video](https://kalles-docs.the4.co/features/bundle#config-bundle-from-kalles-1-1)"
+          }*/
+        ]
+      },
+      {
+        "type": "add",
+        "name": "Additional Information",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Additional Information"
+          }
+        ]
+      },
+      {
+        "type": "rivui",
+        "name": "Review",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Reviews"
+          }
+        ]
+      },
+      /*{
+        "type": "shipping",
+        "name": "shipping Information",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "shipping"
+          }
+        ]
+      },*/
+      {
+        "type": "html",
+        "name": "Custom HTML",
+        "settings": [
+         {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Custom tab"
+          },
+          {
+            "type": "page",
+            "id": "page",
+            "label": "Tab content",
+            "info": "This page content will appear in the extra tab."
+          }
+        ]
+      },
+      {
+        "type": "tag_pr",
+        "name": "Product tag tab",
+        "settings": [
+         {
+            "type": "paragraph",
+            "content": "Only show this tab when product has tag 'tabt4_Tab Name'."
+          },
+         {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Tab Name"
+          },
+          {
+            "type": "page",
+            "id": "page",
+            "label": "Tab content",
+            "info": "This page content will appear in the extra tab."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+            {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Talk about your brand"
+            },
+            {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+            }
+         ]
+      },
+      {
+        "type": "cus_tab_1","name": "Metafield - Tab #1","limit": 1
+      },
+      {
+        "type": "cus_tab_2","name": "Metafield - Tab #2","limit": 1
+      },
+      {
+        "type": "cus_tab_3","name": "Metafield - Tab #3","limit": 1
+      },
+      {
+        "type": "cus_tab_4","name": "Metafield - Tab #4","limit": 1
+      },
+      {
+        "type": "cus_tab_5","name": "Metafield - Tab #5","limit": 1
+      }
+    ],
+    "default": {
+      "blocks": [
+        { "type": "des" },{ "type": "add" },{ "type": "rivui" }
+      ]
+    }
+  }
+{% endschema %}

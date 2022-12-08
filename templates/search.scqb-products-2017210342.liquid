@@ -1,0 +1,32 @@
+{% comment %} Added by SolverCircle for Quantity Break App {% endcomment %}
+
+{% layout none %}
+{% assign resultTotal = search.results_count %}
+{% paginate search.results by resultTotal %}
+{% capture output %}
+
+{
+"total_products" : {{resultTotal}},
+"products": [
+{% for product in search.results %}	
+{
+"id": {{product.id}},
+"handle":"{{product.handle}}",
+"price":{{product.price}},
+"selected_or_first_available_variant":{{product.selected_or_first_available_variant | json}},
+"variants": {{product.variants | json}},
+"collections":{{product.collections | json}}
+}
+
+{% if search.results.last.id != product.id %}
+,
+{% endif %}
+
+{% endfor %}
+
+]
+}
+
+{% endcapture %}
+{% endpaginate %}
+{{ output | strip_newlines }}

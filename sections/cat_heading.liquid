@@ -1,0 +1,226 @@
+{% for i in (1..1) %}
+  {%- liquid 
+  assign se_stts = section.settings
+  unless se_stts.shown
+    break
+  endunless
+  assign se_id = collection.id
+  assign se_bks = section.blocks
+  assign parallax = se_stts.parallax 
+  if collection.image != blank and se_stts.use_specify_image
+    assign image = collection.image
+  else
+    assign image = se_stts.image
+  endif -%}
+
+  
+<div class="cat-title container">
+  {% include 'breadcrumb' %}  
+  <h1>{{ collection.title }}</h1>
+  {% if settings.cat_des == '1' %}<p class="mg__0">{{ collection.description }}</p>{% endif -%}
+  <fs-total-products/>
+</div>
+ 
+{%- endfor -%}
+{%- schema -%}
+  {
+    "name": "Page heading",
+    "class": "page_section_heading",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "shown",
+        "label": "Show Page heading?",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "== Background Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_specify_image",
+        "label": "Specify other image for particular page",
+        "info": "Use Collection image",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "parallax",
+        "label": "Use scroll parallax?",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Background color",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "overlay",
+        "label": "Background overlay",
+        "default": 54,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
+      },
+      {
+        "type": "range",
+        "id": "padding",
+        "label": "Padding Space",
+        "default": 50,
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "== Background Image Config:"
+      },
+      {
+        "type": "paragraph",
+        "content": "Not active when you enable scroll parallax."
+      },
+      {
+        "type": "select",
+        "id": "bg_pos",
+        "label": "Background Image Position",
+        "default": "center center",
+        "options": [
+          {
+            "value": "left top",
+            "label": "Left Top"
+          },
+          {
+            "value": "left center",
+            "label": "Left Center"
+          },
+          {
+            "value": "left bottom",
+            "label": "Left Bottom"
+          },
+          {
+            "value": "center top",
+            "label": "Center Top"
+          },
+          {
+            "value": "center center",
+            "label": "Center Center"
+          },
+          {
+            "value": "center bottom",
+            "label": "Center Bottom"
+          },
+          {
+            "value": "right top",
+            "label": "Right Top"
+          },
+          {
+            "value": "right center",
+            "label": "Right Center"
+          },
+          {
+            "value": "right bottom",
+            "label": "Right Bottom"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "bg_repeat",
+        "options": [
+          {
+            "value": "no-repeat",
+            "label": "No Repeat"
+          },
+          {
+            "value": "repeat",
+            "label": "Repeat All"
+          },
+          {
+            "value": "repeat-x",
+            "label": "Repeat Horizontally"
+          },
+          {
+            "value": "repeat-y",
+            "label": "Repeat Vertically"
+          },
+          {
+            "value": "inherit",
+            "label": "Inherit"
+          }
+        ],
+        "label": "___ Background Repeat",
+        "default": "no-repeat",
+        "info": "[Specifies how to repeat the background images](https:\/\/w3schools.com\/cssref\/pr_background-repeat.asp)"
+      },
+      {
+        "type": "select",
+        "id": "bg_size",
+        "options": [
+          {
+            "value": "auto",
+            "label": "Auto"
+          },
+          {
+            "value": "inherit",
+            "label": "Inherit"
+          },
+          {
+            "value": "cover",
+            "label": "Cover"
+          },
+          {
+            "value": "contain",
+            "label": "Contain"
+          }
+        ],
+        "label": "___ Background Size",
+        "default": "cover",
+        "info": "[Specifies the size of the background images](https:\/\/w3schools.com\/cssref\/css3_pr_background-size.asp)"
+      },
+      {
+        "type": "select",
+        "id": "bg_att",
+        "options": [
+          {
+            "value": "fixed",
+            "label": "Fixed"
+          },
+          {
+            "value": "scroll",
+            "label": "Scroll"
+          },
+          {
+            "value": "inherit",
+            "label": "Inherit"
+          }
+        ],
+        "label": "___ Background Attachment",
+        "default": "scroll",
+        "info": "[Specifies whether the background images are fixed or scrolls with the rest of the page](https:\/\/w3schools.com\/cssref\/pr_background-attachment.asp)"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "1",
+        "name": "Title",
+        "limit": 2
+      },
+      {
+        "type": "2",
+        "name": "Description",
+        "limit": 1
+      }
+    ],
+    "default": {
+      "blocks": [
+        { "type": "1" },{ "type": "2" }
+      ]
+    }
+  }
+{% endschema %}

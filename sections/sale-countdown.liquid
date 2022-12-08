@@ -1,0 +1,300 @@
+{%- liquid 
+  assign admin_sp = request.design_mode
+  assign sid = section.id
+  assign se_stts = section.settings
+  assign popup_active = se_stts.popup_active
+  assign image = section.settings.image
+  assign icon = section.settings.button_icon
+  assign image_mb = section.settings.image_mb
+  assign index = 1
+  assign index2 = 1
+  assign use_custom_h = se_stts.use_custom_h
+ 
+-%}
+
+<style>
+.countdown_true{
+  display: inherit !important;
+}  
+
+.countdown_false,
+.countdown_true.disabled{
+  display: none !important;
+}  
+  
+.nt_se_sale-countdown{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  background: {{ se_stts.bg_color }};
+  color: {{ se_stts.text_color }};
+  padding: 15px;
+  text-align: center;
+} 
+  
+.countdown-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.countdown-container > div,
+.countdown-container > form{
+  width: 33%;
+}  
+
+.countdown-container > form{
+  padding: 0 100px 0 0;
+}  
+
+.countdown-close{
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  cursor: pointer;
+  z-index: 999;
+  padding: 6px;
+}
+
+.countdown-close i{
+  color: {{ se_stts.text_color }};
+  font-size: 40px;
+}  
+
+.countdown-container .newsletter-form{
+  margin: 0;
+} 
+
+.countdown-container .newsletter-form .input-text,
+.countdown-container .newsletter-form .input-text:focus,
+.countdown-container .newsletter-form .input-text:hover{
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  background: transparent;
+  color: #fff !important;
+  padding: 10px !important;
+  height: 36px;
+  margin-right: -10px;
+  border-radius: var(--radius) 0 0 var(--radius);
+}  
+
+.countdown-container .newsletter-form .submit-btn{
+  background: #fff !important;
+  width: 120px;
+  border-radius: 0 var(--br) var(--br) 0 !important;
+  color: var(--text);
+  border: none !important;
+  max-height: 29px;
+  padding: 0 !important;
+  line-height: 1;
+  min-height: 36px;
+  font-weight: 400;
+}  
+
+.countdown-container .newsletter-form .submit-btn:hover{
+  color: var(--accent) !important;
+}  
+
+#countdown{
+  font-size: 30px;
+  letter-spacing: 4px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.countdown_wrapper .caption{
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  word-spacing: 22px;
+}  
+
+.countdown_content small{
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.countdown_content h4{
+  color: {{ se_stts.text_color }};
+  line-height: 1;
+  margin: 3px 0;
+  font-size: 24px;
+  letter-spacing: 1px;
+}  
+
+@media screen and (max-width: 767px){
+  .countdown-container {
+    display: inherit;
+    padding: 10px 0;
+  }
+
+  .countdown-container > div, .countdown-container > form {
+    width: 100%;
+  }
+
+  .countdown_content{
+    margin: 30px auto;
+  }
+
+  .countdown-container > form {
+    padding: 0 20px;
+  }
+
+  .countdown-close {
+    right: 0px;
+    top: 0px;
+  }
+}  
+</style>
+
+{% assign currentDate = "now" | date: "%Y%m%d%H%M%S" %}
+
+{% assign countDate = "se_stts.count_end" | date: "%b %d, %Y %H:%M:%S" %}
+
+{%- if currentDate > se_stts.count_start -%}
+  {%- if currentDate < se_stts.count_end -%}
+
+    <div class="nt_se_{{sid}} countdown_{{se_stts.sidebar}}">
+      <div class="countdown-container">
+        <div class="countdown_wrapper">
+          <div class="caption">
+            <span>Days</span>
+            <span>Hrs.</span>
+            <span>Mins.</span>
+            <span>Sec.</span>
+          </div>
+          <div id="countdown"></div>
+        </div>
+        
+        <div class="countdown_content">
+          <h4>{{se_stts.text}}</h4>
+          <small>{{se_stts.subtext}}</small>
+        </div>
+    
+        {%- form 'customer', class:'js_mail_agree mc4wp-form pr z_100' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="mc4wp-form-fields">
+             <div class="newsletter-form">
+                <div class="email_address"><input autocomplete ="off" type="email" name="contact[email]" placeholder="Enter your email id"  value="{% if customer %}{{ customer.email }}{% endif %}" class="{{class_ip}} input-text" required="required"></div>
+                <div class="subscribe_cta"><button id="" type="submit" class="btn_new_icon_{{btn_icon}} w__100 submit-btn truncate{% if checkbox_mail %} mail_agree pr{% endif %}"><span>Subscribe</span></button></div>
+             </div>
+            {%- if checkbox_mail -%}{%- render 'conditions_mail',html:'p',margin:'mt__15',stt_link:settings.link_mail,sid:sid -%}{%- endif -%}
+          </div>
+           <div class="mc4wp-response">
+              {%- if form.posted_successfully? -%}                
+                <p style="margin: 5px 0 0;">{{se_stts.success}}</p>{%- elsif form.errors -%}<div class="shopify-error"><i class="las la-exclamation-triangle"></i>{{ form.errors | default_errors }}                
+              {%- endif -%}
+           </div>
+        {%- endform -%}
+          
+      </div>
+
+      <div class="countdown-close">
+        <i class="close_pp pegk pe-7s-close ts__03 cd"></i>  
+      </div>
+    </div>
+
+  {%- endif -%}
+{%- endif -%}
+
+
+<script type="text/javascript">   
+// Set the date we're counting down to
+var countDownDate = new Date('{{ se_stts.count_time }}').getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = ("0" + Math.floor(distance / (1000 * 60 * 60 * 24))).slice(-2);
+  var hours = ("0" + Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).slice(-2);
+  var minutes = ("0" + Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).slice(-2);
+  var seconds = ("0" + Math.floor((distance % (1000 * 60)) / 1000)).slice(-2);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("countdown").innerHTML = days + ":" + hours + ":"
+  + minutes + ":" + seconds + "";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+     
+    
+  $( ".countdown-close" ).click(function() {
+  	$(".nt_se_{{sid}}.countdown_true").addClass("disabled");
+  });
+
+</script>
+
+{%- schema -%}
+  {
+    "name": "Sale Contdown",
+    "class": "sale-countdown",
+    "settings": [  
+      {
+        "type": "checkbox",
+        "id": "sidebar",
+        "label": "Enable Countdown",
+        "default": false
+      },
+
+      {
+        "type": "text",
+        "id": "count_start",
+        "label": "Countdown starts at"
+      },
+
+      {
+        "type": "text",
+        "id": "count_end",
+        "label": "Countdown ends at"
+      },
+
+      {
+        "type": "text",
+        "id": "count_time",
+        "label": "Countdown Time",
+        "info": "Jan 5, 2024 15:37:25"
+      },
+
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text on countdown"
+      },
+
+      {
+        "type": "text",
+        "id": "subtext",
+        "label": "Subtext on countdown"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#a77737"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#fff"
+      },
+      {
+        "type": "text",
+        "id": "success",
+        "label": "Successful Subscription Message"
+      }
+    ]
+  }
+{% endschema %}

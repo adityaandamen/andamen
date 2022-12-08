@@ -1,0 +1,791 @@
+{%- liquid 
+  assign admin_sp = request.design_mode
+  assign sid = section.id
+  assign se_stts = section.settings
+  assign popup_active = se_stts.popup_active
+  assign image = section.settings.image
+  assign image_mb = section.settings.image_mb
+  assign index = 1
+  assign index2 = 1
+  assign use_custom_h = se_stts.use_custom_h
+ 
+-%}
+
+<style>
+    
+/* POPUP */
+.sale-popup .popup-open{
+  display: none !important;
+}
+.sale-popup .popup-open.active{
+  display: inherit !important;
+  z-index: 9999;
+  position: fixed;
+  left: {{se_stts.p_h_pos}}%;
+  top: {{se_stts.p_v_pos}}%;
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+  background: {{se_stts.p_cl_bg}};
+  border: 1px solid {{se_stts.p_cl_bd}};
+  border-radius: {{se_stts.p_bdr}}px;
+  color: {{se_stts.p_cl_txt}};
+  padding: {{se_stts.p_pd_v}}px {{se_stts.p_pd_h}}px;
+  text-transform: uppercase;
+  font-size: {{se_stts.p_fs_text}}px;
+  font-weight: {{se_stts.p_fw_text}};
+  letter-spacing: {{se_stts.p_ls_text}}px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}  
+  
+.sale-popup .popup-open.active span{  
+  background: linear-gradient(-45deg, #6355a4, #6355a4, #e89a3e, #e89a3e);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animated_text 10s ease-in-out infinite;
+  -moz-animation: animated_text 10s ease-in-out infinite;
+  -webkit-animation: animated_text 10s ease-in-out infinite;
+}
+  
+.sale-popup .popup-open.active:hover{
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+  
+.nt_se_sale-popup.inactive{
+  display: none !important;
+}
+  
+.nt_se_sale-popup.active.open{
+  display: inherit !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity {{se_stts.transition}}s ease;
+}  
+  
+.nt_se_sale-popup.active.open.open{
+  opacity: 1;
+  z-index: 9999;
+}
+  
+.nt_se_sale-popup.active.open .popup-overlay{
+  background: {{se_stts.cl_overlay}};
+  width: 100vw;
+  height: 100vh;
+  opacity: {{se_stts.cl_opacity | divided_by: 100.00}};
+}
+  
+.nt_se_sale-popup.active .popup-container{  
+  position: fixed;
+  top: calc({{se_stts.cap_v_pos}}% - 255px);
+  left: calc({{se_stts.cap_h_pos}}% - 200px);
+}
+  
+.nt_se_sale-popup.active.open .popup-container img{
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+}
+  
+.nt_se_sale-popup.active.open .popup-container img.display-desktop{
+  width: 400px;
+}
+  
+.nt_se_sale-popup.active.open .popup-close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 5px 1px;
+  cursor: pointer;
+}
+  
+.nt_se_sale-popup.active.open .popup-close i{
+  font-size: 36px;
+  color: #222;
+}
+  
+.nt_se_sale-popup.active.open .btn-container{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+  
+.nt_se_sale-popup.active.open .btn-popup{
+  position: relative;
+  bottom: {{se_stts.bottom_d}}px;
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+  background: {{se_stts.cl_bg}};
+  border: 1px solid {{se_stts.cl_bd}};
+  border-radius: {{se_stts.bdr}}px;
+  color: {{se_stts.cl_txt}};
+  padding: {{se_stts.pd_v}}px {{se_stts.pd_h}}px;
+  text-transform: uppercase;
+  font-size: {{se_stts.fs_text}}px;
+  font-weight: {{se_stts.fw_text}};
+  letter-spacing: {{se_stts.ls_text}}px;
+  cursor: pointer;
+}
+  
+.nt_se_sale-popup.active.open .btn-popup:hover{
+  color: {{se_stts.cl_txt}};
+  box-shadow: inset 100px 100px 0 rgba(0,0,0,0.05);
+}
+  
+body.overflow-disable{
+  overflow: hidden;
+}
+  
+@media screen and (max-width: 767px){
+  .nt_se_sale-popup.active.open .popup-container img.display-mobile{
+    width: 300px;
+  }
+  
+  .nt_se_sale-popup.active.open .popup-container{  
+    top: calc({{se_stts.cap_v_pos_mb}}% - 194px);
+    left: calc({{se_stts.cap_h_pos_mb}}% - 150px);
+  }
+  
+  .nt_se_sale-popup.active.open .btn-popup{
+    bottom: {{se_stts.bottom_m}}px;
+    background: {{se_stts.cl_bg_m}};
+    border: 1px solid {{se_stts.cl_bd_m}};
+    border-radius: {{se_stts.bdr_m}}px;
+    color: {{se_stts.cl_txt_m}};
+    padding: {{se_stts.pd_v_m}}px {{se_stts.pd_h_m}}px;
+    font-size: {{se_stts.fs_text_m}}px;
+    font-weight: {{se_stts.fw_text_m}};
+    letter-spacing: {{se_stts.ls_text_m}}px;
+  }
+  
+  .sale-popup .popup-open.active{
+    left: {{se_stts.p_h_pos_m}}%;
+    top: {{se_stts.p_v_pos_m}}%;
+  }
+}
+
+.template-collection .sale-popup,
+.template-collection .popup-open,
+.template-page .sale-popup,
+.template-page .popup-open,
+.template-cart .popup-open,
+.template-cart .sale-popup,
+.template-customers-login .popup-open,
+.template-customers-login .sale-popup,
+.template-customers-account .popup-open,
+.template-customers-account .sale-popup{
+  display: none !important;
+}
+</style>
+{% assign currentDate = "now" | date: "%Y%m%d%H%M%S" %}
+
+{%- if currentDate > settings.sale_start -%}
+  {%- if currentDate < settings.sale_end -%}
+  <div class="popup-open {{ popup_active }}"><span>{{se_stts.p_btn_title}}</span></div>
+  <div class="nt_se_{{sid}} {{ popup_active }}">
+    
+    <div class="popup-overlay"></div>
+    <div class="popup-container">
+      {%- if image != blank -%}
+        {%- assign aspect_ratio = image.aspect_ratio -%}
+        <a href="{{se_stts.btn_link}}"><img src="{{ image | img_url: '966x750' }}" class="display-desktop"/></a>
+      {%- endif -%}
+  
+      {%- if image_mb != blank -%}
+        {%- assign aspect_ratio_mb = image_mb.aspect_ratio -%}
+        <a href="{{se_stts.btn_link}}"><img src="{{ image_mb | img_url: '750x966' }}" class="display-mobile"/></a>
+      {%- endif -%}
+      
+      <div class="popup-close"><i class="close_pp pegk pe-7s-close ts__03 cd"></i></div>
+      <div class="btn-container"><a class="btn-popup" href="{{se_stts.btn_link}}">{{se_stts.btn_title}}</a></div>
+    </div>
+  </div>
+  {%- endif -%}
+{%- endif -%}
+
+
+
+
+
+<script type="text/javascript">
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    //alert("cookie set");
+  }
+  
+  function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  var url = window.location.href;
+  
+  var x = getCookie('ppkcookie');
+  if (x == '') {
+
+    if (
+      (url != 'https://www.andamen.com/collections/new-collections') && 
+      (url != 'https://andamen-webstore.myshopify.com/collections/casual-shirts')
+    ){
+      setTimeout(function () {
+        $(".nt_se_{{sid}}.active").addClass("open");
+          $("body").addClass("overflow-{{se_stts.scroll_active}}");
+
+		}, {{se_stts.delay | times: 1000}});
+    }
+  }
+  else{
+   
+  }
+                 
+    
+  $( ".popup-close" ).click(function() {
+    $("body").removeClass("overflow-{{se_stts.scroll_active}}");
+  	$(".nt_se_{{sid}}.active").removeClass("open");
+                          
+	setCookie('ppkcookie','testcookie',7);                          
+  });
+    
+  $( ".popup-open" ).click(function() {
+    $("body").addClass("overflow-{{se_stts.scroll_active}}");
+  	$(".nt_se_{{sid}}.active").addClass("open");
+  });  
+  
+
+</script>
+
+{%- schema -%}
+  {
+    "name": "Sale Popup",
+    "class": "sale-popup",
+    "settings": [      
+      {
+        "type": "header",
+        "content": "== General Settings"
+      },
+
+	  {
+        "type": "select",
+        "id": "popup_active",
+        "label": "Enable/Disable Popup",
+        "default": "active",
+        "options": [
+          {
+            "value": "active",
+            "label": "Active"
+          },
+          {
+            "value": "inactive",
+            "label": "Inactive"
+          }
+        ]
+      },
+
+	  {
+         "type": "text",
+         "id": "cookie_time",
+         "label": "Cookie Session Days",
+	     "default": "7"
+      },	
+
+	  {
+        "type": "select",
+        "id": "scroll_active",
+        "label": "Enable/Disable Scroll",
+        "default": "enable",
+        "options": [
+          {
+            "value": "disable",
+            "label": "Disable"
+          },
+          {
+            "value": "enable",
+            "label": "Enable"
+          }
+        ]
+      },
+
+	  {
+         "type": "range",
+         "id": "delay",
+         "label": "Popup appear time delay",
+           "info":"Popup will appear after these many seconds",
+         "default": 8,
+         "min": 0,
+         "max": 20,
+         "step": 0.5,
+         "unit": "s"
+      },
+
+      {
+         "type": "range",
+         "id": "transition",
+         "label": "Popup animation duration",
+         "default": 0.5,
+         "min": 0,
+         "max": 5,
+         "step": 0.5,
+         "unit": "s"
+      },
+
+	  {
+         "type": "header",
+         "content": "== Popup Button Settings (Desktop)"
+      },
+
+	  {
+         "type": "text",
+         "id": "p_btn_title",
+         "label": "Button label",
+	     "default": "Summer Sale"
+      },
+
+      {
+         "type": "range",
+         "id": "p_v_pos",
+         "label": "Button vertical position",
+           "info":" <= 50: Top position , > 50 bottom position",
+         "default": 89,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "p_h_pos",
+         "label": "Button horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 2,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+
+      {
+            "type": "color",
+            "id": "p_cl_txt",
+            "label": "Text color",
+            "default": "#222"
+          },
+          {
+            "type": "color",
+            "id": "p_cl_bg",
+            "label": "Background color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "p_cl_bd",
+            "label": "Border color",
+            "default": "#fff"
+          },
+          {
+            "type": "range",
+            "id": "p_fs_text",
+            "min": 10,
+            "max": 20,
+            "step": 1,
+            "label": "Font size",
+            "unit": "px",
+            "default": 11
+          },
+          {
+            "type": "range",
+            "id": "p_fw_text",
+            "min": 400,
+            "max": 600,
+            "step": 100,
+            "label": "Font weight",
+            "default": 500
+          },
+          {
+            "type": "range",
+            "id": "p_ls_text",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '2' use to default",
+            "unit": "px",
+            "default": 2
+          },
+          {
+            "type": "range",
+            "id": "p_bdr",
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "label": "Border radius",
+            "unit": "px",
+            "default": 4
+          },
+          {
+            "type": "range",
+            "id": "p_pd_h",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "label": "Padding left/right",
+            "unit": "px",
+            "default": 30
+          },
+
+		  {
+            "type": "range",
+            "id": "p_pd_v",
+            "min": 0,
+            "max": 50,
+            "step": 5,
+            "label": "Padding top/bottom",
+            "unit": "px",
+            "default": 10
+          },
+      
+      {
+         "type": "header",
+         "content": "== Popup Button Settings (Mobile)"
+      },
+
+      {
+         "type": "range",
+         "id": "p_v_pos_m",
+         "label": "Button vertical position",
+           "info":" <= 50: Top position , > 50 bottom position",
+         "default": 91,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "p_h_pos_m",
+         "label": "Button horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 5,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+
+
+	  {
+         "type": "header",
+         "content": "== Positioning settings"
+      },
+      {
+         "type": "range",
+         "id": "cap_v_pos",
+         "label": "Popup vertical position",
+           "info":" <= 50: Top position , > 50 bottom position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "cap_h_pos",
+         "label": "Popup horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "header",
+         "content": "== Mobile positioning settings"
+       },
+      {
+         "type": "range",
+         "id": "cap_v_pos_mb",
+         "label": "Popup vertical position",
+         "info":" <= 50: Top position , > 50 bottom position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+         "type": "range",
+         "id": "cap_h_pos_mb",
+         "label": "Popup horizontal position",
+         "info":" <= 50: Left position , > 50 right position",
+         "default": 50,
+         "min": 0,
+         "max": 100,
+         "step": 1,
+         "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "== Overlay Settings"
+      },
+      {
+        "type": "color",
+        "id": "cl_overlay",
+        "label": "Overlay color",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "cl_opacity",
+        "label": "Overlay opacity",
+        "default": 70,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "== Image Setting"
+      },
+	  {
+         "type": "image_picker",
+         "id": "image",
+         "label": "Image",
+         "info": "1800 x 600px .jpg recommended"
+       },
+       {
+         "type": "image_picker",
+         "id": "image_mb",
+         "label": "Mobile image (optional)",
+         "info": "750 x 1100px .jpg recommended. If none is set, desktop image will be used."
+       },
+
+
+	   {
+        "type": "header",
+        "content": "== Button Settings (Desktop)"
+       },
+
+
+
+	   {
+            "type": "text",
+            "id": "btn_title",
+            "label": "Button label",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button link (Optional)"
+          },
+          {
+            "type": "color",
+            "id": "cl_txt",
+            "label": "Text color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "cl_bg",
+            "label": "Background color",
+            "default": "#a77737"
+          },
+          {
+            "type": "color",
+            "id": "cl_bd",
+            "label": "Border color",
+            "default": "#a77737"
+          },
+          {
+            "type": "range",
+            "id": "fs_text",
+            "min": 10,
+            "max": 20,
+            "step": 1,
+            "label": "Font size",
+            "unit": "px",
+            "default": 10
+          },
+          {
+            "type": "range",
+            "id": "fw_text",
+            "min": 400,
+            "max": 600,
+            "step": 100,
+            "label": "Font weight",
+            "default": 400
+          },
+          {
+            "type": "range",
+            "id": "ls_text",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '2' use to default",
+            "unit": "px",
+            "default": 2
+          },
+          {
+            "type": "range",
+            "id": "bdr",
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "label": "Border radius",
+            "unit": "px",
+            "default": 4
+          },
+          {
+            "type": "range",
+            "id": "pd_h",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "label": "Padding left/right",
+            "unit": "px",
+            "default": 70
+          },
+
+		  {
+            "type": "range",
+            "id": "pd_v",
+            "min": 0,
+            "max": 50,
+            "step": 5,
+            "label": "Padding top/bottom",
+            "unit": "px",
+            "default": 15
+          },
+
+		  {
+            "type": "range",
+            "id": "bottom_d",
+            "min": 0,
+            "max": 500,
+            "step": 5,
+            "label": "Position from bottom",
+            "unit": "px",
+            "default": 100
+          },
+          
+
+		  {
+            "type": "header",
+            "content": "== Button Settings (Mobile)"
+          },
+
+          {
+            "type": "color",
+            "id": "cl_txt_m",
+            "label": "Text color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "cl_bg_m",
+            "label": "Background color",
+            "default": "#a77737"
+          },
+          {
+            "type": "color",
+            "id": "cl_bd_m",
+            "label": "Border color",
+            "default": "#a77737"
+          },
+          {
+            "type": "range",
+            "id": "fs_text_m",
+            "min": 5,
+            "max": 20,
+            "step": 1,
+            "label": "Font size",
+            "unit": "px",
+            "default": 9
+          },
+          {
+            "type": "range",
+            "id": "fw_text_m",
+            "min": 400,
+            "max": 600,
+            "step": 100,
+            "label": "Font weight",
+            "default": 400
+          },
+          {
+            "type": "range",
+            "id": "ls_text_m",
+            "min": 0,
+            "max": 3,
+            "step": 0.1,
+            "label": "Letter spacing",
+            "info": "set is '2' use to default",
+            "unit": "px",
+            "default": 2
+          },
+          {
+            "type": "range",
+            "id": "bdr_m",
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "label": "Border radius",
+            "unit": "px",
+            "default": 4
+          },
+          {
+            "type": "range",
+            "id": "pd_h_m",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "label": "Padding left/right",
+            "unit": "px",
+            "default": 50
+          },
+
+		  {
+            "type": "range",
+            "id": "pd_v_m",
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "label": "Padding top/bottom",
+            "unit": "px",
+            "default": 12
+          },
+
+		  {
+            "type": "range",
+            "id": "bottom_m",
+            "min": 0,
+            "max": 500,
+            "step": 5,
+            "label": "Position from bottom",
+            "unit": "px",
+            "default": 100
+          }
+    ]
+  }
+{% endschema %}
