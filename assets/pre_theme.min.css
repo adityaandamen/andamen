@@ -6696,8 +6696,10 @@ i.dnt4.title_6 {
 .type_banner_collection .flickity-page-dots .dot,
 .type_slideshow .flickity-page-dots .dot {
     margin-top: 2.5px;
-    width: 11px;
-    height: 11px
+    width: 8px;
+    height: 8px;
+    border-radius: var(--br);
+
 }
 
 .nt_img_txt video.vid_nt {
