@@ -5962,8 +5962,6 @@ strong.highlight {
     width: 100%;
     background-color: #000;
     box-shadow: 0 0 1px #fff;
-    -webkit-transition: height .3s;
-    transition: height .3s
 }
 
 .flickity-page-dots .dot.is-selected:after {
