@@ -18764,20 +18764,8 @@ button.btn-checkout.js_add_ld:hover{
 }
 
 @keyframes progressAnimation {
-  0%   { width: 0; background-color: #fff;}
+  0%   { width: 0; background-color: var(--ac);}
   100% { width: 18px; background-color: var(--ac); }
-}
-
-@-webkit-keyframes progressAnimation {
-  0%   { width: 0; background-color: #fff;}
-  100% { width: 18px; background-color: var(--ac); }
-}
-
-.dot.is-selected:after {
-  //background-image: 
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
-  transition: 0.4s linear;  
-  transition-property: width, background-color;    
 }
 
 .fs-is-empty-page{
