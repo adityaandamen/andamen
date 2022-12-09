@@ -18775,7 +18775,9 @@ button.btn-checkout.js_add_ld:hover{
   //background-image: 
     linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
   transition: 0.4s linear;  
+  -webkit-transition: 0.4s linear;  
   transition-property: width, background-color;    
+  -webkit-transition-property: width, background-color;    
 }
 
 .fs-is-empty-page{
