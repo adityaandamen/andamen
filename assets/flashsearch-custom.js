@@ -3041,5 +3041,5 @@ function fsIsMemExclusive(product) {
   if (!product || (product && !product?.tags)) {
      return;
   }
-	return product?.tags.filter(item => item.includes("Member Benefits123")).length > 0;
+	return product?.tags.filter(item => item.includes("Member Benefits")).length > 0;
 }
