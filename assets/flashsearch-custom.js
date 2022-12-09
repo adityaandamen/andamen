@@ -1643,10 +1643,6 @@ flashsearch.searchResultsTemplates = {
   <span v-if="fsIsMemExclusive(product)" :class="'fs-' + shape + ' fs-label-mem-exclusive'">
     + 10% OFF
   </span>
-  
-  <span v-if="fsIsNew(product)" :class="'fs-' + shape + ' fs-label-new'">
-    new
-  </span>
 </span>
     `,
 
@@ -3045,13 +3041,5 @@ function fsIsMemExclusive(product) {
   if (!product || (product && !product?.tags)) {
      return;
   }
-	return product?.tags.filter(item => item.includes("Member Benefits")).length > 0;
-}
-
-
-function fsIsNew(product) {
-  if (!product || (product && !product?.tags)) {
-     return;
-  }
-	return product?.tags.filter(item => item.includes("new")).length > 0;
+	return product?.tags.filter(item => item.includes("Member Benefits123")).length > 0;
 }
