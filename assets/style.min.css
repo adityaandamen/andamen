@@ -5962,6 +5962,8 @@ strong.highlight {
     width: 100%;
     background-color: #000;
     box-shadow: 0 0 1px #fff;
+    -webkit-transition: height .3s;
+    transition: height .3s
 }
 
 .flickity-page-dots .dot.is-selected:after {
@@ -18757,19 +18759,12 @@ button.btn-checkout.js_add_ld:hover{
 .flickity-page-dots .dot.is-selected:after{
   content: '';
   width: 18px;
-  background-color: var(--ac) !important;  
+  background-color: var(--accent) !important;  
   animation: progressAnimation 4.5s ease-in-out;
-  -webkit-animation: progressAnimation 4.5s ease-in-out;
-  -webkit-animation-name: progressAnimation;
-  -webkit-animation-duration: 4.5s;
 }
 
 @keyframes progressAnimation {
   0%   { width: 0; background-color: #fff;}
-  100% { width: 18px; background-color: #fff; }
-}
-@-webkit-keyframes progressAnimation {
-  0%   { width: 0; background-color: #fff; }
   100% { width: 18px; background-color: #fff; }
 }
 
@@ -18777,9 +18772,7 @@ button.btn-checkout.js_add_ld:hover{
   //background-image: 
     linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
   transition: 0.4s linear;  
-  -webkit-transition: 0.4s linear;  
   transition-property: width, background-color;    
-  -webkit-transition-property: width, background-color;    
 }
 
 .fs-is-empty-page{
@@ -19689,6 +19682,8 @@ span.fs-label::first-letter{
 
 .fs-label-shape-rectangle.fs-label-mem-exclusive{
   border-radius: 0 !important;
+  background-color: var(--tc)!important;
+  color: var(--ac) !important;
 }
 
 .nt_products_holder .nt_label.member-special,
@@ -19943,3 +19938,25 @@ body {
 .qs_imgs_i.row.al_center.mb__30{
   color: #fff;
 }
+
+#shopify-section-pr_description a{
+  color: var(--ac);
+}
+
+
+.nt_label.member-special{
+  background-color: var(--tc) !important;
+  color: var(--ac) !important;
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 10%);
+  height: 20px;
+  width: 70px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 0 7px 0 3px;
+}
+
+.nt_label.member-special::first-letter{
+  color: transparent !important;    
+}
+
