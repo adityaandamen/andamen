@@ -17856,6 +17856,7 @@ a.jdgm-ask-question-btn:focus{
 	animation: animated_text 10s ease-in-out infinite;
 	-moz-animation: animated_text 10s ease-in-out infinite;
 	-webkit-animation: animated_text 10s ease-in-out infinite;
+    display: -webkit-box;
 }
   
 #nt_menu_id > li:nth-child(4) .sub-menu{
