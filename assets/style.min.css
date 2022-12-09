@@ -18760,6 +18760,8 @@ button.btn-checkout.js_add_ld:hover{
   background-color: var(--accent) !important;  
   animation: progressAnimation 4.5s ease-in-out;
   -webkit-animation: progressAnimation 4.5s ease-in-out;
+  -webkit-animation-name: progressAnimation;
+  -webkit-animation-duration: 4.5s;
 }
 
 @keyframes progressAnimation {
