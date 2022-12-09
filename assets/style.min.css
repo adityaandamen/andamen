@@ -18760,9 +18760,15 @@ button.btn-checkout.js_add_ld:hover{
   width: 18px;
   background-color: var(--accent) !important;  
   animation: progressAnimation 4.5s ease-in-out;
+  -webkit-animation: progressAnimation 4.5s ease-in-out;
 }
 
 @keyframes progressAnimation {
+  0%   { width: 0; background-color: #fff;}
+  100% { width: 18px; background-color: #fff; }
+}
+
+@-webkit-keyframes progressAnimation {
   0%   { width: 0; background-color: #fff;}
   100% { width: 18px; background-color: #fff; }
 }
