@@ -18757,7 +18757,7 @@ button.btn-checkout.js_add_ld:hover{
 .flickity-page-dots .dot.is-selected:after{
   content: '';
   width: 18px;
-  background-color: #a77737 !important;  
+  background-color: var(--ac) !important;  
   animation: progressAnimation 4.5s ease-in-out;
   -webkit-animation: progressAnimation 4.5s ease-in-out;
   -webkit-animation-name: progressAnimation;
