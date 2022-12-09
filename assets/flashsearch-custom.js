@@ -1,3 +1,5 @@
+window._FS_MERCHANDISING_APPLY_COLLECTION_PAGE = true;
+
 flashsearch.commonTemplates = {
   "fs-price": `
 <div class="fs-price" :data-testid="buildDataTestId('price')">
@@ -101,7 +103,7 @@ flashsearch.searchResultsTemplates = {
       <fs-search-section
         v-if="isSearchPage"
         :is-loading="isSearchLoading"
-        :enable-search-page-header="enableSearchPageHeader && !isSearchPageWithoutSearchParams"
+        :enable-search-page-header="enableSearchPageHeader"
         :total-products="totalProducts"
         :query="query"
         :enable-search-box="enableSearchBox"
@@ -110,10 +112,10 @@ flashsearch.searchResultsTemplates = {
         @on-change-sb-query="onChangeQuery"
       />
     </fs-layout-header>
-    <fs-layout v-if="!isSearchPageWithoutSearchParams">
+    <fs-layout>
       <!-- Toolbar: sortBy, views, open filters -->
       <fs-toolbar
-        v-if="!(noMatchingFound && isSearchPage)"
+        v-if="!noMatchingFound"
         class="fs-main__toolbar"
         :is-filter-icon-opened="isFilterIconOpened"
         :is-loading="isSearchLoading"
@@ -131,14 +133,14 @@ flashsearch.searchResultsTemplates = {
       />
       <!-- Filters section: horizontal style 2 layout -->
       <fs-filters-section-horizontal-style-2
-        v-if="isHorizontalStyle2Layout"
+        v-if="isHorizontalStyle2Layout && !noMatchingFound"
         :search-result="searchResult"
         :collapse-active-key="collapseActiveKey"
         :is-loading="isSearchLoading"
       />
       <!-- Filters section: filters sidebar layout-->
       <fs-filters-section-filters-sidebar
-        v-show="isFiltersSidebarLayout && (isSearchLoading || shouldShowFiltersSidebar)"
+        v-show="isSearchLoading || (isFiltersSidebarLayout && shouldShowFiltersSidebar)"
         :search-result="searchResult"
         :visible="isSearchLoading || shouldShowFiltersSidebar"
         :is-loading="isSearchLoading"
@@ -151,7 +153,7 @@ flashsearch.searchResultsTemplates = {
         :should-show-mobile-filter="isSearchLoading || shouldShowMobileFilter"
         @close-mobile-filters="closeMobileFilters"
         @show-results="showResults"
-        :is-loading="isSearchLoading"
+        :is-loading="isSearchLoading"                         
       />
     </fs-layout>
     <!-- Filter by: horizontal layout only -->
@@ -160,10 +162,10 @@ flashsearch.searchResultsTemplates = {
     </fs-layout>
     <fs-layout>
       <!-- Filters section: vertical layout -->
-      <fs-layout-sider v-if="isVerticalLeftLayout" :width="270">
+      <fs-layout-sider v-if="isVerticalLeftLayout && !noMatchingFound" :width="270">
         <fs-filters-section-vertical :is-loading="isSearchLoading" :searchResult="searchResult"/>
       </fs-layout-sider>
-      <fs-layout-content v-if="!isSearchPageWithoutSearchParams">
+      <fs-layout-content>
         <!-- Empty page -->
         <fs-sr-empty-page
           v-if="noMatchingFound"
@@ -199,7 +201,7 @@ flashsearch.searchResultsTemplates = {
   </fs-layout>
 </div>
     `,
-
+  
   "fs-collection-page-heading": `
 <div v-if="enable" class="fs-coll-page-heading">
   <div class="fs-coll-page-heading__image" :style="{'background-image': 'url(' + imageUrl + ')'}" />
@@ -383,7 +385,7 @@ flashsearch.searchResultsTemplates = {
   >
     <fs-drawer
       class="fs-filters-section-filters-sidebar"
-      :class="{['fs-filters-section-filters-sidebar-' + layoutType] : !!layoutType, 'fs-hide': isLoading}"
+      :class="{['fs-filters-section-filters-sidebar-' + layoutType]: !!layoutType, 'fs-hide': isLoading}"
       placement="left"
       :closable="true"
       @close="onClose"
@@ -1427,7 +1429,7 @@ flashsearch.searchResultsTemplates = {
       :dropdown-match-select-width=false
     >
       <fs-select-option
-        v-for="({value, label}, index) in sortByList"
+        v-for="({value, label}, index) in fsWrapSortByList(sortByList)"
         :key="index"
         :value="value"
         data-testid="sr-sort-by-option"
@@ -1462,7 +1464,7 @@ flashsearch.searchResultsTemplates = {
       </template>
       <div class="fs-sort-by-mobile__inner">
         <div
-          v-for="({value, label}, index) in sortByList"
+          v-for="({value, label}, index) in fsWrapSortByList(sortByList)"
           :key="index"
           class="fs-sort-by-option fs-sort-by-mobile__option"
           :class="{'fs-sort-by-mobile__option--selected': sortBy === value}"
@@ -1578,6 +1580,21 @@ flashsearch.searchResultsTemplates = {
     </template>
   </div>
 </div>
+
+<div class="hover_button op__0 tc pa flex column ts__03" :data-handle="product.handle">
+    <a
+        class="pr nt_add_qv js_add_qv cd br__40 pl__25 pr__25 bgw tc dib ttip_nt tooltip_top_left"
+        :href="product.url" :data-id="product.id" rel="nofollow" data-bss-pl="active">
+        <span class="tt_txt">{{quickViewText}}</span>
+        <i class="iccl iccl-eye"></i>
+        <span>{{quickViewText}}</span>
+    </a>
+    <a
+        :href="product.url" :data-id="product.id"
+        class="pr pr_atc cd br__40 bgw tc dib js__qs cb chp ttip_nt tooltip_top_left" rel="nofollow"
+        data-bss-pl="active"><span class="tt_txt">Quick Shop</span><i class="iccl iccl-cart"></i><span>Add To
+            Bag</span></a>
+</div>
     `,
 
   "fs-product-image": `
@@ -1621,7 +1638,14 @@ flashsearch.searchResultsTemplates = {
     :class="'fs-label fs-label--onSale' + ' ' + 'fs-' + shape"
     :data-testid="saleDataTestid"
   >
-    {{saleLabelType === "percentage-label" ? $t("general.productLabel.salePercentage", {salePercentage: salePercentage}) : $t("general.productLabel.sale")}}
+    {{saleLabelType === "percentage-label" ? $t("general.productLabel.salePercentage", {salePercentage: fsCustomPercentSale(currentVariant)}) : $t("general.productLabel.sale")}}
+  </span>
+  <span v-if="fsIsMemExclusive(product)" :class="'fs-' + shape + ' fs-label-mem-exclusive'">
+    + 10% OFF
+  </span>
+  
+  <span v-if="fsIsNew(product)" :class="'fs-' + shape + ' fs-label-new'">
+    new
   </span>
 </span>
     `,
@@ -1711,7 +1735,7 @@ flashsearch.searchResultsTemplates = {
   <span class="fs-product-sizes__text">{{getVariantSizes(product).join(", ")}}</span>
 </div>
     `,
-
+  
   "fs-wishlist": `
 <!-- Growave -->
 <div v-if="isGrowaveWishlist" :class="'ssw-faveiticon' + ' sswfaveicon' + product.id + ' fs-wishlist fs-wishlist-growave' + ' fs-wishlist-shape-' + shape">
@@ -1757,7 +1781,7 @@ flashsearch.searchResultsTemplates = {
         :enable-new-label="enableNewLabel"
         :shape="productLabelShape"
       />
-      <fs-carousel arrows dot-position="bottom" ref="caroRef">
+      <fs-carousel arrows dot-position="bottom" :ref="el => caroRef = el">
         <template #prevArrow>
           <div
             class="fs-quickview__slick-arrow fs-quickview__slick-arrow-prev"
@@ -1916,7 +1940,6 @@ flashsearch.searchResultsTemplates = {
     <!-- Image -->
     <div
       :class="'fs-sr-item__image-wrapper' + (borderType === 'around-image' ? ' fs-sr-item-image-bordered' : '') + ' fs-sr-grid-item__image-wrapper'"
-      :data-product-id="product.id"
     >
       <fs-wishlist :product="product" :current-variant="currentVariant"/>
       <fs-product-label
@@ -1934,7 +1957,7 @@ flashsearch.searchResultsTemplates = {
       />
       <fs-product-image
         class="fs-sr-grid-item__image"
-        :product-url="productUrlWithinCollection"
+        :product-url="buildProductUrl(product.url)"
         :main-product-image="mainProductImage"
         :second-product-image="secondProductImage"
         :main-product-image-aspect-ratio="isAspectRatioAdaptToImage ? mainProductImageAspectRatio : undefined"
@@ -1964,10 +1987,13 @@ flashsearch.searchResultsTemplates = {
        :font-weight="productSizeFontWeight"
       />
     </div>
+    
+    <div class="fs-sr-grid-item__custom-info">
     <div class="fs-sr-grid-item__info">
+      <div v-if="fsGetCalloutValue(product)" class="callout-info">{{ fsGetCalloutValue(product) }}</div>
       <!-- Title -->
       <fs-product-title
-        :url="productUrlWithinCollection"
+        :product-url="buildProductUrl(product.url)"
         :title="product.title"
         class="fs-sr-grid-item__title"
       />
@@ -2019,6 +2045,45 @@ flashsearch.searchResultsTemplates = {
        :show-more-action="productColorShowMoreAction"
       />
     </div>
+    
+            <!-- Custom Add to bag -->
+      <div v-if="product.availableForSale" class="product-info__btns flex column mt__20" :data-handle="product.handle">
+        <a
+            :href="product.url" :data-id="product.id"
+            class="pr pr_atc cd br__40 bgw tc dib js__qs cb chp ttip_nt_" rel="nofollow" data-position="1"
+            data-bss-pl="active">
+            <span class="tt_txt">Quick Shop</span>
+            <i class="iccl iccl-cart"></i>
+            <span>Add To Bag</span>
+        </a>
+        <a :href="product.url" :data-id="product.id"
+            class="pr pr_atc cd br__40 bgw tc dib js__qs cb chp ttip_nt_" rel="nofollow" data-position="1"
+            data-bss-pl="active">
+            <span class="tt_txt">Quick Shop</span><i class="iccl iccl-cart"></i>
+            <span>Add To Bag</span>
+        </a>
+	 </div>
+      <div v-else class="product-info__btns flex column mt__20 disabled">
+        <a
+            :href="product.url" :data-id="product.id"
+            class="pr pr_atc cd br__40 bgw tc dib js__qs cb chp ttip_nt_" rel="nofollow" data-position="1"
+            data-bss-pl="active">
+            <span class="tt_txt">Quick Shop</span>
+            <i class="iccl iccl-cart"></i>
+            <span>Out Of Stock</span>
+        </a>
+        <a :href="product.url" :data-id="product.id"
+            class="pr pr_atc cd br__40 bgw tc dib js__qs cb chp ttip_nt_" rel="nofollow" data-position="1"
+            data-bss-pl="active">
+            <span class="tt_txt">Quick Shop</span><i class="iccl iccl-cart"></i>
+            <span>Out Of Stock</span>
+        </a>
+	 </div>
+     <!-- End custom add to bag -->
+      
+      
+      </div>
+    
   </div>
 </fs-col>
     `,
@@ -2041,7 +2106,6 @@ flashsearch.searchResultsTemplates = {
         <div
           class="fs-sr-item__image-wrapper fs-sr-list-item__image-wrapper"
           :class="'fs-sr-item__image-wrapper' + (borderType === 'around-image' ? ' fs-sr-item-image-bordered' : '') + ' fs-sr-list-item__image-wrapper'"
-          :data-product-id="product.id"
         >
           <fs-wishlist :product="product" :current-variant="currentVariant"/>
           <fs-product-label
@@ -2059,7 +2123,7 @@ flashsearch.searchResultsTemplates = {
           />
           <fs-product-image
             class="fs-sr-list-item__image"
-            :product-url="productUrlWithinCollection"
+            :product-url="buildProductUrl(product.url)"
             :main-product-image="mainProductImage"
             :second-product-image="secondProductImage"
             :main-product-image-aspect-ratio="isAspectRatioAdaptToImage ? mainProductImageAspectRatio : undefined"
@@ -2101,7 +2165,7 @@ flashsearch.searchResultsTemplates = {
         <div class="fs-sr-list-item__info">
           <!-- Title -->
           <fs-product-title
-            :url="productUrlWithinCollection"
+            :product-url="buildProductUrl(product.url)"
             :title="product.title"
             class="fs-sr-list-item__title"
           />
@@ -2247,7 +2311,7 @@ flashsearch.searchResultsTemplates = {
 </fs-row>
     `,
 
-  "fs-search-results-views": `
+    "fs-search-results-views": `
 <div v-if="enable" class="fs-sr-views">
   <div class="fs-sr-views-screen fs-sr-views-screen--desktop">
     <span
@@ -2875,3 +2939,119 @@ flashsearch.event.on("initInstantSearch", function (app) {
       })
    */
 });
+
+const IGNORE_SORT_BY_OPTIONS = [
+  "title-ascending",
+  "title-descending",
+  "created-ascending",
+];
+const NEW_ARRIVALS_SORT_BY_TEXT = "LATEST ARRIVALS";
+const BEST_SELLER_SORT_BY_TEXT = "BEST SELLERS";
+function fsWrapSortByList(sortByList) {
+  if (!sortByList) {
+    return sortByList;
+  }
+
+  var filteredSortByList = sortByList.filter(
+    (item) => !IGNORE_SORT_BY_OPTIONS.includes(item.value)
+  );
+
+  return filteredSortByList;
+}
+
+function buildProductUrl(productUrl) {
+  const collHandle =
+    window.FlashsearchThemeSettings?.general?.collection?.handle;
+  if (collHandle) {
+    return window.location.pathname + productUrl;
+  }
+
+  return productUrl;
+}
+
+function fsGetCalloutValue(product) {
+    var metafields = product?.metafields;
+    if (!metafields || (metafields && metafields.length === 0)) {
+        return;
+    }
+
+    var filteredMfs = metafields.filter(item => item.namespaceKey === "global.Callout");
+
+    if (filteredMfs && filteredMfs.length > 0) {
+        return filteredMfs[0]?.valueString;
+    }
+
+    return;
+}
+
+
+function fsCustomPercentSale(currentVariant) {
+  if (!currentVariant) {
+    return;
+  }
+
+  return currentVariant
+    ? Math.ceil(
+        ((currentVariant.compareAtPrice - currentVariant.price) /
+          currentVariant.compareAtPrice) *
+          100
+      )
+    : undefined;
+}
+
+
+
+function fsWaitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+function fsCallout() {
+$(".callout-info").click(function() {
+$("body").addClass("overflow-disable");
+$(".benefit-container").addClass("open");
+$(".benefit-overlay").addClass("open");
+});
+
+$(".benefit-close").click(function() {
+$("body").removeClass("overflow-disable");
+$(".benefit-container").removeClass("open");
+$(".benefit-overlay").removeClass("open");
+});
+}
+
+fsWaitForElm('.callout-info').then((elm) => {
+console.log("START REGISTRY EVENTS ...");
+    fsCallout();
+});
+
+
+function fsIsMemExclusive(product) {
+  if (!product || (product && !product?.tags)) {
+     return;
+  }
+	return product?.tags.filter(item => item.includes("Member Benefits")).length > 0;
+}
+
+
+function fsIsNew(product) {
+  if (!product || (product && !product?.tags)) {
+     return;
+  }
+	return product?.tags.filter(item => item.includes("new")).length > 0;
+}
