@@ -1,3 +1,12 @@
+
+{% comment %}BEGIN_FLASHSEARCH_APP{% endcomment %}
+
+<div id="flashsearch-filter-container"></div>
+
+{% comment %}END_FLASHSEARCH_APP{% endcomment %}
+
+{% comment %}
+{% comment %}BEGIN_FLASHSEARCH_ORIGIN{% endcomment %}
 {% include 'aaa_mem_helper' with 'collection' %}{% comment %}BEGIN_FLASHSEARCH_APP{% endcomment %}
 {%- liquid
 assign hidden_cat = settings.use_hidden_cat
@@ -332,5 +341,8 @@ endif -%}
   </div>
   {%- if cat_des == '3' %}<div class="cat_des_ntt4 container container_cat tc mb__60">{{ collection.description}}</div>{%- endif -%}
 {%- endif -%}{% include 'wiser_trending' %}{% include 'wiser_recentview' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_topselling' %}{% include 'wiser_recent_related' %}
+{% comment %}END_FLASHSEARCH_ORIGIN{% endcomment %}
+{% endcomment %}
+
 {% comment %}END_FLASHSEARCH_ORIGIN{% endcomment %}
 {% endcomment %}

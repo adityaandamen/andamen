@@ -101,7 +101,7 @@ flashsearch.searchResultsTemplates = {
       <fs-search-section
         v-if="isSearchPage"
         :is-loading="isSearchLoading"
-        :enable-search-page-header="enableSearchPageHeader"
+        :enable-search-page-header="enableSearchPageHeader && !isSearchPageWithoutSearchParams"
         :total-products="totalProducts"
         :query="query"
         :enable-search-box="enableSearchBox"
@@ -110,10 +110,10 @@ flashsearch.searchResultsTemplates = {
         @on-change-sb-query="onChangeQuery"
       />
     </fs-layout-header>
-    <fs-layout>
+    <fs-layout v-if="!isSearchPageWithoutSearchParams">
       <!-- Toolbar: sortBy, views, open filters -->
       <fs-toolbar
-        v-if="!noMatchingFound"
+        v-if="!(noMatchingFound && isSearchPage)"
         class="fs-main__toolbar"
         :is-filter-icon-opened="isFilterIconOpened"
         :is-loading="isSearchLoading"
@@ -131,25 +131,27 @@ flashsearch.searchResultsTemplates = {
       />
       <!-- Filters section: horizontal style 2 layout -->
       <fs-filters-section-horizontal-style-2
-        v-if="isHorizontalStyle2Layout && !noMatchingFound"
+        v-if="isHorizontalStyle2Layout"
         :search-result="searchResult"
         :collapse-active-key="collapseActiveKey"
         :is-loading="isSearchLoading"
       />
       <!-- Filters section: filters sidebar layout-->
       <fs-filters-section-filters-sidebar
-        v-if="isFiltersSidebarLayout && shouldShowFiltersSidebar"
+        v-show="isFiltersSidebarLayout && (isSearchLoading || shouldShowFiltersSidebar)"
         :search-result="searchResult"
-        :visible="shouldShowFiltersSidebar"
+        :visible="isSearchLoading || shouldShowFiltersSidebar"
+        :is-loading="isSearchLoading"
         @on-close="closeFiltersSidebar"
         @show-results="showResultsOnFiltersSidebar"
       />
       <!-- Filters section: mobile layout -->
       <fs-filters-section-mobile
         :search-result="searchResult"
-        :should-show-mobile-filter="shouldShowMobileFilter"
+        :should-show-mobile-filter="isSearchLoading || shouldShowMobileFilter"
         @close-mobile-filters="closeMobileFilters"
         @show-results="showResults"
+        :is-loading="isSearchLoading"
       />
     </fs-layout>
     <!-- Filter by: horizontal layout only -->
@@ -158,10 +160,10 @@ flashsearch.searchResultsTemplates = {
     </fs-layout>
     <fs-layout>
       <!-- Filters section: vertical layout -->
-      <fs-layout-sider v-if="isVerticalLeftLayout && !noMatchingFound" :width="270">
+      <fs-layout-sider v-if="isVerticalLeftLayout" :width="270">
         <fs-filters-section-vertical :is-loading="isSearchLoading" :searchResult="searchResult"/>
       </fs-layout-sider>
-      <fs-layout-content>
+      <fs-layout-content v-if="!isSearchPageWithoutSearchParams">
         <!-- Empty page -->
         <fs-sr-empty-page
           v-if="noMatchingFound"
@@ -197,7 +199,7 @@ flashsearch.searchResultsTemplates = {
   </fs-layout>
 </div>
     `,
-  
+
   "fs-collection-page-heading": `
 <div v-if="enable" class="fs-coll-page-heading">
   <div class="fs-coll-page-heading__image" :style="{'background-image': 'url(' + imageUrl + ')'}" />
@@ -381,7 +383,7 @@ flashsearch.searchResultsTemplates = {
   >
     <fs-drawer
       class="fs-filters-section-filters-sidebar"
-      :class="!!layoutType ? 'fs-filters-section-filters-sidebar-' + layoutType : undefined"
+      :class="{['fs-filters-section-filters-sidebar-' + layoutType] : !!layoutType, 'fs-hide': isLoading}"
       placement="left"
       :closable="true"
       @close="onClose"
@@ -415,7 +417,7 @@ flashsearch.searchResultsTemplates = {
 >
   <fs-drawer
     class="fs-filters-section-mobile"
-    :class="!!layoutType ? 'fs-filters-section-filters-sidebar-' + layoutType : undefined"
+    :class="{['fs-filters-section-filters-sidebar-' + layoutType] : !!layoutType, 'fs-hide': isLoading}"
     placement="left"
     :closable="true"
     @close="closeMobileFilters"
@@ -1709,7 +1711,7 @@ flashsearch.searchResultsTemplates = {
   <span class="fs-product-sizes__text">{{getVariantSizes(product).join(", ")}}</span>
 </div>
     `,
-  
+
   "fs-wishlist": `
 <!-- Growave -->
 <div v-if="isGrowaveWishlist" :class="'ssw-faveiticon' + ' sswfaveicon' + product.id + ' fs-wishlist fs-wishlist-growave' + ' fs-wishlist-shape-' + shape">
@@ -1755,7 +1757,7 @@ flashsearch.searchResultsTemplates = {
         :enable-new-label="enableNewLabel"
         :shape="productLabelShape"
       />
-      <fs-carousel arrows dot-position="bottom" :ref="el => caroRef = el">
+      <fs-carousel arrows dot-position="bottom" ref="caroRef">
         <template #prevArrow>
           <div
             class="fs-quickview__slick-arrow fs-quickview__slick-arrow-prev"
@@ -1914,6 +1916,7 @@ flashsearch.searchResultsTemplates = {
     <!-- Image -->
     <div
       :class="'fs-sr-item__image-wrapper' + (borderType === 'around-image' ? ' fs-sr-item-image-bordered' : '') + ' fs-sr-grid-item__image-wrapper'"
+      :data-product-id="product.id"
     >
       <fs-wishlist :product="product" :current-variant="currentVariant"/>
       <fs-product-label
@@ -1931,7 +1934,7 @@ flashsearch.searchResultsTemplates = {
       />
       <fs-product-image
         class="fs-sr-grid-item__image"
-        :product-url="product.url"
+        :product-url="productUrlWithinCollection"
         :main-product-image="mainProductImage"
         :second-product-image="secondProductImage"
         :main-product-image-aspect-ratio="isAspectRatioAdaptToImage ? mainProductImageAspectRatio : undefined"
@@ -1964,7 +1967,7 @@ flashsearch.searchResultsTemplates = {
     <div class="fs-sr-grid-item__info">
       <!-- Title -->
       <fs-product-title
-        :url="product.url"
+        :url="productUrlWithinCollection"
         :title="product.title"
         class="fs-sr-grid-item__title"
       />
@@ -2038,6 +2041,7 @@ flashsearch.searchResultsTemplates = {
         <div
           class="fs-sr-item__image-wrapper fs-sr-list-item__image-wrapper"
           :class="'fs-sr-item__image-wrapper' + (borderType === 'around-image' ? ' fs-sr-item-image-bordered' : '') + ' fs-sr-list-item__image-wrapper'"
+          :data-product-id="product.id"
         >
           <fs-wishlist :product="product" :current-variant="currentVariant"/>
           <fs-product-label
@@ -2055,7 +2059,7 @@ flashsearch.searchResultsTemplates = {
           />
           <fs-product-image
             class="fs-sr-list-item__image"
-            :product-url="product.url"
+            :product-url="productUrlWithinCollection"
             :main-product-image="mainProductImage"
             :second-product-image="secondProductImage"
             :main-product-image-aspect-ratio="isAspectRatioAdaptToImage ? mainProductImageAspectRatio : undefined"
@@ -2097,7 +2101,7 @@ flashsearch.searchResultsTemplates = {
         <div class="fs-sr-list-item__info">
           <!-- Title -->
           <fs-product-title
-            :url="product.url"
+            :url="productUrlWithinCollection"
             :title="product.title"
             class="fs-sr-list-item__title"
           />
@@ -2243,7 +2247,7 @@ flashsearch.searchResultsTemplates = {
 </fs-row>
     `,
 
-    "fs-search-results-views": `
+  "fs-search-results-views": `
 <div v-if="enable" class="fs-sr-views">
   <div class="fs-sr-views-screen fs-sr-views-screen--desktop">
     <span
@@ -2583,7 +2587,6 @@ flashsearch.instantSearchTemplates = {
   "fs-is-product-items": `
 <div v-if="isNotEmpty" class="fs-is-item-wrapper fs-is-product-items-wrapper">
   <fs-is-item-label :label='$t("instantSearch.labels.products")'/>
-  <fs-is-did-you-mean :suggest-results="suggestResults"/>
   <div class="fs-is-product-items-container">
     <fs-is-product-item
       v-for="(product, index) in suggestResults.products"
@@ -2872,4 +2875,3 @@ flashsearch.event.on("initInstantSearch", function (app) {
       })
    */
 });
-

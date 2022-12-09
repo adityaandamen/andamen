@@ -16,10 +16,22 @@
 
 {% comment %}
 {% comment %}BEGIN_FLASHSEARCH_ORIGIN{% endcomment %}
+
+{% comment %}BEGIN_FLASHSEARCH_APP{% endcomment %}
+
+<div id="flashsearch-filter-container"></div>
+
+{% comment %}END_FLASHSEARCH_APP{% endcomment %}
+
+{% comment %}
+{% comment %}BEGIN_FLASHSEARCH_ORIGIN{% endcomment %}
 {%- liquid
 section 'cat_shop'
 section 'sea_heading'
 section 'search_page' -%} {% include 'wiser_recentview' %}{% include 'wiser_trending' %}{% include 'wiser_topselling' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_recent_related' %}
+{% comment %}END_FLASHSEARCH_ORIGIN{% endcomment %}
+{% endcomment %}
+
 {% comment %}END_FLASHSEARCH_ORIGIN{% endcomment %}
 {% endcomment %}
 
