@@ -66,7 +66,7 @@
                {%- endif -%}
                {%- if se_style == '1' and se_pos == '1' %}<div class="mini_cart_items js_cat_items" data-include="{{cart_url}}/?view=viewjs"><div class="lds_bginfinity pr mt__10 mb__20"></div></div>{% endif -%}
 
-               {% render 'cart-recommendations' %}
+               {%- for product in recommendations.products -%}{%- render 'pr_loop_grid_1',product:product,use_cdt:use_cdt,txt_cd:txt_cd, col:col, col_tb:col_tb, col_mb:col_mb,url_cat:url_cat,sett_equal:sett_equal,show_vendor:show_vendor,inc_price:inc_price,use_rating:use_rating,inc_rating:inc_rating,show_color:show_color,show_cl_type:show_cl_type,show_size:show_size -%}{%- endfor -%}
                
      
             </div>
