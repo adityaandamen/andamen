@@ -83,7 +83,7 @@
                 {%- endif -%}
               </div>
                
-     {% javascript %}
+     <script>
 var loadProductRecommendationsIntoSection = function() {
   // Look for an element with class 'product-recommendations'
   var productRecommendationsSection = document.querySelector(".product-recommendations");
@@ -117,7 +117,7 @@ document.addEventListener("shopify:section:load", function(event) {
 });
 // Fetching the recommendations on page load
 loadProductRecommendationsIntoSection();
-{% endjavascript %}
+     </script>
             </div>
          </div>
          <div class="mini_cart_footer js_cart_footer{% if ccount == 0 %} dn{% endif %}">
