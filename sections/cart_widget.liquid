@@ -84,7 +84,7 @@
               </div>
                
 <script>
-  alert("enter");
+  
 var loadProductRecommendationsIntoSection = function() {
   // Look for an element with class 'product-recommendations'
   var productRecommendationsSection = document.querySelector(".product-recommendations");
@@ -99,6 +99,7 @@ var loadProductRecommendationsIntoSection = function() {
   var request = new XMLHttpRequest();
   request.open("GET", requestUrl);
   request.onload = function() {
+    alert("enter");
     if (request.status >= 200 && request.status < 300) {
       alert("req");
       var container = document.createElement("div");
