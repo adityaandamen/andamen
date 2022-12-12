@@ -93,7 +93,7 @@ var loadProductRecommendationsIntoSection = function() {
   // Read limit from data attribute
   var limit = productRecommendationsSection.dataset.limit;
   // Build request URL
-  var requestUrl = "/recommendations/products?section_id=product-recommendations&limit="+limit+"&product_id="+productId;
+  var requestUrl = "/recommendations/products?section_id=product-recommendations&limit=5";
   // Create request and submit it using Ajax
   var request = new XMLHttpRequest();
   request.open("GET", requestUrl);
