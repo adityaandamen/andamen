@@ -271,7 +271,7 @@
     "unavailable_prs": "last",
     "prefix": "none",
     "show_search_suggest": true,
-    "search_prs_suggest": "",
+    "search_prs_suggest": "imperfect-range",
     "blog_layout": "wide",
     "blog_sidebar": "none",
     "blog_size_sidebar": "3",
