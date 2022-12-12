@@ -99,6 +99,7 @@ var loadProductRecommendationsIntoSection = function() {
   request.open("GET", requestUrl);
   request.onload = function() {
     if (request.status >= 200 && request.status < 300) {
+      alert("req");
       var container = document.createElement("div");
       container.innerHTML = request.response;
       productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
