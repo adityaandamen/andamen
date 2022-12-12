@@ -1,4 +1,4 @@
-{%- for i in (1..1) %}{% unless section.settings.show %}{% break %}{% endunless -%}
+{%- for i in (1..1) %}
    {%- assign inc_price = settings.price_format -%}
    {%- assign use_rating = settings.use_pr_rating -%}
    {%- assign inc_rating = settings.app_review -%}
@@ -18,6 +18,14 @@
    {%- assign use_cdt = section.settings.use_cdt -%}
    {%- assign txt_cd = 'products.grid_items.offer_end_in' | t -%}
 
+
+  <div class="products nt_products_holder nt_slider row row_pr_{{inc_pr}} cdt_des_{{section.settings.cdt_des}} round_cd_{{section.settings.round_cd}} {{section.settings.image_size}} {{section.settings.image_ratio}} position_{{section.settings.image_position}} space_{{section.settings.space}} prev_next_{{section.settings.btn_color}} btn_owl_{{section.settings.btn_owl}} dot_owl_{{section.settings.dot_owl}} dot_color_{{section.settings.dot_color}} btn_vi_{{section.settings.btn_vi}}{% if sett_equal %} equal_nt{% endif %}" data-flickityjs='{"imagesLoaded": 0,"adaptiveHeight": 0, "contain": 1, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "left","wrapAround": {{section.settings.loop}},"prevNextButtons": {{section.settings.button}},"percentPosition": 1,"pageDots": {{section.settings.dot}}, "autoPlay" : {{ section.settings.au_time | times: 1000 }}, "pauseAutoPlayOnHover" : {{section.settings.au_hover}}, "rightToLeft": {{settings.use_rtl}} }'>
+          {%- if inc_pr == '1' or inc_pr == '1 tc' -%}
+          {%- for product in recommendations.products -%}{%- render 'pr_loop_grid_1',product:product,use_cdt:use_cdt,txt_cd:txt_cd, col:col, col_tb:col_tb, col_mb:col_mb,url_cat:url_cat,sett_equal:sett_equal,show_vendor:show_vendor,inc_price:inc_price,use_rating:use_rating,inc_rating:inc_rating,show_color:show_color,show_cl_type:show_cl_type,show_size:show_size -%}{%- endfor -%}
+          {%- else -%}
+          {%- for product in recommendations.products -%}{%- render 'pr_loop_grid_2',product:product,use_cdt:use_cdt,txt_cd:txt_cd, col:col, col_tb:col_tb, col_mb:col_mb,url_cat:url_cat,sett_equal:sett_equal,show_vendor:show_vendor,inc_price:inc_price,use_rating:use_rating,inc_rating:inc_rating,show_color:show_color,show_cl_type:show_cl_type,show_size:show_size -%}{%- endfor -%}
+          {%- endif -%}
+         </div>
    {%- if display_type == "3" and recommendations.products_count > 0 -%}
       <div class="container mt__70">
          {%- render 'section_title' -%}
