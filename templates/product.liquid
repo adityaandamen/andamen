@@ -244,23 +244,6 @@ console.log("hello");
 </script>
 
   {%- section 'recently_viewed' -%}
-
-<div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="4">
-                {%- if recommendations.products_count > 0 -%}
-                  <h2>You may also like2</h2>
-                  <ul>
-                    {%- for product in recommendations.products -%}
-                    <li class="product">
-                      <a href="{{ product.url }}">
-                        <img class="product__img" src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}" />
-                        <p class="product__title">{{ product.title }}</p>
-                        <p class="product__price">{{ product.price | money}}</p>
-                      </a>
-                    </li>
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
-              </div>
   
   {%- endif -%}
 
