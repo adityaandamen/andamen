@@ -99,12 +99,15 @@ var loadProductRecommendationsIntoSection = function() {
   var request = new XMLHttpRequest();
   request.open("GET", requestUrl);
   request.onload = function() {
-    alert("enter");
+    
     if (request.status >= 200 && request.status < 300) {
       alert("req");
       var container = document.createElement("div");
       container.innerHTML = request.response;
       productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+    }
+    else{
+      alert("enter3");
     }
   };
   request.send();
