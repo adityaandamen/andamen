@@ -341,7 +341,7 @@
 }
 
 .nt_menu .type_mega .sub-menu {
-    padding: 30px 80px 10px;
+    padding: 15px 80px 10px;
     max-height: 77vh;
     height: 460px;
     overflow-y: auto;
@@ -13169,12 +13169,13 @@ li.level-1:last-child{
   display: inherit;
 }
 
-.level-0 span.sub-title{
+.level-0 span.sub-title,
+.menu-item.sub-column-item h6{
   font-family: var(--fb) !important;
-  font-size: var(--hfs);
-  letter-spacing: var(--hls);
-  color: var(--tg);
-  font-weight: 400;
+  font-size: var(--hfs) !important;
+  letter-spacing: var(--hls) !important;
+  color: var(--tg) !important;
+  font-weight: 400 !important;
   text-transform: uppercase;
   margin-bottom: 10px;
 }
