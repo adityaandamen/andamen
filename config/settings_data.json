@@ -513,6 +513,7 @@
           },
           "861f8b29-e6b6-4ee3-8384-d52751c19aab": {
             "type": "link",
+            "disabled": true,
             "settings": {
               "tt_hd": "Featured",
               "url": "#",
@@ -533,6 +534,7 @@
           },
           "3c65c25a-7215-4587-a283-39398a617209": {
             "type": "html",
+            "disabled": true,
             "settings": {
               "html": "",
               "col": "1"
@@ -540,6 +542,7 @@
           },
           "f528cbf6-c107-4723-b2ae-27a2bade790b": {
             "type": "banner",
+            "disabled": true,
             "settings": {
               "image": "shopify:\/\/shop_images\/menu_08cfba51-92b1-48e7-b44e-04cd7a31421b.jpg",
               "url": "shopify:\/\/collections\/rise-collection",
@@ -552,6 +555,25 @@
               "cl_overlay": "#000000",
               "cl_opacity": 0,
               "col": "4"
+            }
+          },
+          "7550fa2b-a184-4818-bb47-ff5755c5c381": {
+            "type": "pr",
+            "settings": {
+              "limit": 4,
+              "id_cat": "new-arrivals",
+              "column_pr": 4,
+              "pr_des": "1",
+              "show_vendor": false,
+              "pr_lay": "2",
+              "use_cdt": false,
+              "round_cd": false,
+              "cdt_des": "1",
+              "use_eq_height": false,
+              "image_ratio": "ratio_nt",
+              "image_size": "nt_cover",
+              "image_position": "8",
+              "col": "6"
             }
           },
           "587da0c1-87f4-4fd5-8c70-9bcdd0c85d9f": {
@@ -732,6 +754,7 @@
           "a31b19f4-181c-46b2-b6ec-e95f60360bb0",
           "3c65c25a-7215-4587-a283-39398a617209",
           "f528cbf6-c107-4723-b2ae-27a2bade790b",
+          "7550fa2b-a184-4818-bb47-ff5755c5c381",
           "587da0c1-87f4-4fd5-8c70-9bcdd0c85d9f",
           "27b56e85-4dbc-4459-979d-6f6d70f17707",
           "3c3fb17b-9210-4a6b-858d-6c03411821c4",
