@@ -13116,7 +13116,15 @@ header .nt_action .icon_cart.pr {
       
 
 /*  DESKTOP MENU STYLING  */
-      
+.level-0 span {
+  font-size: var(--h5);
+  letter-spacing: var(--ls);
+  color: var(--tc);
+  text-transform: none;
+  font-style: normal !important;
+  display: inherit;
+}
+
 .level-0 a{
     font-family: var(--heading-font);
     font-size: 16px;
