@@ -5610,7 +5610,7 @@
       "sale-countdown": {
         "type": "sale-countdown",
         "settings": {
-          "sidebar": true,
+          "sidebar": false,
           "count_start": "20221205000000",
           "count_end": "20231207170000",
           "count_time": "Dec 7, 2022 20:00:00",
@@ -5624,7 +5624,7 @@
       "site-block": {
         "type": "site-block",
         "settings": {
-          "block": true,
+          "block": false,
           "block_start": "20211207170000",
           "block_end": "20221207200000",
           "block_time": "Dec 7, 2022 20:00:00",
