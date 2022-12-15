@@ -20052,10 +20052,11 @@ a.all-products-link {
     letter-spacing: var(--hls);
 }
 
-
-element.style {
-}
 a.all-products-link span {
     border-bottom: 1px solid var(--tc);
     padding-bottom: 6px;
+}
+
+a.all-products-link:hover span{
+  border-bottom: 1px solid var(--ah);
 }
