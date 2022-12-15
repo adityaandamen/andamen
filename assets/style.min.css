@@ -13116,11 +13116,21 @@ header .nt_action .icon_cart.pr {
       
 
 /*  DESKTOP MENU STYLING  */
-.sub_menu .level-1 {
-  margin: 0;
+      
+.level-0 a{
+  font-family: var(--fh);
+  font-size: var(--h5);
+  line-height: 1;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: 0.4s;
+  display: block;
+  color: var(--tc);
+  width: fit-content;
+  display: inline-block;
 }
 
-a.sub_link {
+a.sub_link{
   font-family: var(--fb);
   padding: 2px 0 !important;
   font-size: var(--fs) !important;
@@ -13128,7 +13138,37 @@ a.sub_link {
   letter-spacing: var(--ls) !important;
 }
 
-.level-0 span.sub-title {
+
+      
+li.level-1:last-child{
+
+}
+
+.level-0 label{
+  background: #ff004a;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: var(--hls);
+  color: #fff;
+  font-family: var(--fb);
+  position: relative;
+  margin: 0 0 0 10px;
+  top: -3px;
+  border-radius: 2px;
+  padding: 2px 3px 2px 5px;
+  font-weight: 600;
+}
+
+.level-0 span{
+  font-size: var(--h5);
+  letter-spacing: var(--ls);
+  color: var(--tc);
+  text-transform: none;
+  font-style: normal !important;
+  display: inherit;
+}
+
+.level-0 span.sub-title{
   font-family: var(--fb) !important;
   font-size: var(--hfs);
   letter-spacing: var(--hls);
@@ -13138,36 +13178,40 @@ a.sub_link {
   margin-bottom: 10px;
 }
 
-.level-0 span {
-  font-size: var(--h5);
+.level-0 small{
+  display: block;
+  font-size: var(--hfs);
+  font-family: var(--fb);
   letter-spacing: var(--ls);
-  color: var(--tc);
-  text-transform: none;
-  font-style: normal !important;
-  display: inherit;
+  padding: 5px 0 0;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--tg);
 }
 
-.level-0 a{
-    font-family: var(--heading-font);
-    font-size: 16px;
-    line-height: 1.7;
-    padding: 8px 0;
-      cursor: pointer;
-      transition: 0.4s;
-      display: block;
-      
+.level-0 a span:hover,
+.level-1 a.sub_link:hover{
+  color: var(--tc) !important;
 }
 
-a.sub_link{
-    font-family: var(--body-font);
-    padding: 5px 0 !important;
-    font-size: 13px !important;
-    color: var(--text) !important;
-    letter-spacing: 0.3px !important;
+.level-0 a span:after,
+a.sub_link:after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--tc);
+  transition: width .2s;
+  margin-top: 3px;
 }
-      
-li.level-1:last-child{
 
+.level-0 a span:hover:after,
+.level-1 a.sub_link:hover:after{
+  width: 100%;
+}
+
+.menu-item.sub-column-item .sub-title{
+  
 }
       
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -13186,7 +13230,7 @@ li.level-1:last-child{
 }
       
 .sub_menu a:hover{
-  color: var(--accent) !important;
+  color: var(--ac) !important;
 }
       
 .sub_menu li:last-child{
@@ -13195,6 +13239,12 @@ li.level-1:last-child{
 
 .has_children{
   position: relative;
+}
+      
+
+
+.sub_menu .level-1{
+  margin: 0;
 }
       
 .has_children:after{
@@ -19993,20 +20043,3 @@ body {
 
 
 
-
-
-/* MENU IMPROVEMENTS */
-.level-0 label {
-  background: #ff004a;
-  font-size: 8px;
-  text-transform: uppercase;
-  letter-spacing: var(--hls);
-  color: #fff;
-  font-family: var(--fb);
-  position: relative;
-  margin: 0 0 0 10px;
-  top: -3px;
-  border-radius: 2px;
-  padding: 2px 3px 2px 5px;
-  font-weight: 600;
-}
