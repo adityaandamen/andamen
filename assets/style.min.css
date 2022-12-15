@@ -20045,3 +20045,17 @@ body {
 
 
 
+a.all-products-link {
+    color: var(--tc);
+    text-transform: uppercase;
+    font-size: var(--hfs);
+    letter-spacing: var(--hls);
+}
+
+
+element.style {
+}
+a.all-products-link span {
+    border-bottom: 1px solid var(--tc);
+    padding-bottom: 6px;
+}
