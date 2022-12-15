@@ -493,8 +493,16 @@
               "cus_wid": 1200
             }
           },
+          "e5c51a48-2e90-4207-8c2d-9330db83b73d": {
+            "type": "html",
+            "settings": {
+              "html": "<div class=\"level-0\">\n    <a href=\"https:\/\/www.andamen.com\/collections\/new-arrivals\"><span>New Arrivals<\/span><label>New<\/label><\/a>\n<\/div>\n\n<div class=\"level-0\">\n    <a href=\"https:\/\/www.andamen.com\/collections\/bestsellers\"><span>Best Sellers<\/span><\/a>\n<\/div>\n<div class=\"level-0\" style=\"margin: 20px 0 10px\">\n    <span class=\"sub-title\">Categories<\/span>\n<\/div>\n<div class=\"level-0\">\n    <a href=\"#\" class=\"has_children\"><span>Shirts<\/span><\/a>\n    <ul class=\"sub_menu\">\n        <li class=\"level-1 \"><a href=\"https:\/\/www.andamen.com\/collections\/all-shirts\" class=\"sub_link\">All Shirts<\/a><\/li>\n        <li class=\"level-1 \"><a href=\"https:\/\/www.andamen.com\/collections\/casual-shirts\" class=\"sub_link\">Casuals<\/a><\/li>\n        <li class=\"level-1 \"><a href=\"https:\/\/www.andamen.com\/collections\/formal-shirts\" class=\"sub_link\">Formals<\/a><\/li>\n        <li class=\"level-1 \"><a href=\"https:\/\/www.andamen.com\/collections\/occasion-shirts\" class=\"sub_link\">Evenings &amp; Occasions<\/a><\/li>\n    <\/ul>\n<\/div>\n\n<div class=\"level-0\">\n    <a href=\"https:\/\/www.andamen.com\/collections\/polos-tees\"><span>Polos &amp; Tees<\/span><\/a>\n<\/div>\n\n<div class=\"level-0\">\n    <a href=\"https:\/\/www.andamen.com\/collections\/trousers-shorts\"><span>Trousers, Joggers &amp; Shorts<\/span><\/a>\n<\/div>\n\n<div class=\"level-0\">\n    <a href=\"https:\/\/www.andamen.com\/collections\/winter-wear\"><span>Winter Wear<\/span><\/a>\n<\/div>",
+              "col": "3"
+            }
+          },
           "df672f39-0657-45d0-97f9-8bb54bbdd9d9": {
             "type": "link",
+            "disabled": true,
             "settings": {
               "tt_hd": "Categories",
               "url": "",
@@ -672,14 +680,6 @@
               "cus_wid": 1200
             }
           },
-          "e5c51a48-2e90-4207-8c2d-9330db83b73d": {
-            "type": "html",
-            "disabled": true,
-            "settings": {
-              "html": "<a href=\"https:\/\/www.andamen.com\/pages\/art-of-leisure\" class=\"mt__30\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0618\/3183\/9957\/files\/Artboard_69_4add3018-0185-469e-8be0-4397e236e646.jpg?v=1669980148\"><\/a>",
-              "col": "6"
-            }
-          },
           "1ece9fb5-ea3f-4e05-8a83-a95b82103318": {
             "type": "html",
             "disabled": true,
@@ -726,6 +726,7 @@
         },
         "block_order": [
           "1585641227863",
+          "e5c51a48-2e90-4207-8c2d-9330db83b73d",
           "df672f39-0657-45d0-97f9-8bb54bbdd9d9",
           "861f8b29-e6b6-4ee3-8384-d52751c19aab",
           "a31b19f4-181c-46b2-b6ec-e95f60360bb0",
@@ -741,7 +742,6 @@
           "a3e0b166-cead-41e6-8251-09054bca9b65",
           "0caad9cb-d9c9-4033-9b7a-99cc8508836c",
           "16aed477-88d1-4160-98b2-e35b0d29a61e",
-          "e5c51a48-2e90-4207-8c2d-9330db83b73d",
           "1ece9fb5-ea3f-4e05-8a83-a95b82103318",
           "dd220acb-1172-47bd-89b7-96f4690ad804",
           "b37d3266-47e0-42ea-9ea4-0ca8e9ccb0b2",
