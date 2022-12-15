@@ -562,6 +562,7 @@
             "settings": {
               "limit": 4,
               "id_cat": "new-arrivals",
+              "show_all_url": "shopify:\/\/collections\/new-arrivals",
               "column_pr": 4,
               "pr_des": "1",
               "show_vendor": false,
