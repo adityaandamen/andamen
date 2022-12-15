@@ -13116,6 +13116,17 @@ header .nt_action .icon_cart.pr {
       
 
 /*  DESKTOP MENU STYLING  */
+.sub_menu .level-1 {
+  margin: 0;
+}
+
+a.sub_link {
+  font-family: var(--fb);
+  padding: 2px 0 !important;
+  font-size: var(--fs) !important;
+  color: var(--tc) !important;
+  letter-spacing: var(--ls) !important;
+}
 
 .level-0 span.sub-title {
   font-family: var(--fb) !important;
