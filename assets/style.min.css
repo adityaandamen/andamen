@@ -20072,3 +20072,7 @@ a.all-products-link:hover span{
     letter-spacing: var(--ls) !important;
     color: var(--tc) !important;
 }
+
+.menu-product-block .product-image .product-attr {
+  display: none;
+}
