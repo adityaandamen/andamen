@@ -20046,17 +20046,22 @@ body {
 
 
 a.all-products-link {
-    color: var(--tc);
-    text-transform: uppercase;
-    font-size: var(--hfs);
-    letter-spacing: var(--hls);
+  color: var(--tc);
+  text-transform: uppercase;
+  font-size: var(--hfs);
+  letter-spacing: var(--hls);
 }
 
 a.all-products-link span {
-    border-bottom: 1px solid var(--tc);
-    padding-bottom: 6px;
+  border-bottom: 1px solid var(--tc);
+  padding-bottom: 6px;
 }
 
 a.all-products-link:hover span{
   border-bottom: 1px solid var(--ah);
+}
+
+.product-title {
+  font-size: var(--fs);
+  letter-spacing: var(--ls);
 }
