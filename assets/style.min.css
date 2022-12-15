@@ -19960,3 +19960,23 @@ body {
   color: transparent !important;    
 }
 
+
+
+
+
+
+/* MENU IMPROVEMENTS */
+.level-0 label {
+  background: #ff004a;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: var(--hls);
+  color: #fff;
+  font-family: var(--fb);
+  position: relative;
+  margin: 0 0 0 10px;
+  top: -3px;
+  border-radius: 2px;
+  padding: 2px 3px 2px 5px;
+  font-weight: 600;
+}
