@@ -20065,3 +20065,10 @@ a.all-products-link:hover span{
   font-size: var(--fs);
   letter-spacing: var(--ls);
 }
+
+.price {
+    font-weight: 600;
+    font-size: var(--fs) !IMPORTANT;
+    letter-spacing: var(--ls) !important;
+    color: var(--tc) !important;
+}
