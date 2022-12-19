@@ -5433,7 +5433,7 @@
               "cap_h_pos_mb": 50,
               "txt_align_mb": "tc",
               "cl_overlay": "#000000",
-              "cl_opacity": 86,
+              "cl_opacity": 0,
               "ani_img": "none",
               "ani_txt": "bottom_top",
               "title": "upto 40% off",
