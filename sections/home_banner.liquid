@@ -84,7 +84,7 @@
                             {%- endif -%}
                             <h4 id="b_{{block.id}}" class="pe_auto">{{bk_stts.title}}{% assign bk_title = block.settings.title -%}</h4>
                             <div id="b_{{block.id}}" class="slt4_space"></div>
-                            <h3 id="b_{{block.id}}" class="pe_auto">{{bk_stts.htitle}}</h3>
+                            <h3 id="b_{{block.id}}" class="pe_auto mt__10">{{bk_stts.htitle}}</h3>
                             <div id="b_{{block.id}}" class="slt5_space"></div>
                             {%- if bk_stts.btn_link != blank and bk_stts.btitle != blank -%}<a id="b_{{block.id}}" class="slt4_btn button pe_auto btn_icon_{{bk_stts.btn_icon}}" href="{{bk_stts.btn_link}}" target="{{open_link}}" onclick="eventPromotionClick('HOME_BANNER_{{ bk_title | replace: " " , "_"}}','{{ bk_title | replace: " " , "_"}}','banner_slot_{{index | divided_by: 6}}','Home Page Banner')">{{bk_stts.btitle}}</a>{%- endif -%}
                             {%- if bk_stts.btn_link2 != blank and bk_stts.btitle2 != blank -%}<a id="b_{{block.id}}" class="slt4_btn button pe_auto btn_style_{{bk_stts.btn_style}} round_{{bk_stts.btn_round}} btn_icon_{{bk_stts.btn_icon}}" href="{{bk_stts.btn_link2}}" target="{{open_link}}">{{bk_stts.btitle2}}</a>{%- endif -%}
