@@ -12582,11 +12582,11 @@ header .nt_action .icon_cart.pr {
     }
 
     .nt_full .flickity-prev-next-button.next {
-        right: 0;
+        right: -15px;
     }
 
     .nt_full .flickity-prev-next-button.previous {
-        left: 0;
+        left: -15px;
     }
 
     .banner-cont a {
@@ -15886,13 +15886,6 @@ input:checked ~ .size-tab-content {
       
 #login-credit{
   display: none !important;
-}
-      
-      
-.slideshow__slide .caption-wrap h3{
-  font-family: var(--fh);
-  font-size: 50px !important;
-  letter-spacing: var(--ls);
 }
       
 .nt_se_164653531246df098e{
